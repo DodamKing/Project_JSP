@@ -46,6 +46,11 @@ function setList() {
 
 // 플레이버튼 클릭
 play_btn.addEventListener("click", () => {
+	if (thum_list[0] == null) {
+		return;
+	}
+	
+	else {
     if (sw == 0) {
         songUrl = "../music/" + title_list[playerIndex] + " - " + artist_list[playerIndex] + ".mp3";
         player.src = songUrl;
@@ -60,7 +65,8 @@ play_btn.addEventListener("click", () => {
     
     $(play_btn).hide();
     $(pause_btn).show();
-    player.play();
+    player.play();	
+	}
 });
 
 // 일시정지
@@ -69,3 +75,66 @@ pause_btn.addEventListener("click", () => {
     $(pause_btn).hide();
     player.pause();
 });
+
+//볼륨
+$("#volume_bar").on("input", () => {
+	player.volume = $("#volume_bar").val() / 100;
+});
+
+// 음소거
+let temp_vol;
+$("#mute_btn1").click(() => {
+	temp_vol = player.volume;
+	player.volume = 0;
+	volume_bar.value = 0;
+	
+    $("#mute_btn1").hide();
+    $("#mute_btn2").show();
+});
+
+$("#mute_btn2").click(() => {
+	player.volume = temp_vol;
+	volume_bar.value = temp_vol * 100;
+	
+    $("#mute_btn2").hide();
+    $("#mute_btn1").show();
+});
+
+//재생바
+$("#player").on("timeupdate", () => {
+	let per = (player.currentTime / player.duration) * 100;
+    play_bar.value = per;
+
+    let min_dur = parseInt(player.duration / 60);
+    let sec_dur = parseInt(player.duration % 60);
+    let min_cur = parseInt(player.currentTime / 60);
+    let sec_cur = parseInt(player.currentTime % 60);
+    
+    if (min_dur < 10) {
+        min_dur = "0" + min_dur;
+    }
+    if (sec_dur < 10) {
+        sec_dur = "0" + sec_dur;
+    }
+    if (min_cur < 10) {
+        min_cur = "0" + min_cur;
+    }
+    if (sec_cur < 10) {
+        sec_cur = "0" + sec_cur;
+    }
+
+    let res = min_cur + ":" + sec_cur + " / " + min_dur + ":" + sec_dur;
+    $("#controls_time").html(res);
+});
+
+$("#play_bar").on("change", () => {
+	let point = $("#play_bar").val();
+    play_bar = point;
+    player.currentTime = point * player.duration / 100;
+});
+
+
+
+
+
+

@@ -207,7 +207,7 @@ button[type="button"]:hover {
 
 #volume_bar::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 8px;
+    width: 0px;
     height: 13px;
     border-radius: 3px;
     background: rgb(185, 185, 185);

@@ -61,14 +61,3 @@ $(document).click((e) => {
         }
     }*/
 });
-
-// 음소거
-$("#mute_btn1").click(() => {
-    $("#mute_btn1").hide();
-    $("#mute_btn2").show();
-})
-
-$("#mute_btn2").click(() => {
-    $("#mute_btn2").hide();
-    $("#mute_btn1").show();
-})
