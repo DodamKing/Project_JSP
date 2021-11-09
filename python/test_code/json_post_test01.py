@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 import requests
 from bs4 import BeautifulSoup as bs
 import json
@@ -29,13 +29,18 @@ def index():
 
     song_dict = {'title': title, 'artist': artist, 'img': img}
     with open("song.json", "w") as f:
-        song_json = json.dump(song_dict, f)
+        json.dump(song_dict, f)
+        
+    with open('song.json') as f:
+        song_json = json.load(f)
 
-    url = "http://127.0.0.1:9090/jsonPost_test/getJson.jsp"
+    url = "http://127.0.0.1:9090/jsp2108/getJson"
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    response = requests.get(url, data=song_json, headers=headers)
+    response = requests.post(url, data=song_json, headers=headers)
 
-    return response.status_code
+    print('dsa: ' , song_json)
+    
+    return song_json
 
 
 if __name__ == '__main__':

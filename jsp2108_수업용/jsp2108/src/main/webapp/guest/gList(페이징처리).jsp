@@ -13,7 +13,7 @@
 	
 	GuestDAO dao = new GuestDAO();
 	
-	int pageSize = 2;
+	int pageSize = 5;
 	int totRecCnt = dao.totRecCnt();
 	int totPage;
 	if (totRecCnt % pageSize == 0) {
@@ -27,16 +27,6 @@
 	}
 	int startIndexNo = (pag - 1) * pageSize;
 	int curScrStartNo = totRecCnt - startIndexNo;
-	
-	
-	int blockSize = 5;
-	int curBlock = (pag - 1) / blockSize;
-	int lastBlock; 
-	if ((totPage % blockSize) == 0) {
-		lastBlock = totPage / blockSize - 1;
-	} else {
-		lastBlock = totPage / blockSize;
-	}
 	
 	
 	List<GuestVO> vos = dao.gList(startIndexNo, pageSize);
@@ -83,6 +73,7 @@
 					<td><a class="btn btn-secondary" href="<%=request.getContextPath() %>/guest/gInput.jsp">글쓰기</a></td>
 				</tr>
 			</table>
+			
 			<div class="col mt-5" style="text-align: right;">
 				<% 
 					if (pag != 1) {
@@ -169,46 +160,6 @@
 			curScrStartNo--;
 			}
 		%>
-		
-		<div class="col mt-5" style="text-align: center;">
-				<% 
-					if (pag != 1) {
-				%>
-						<a class="btn btn-primary" href="gList.jsp?pag=<%=1 %>">처음</a>
-				<%
-					}
-					if (curBlock > 0) {
-				%>
-						<a class="btn btn-primary" href="gList.jsp?pag=<%=(curBlock - 1) * blockSize + 1 %>">이전블록</a>
-				<% 	
-					}
-				%>	
-				<% 
-					for (int i = curBlock * blockSize + 1; i< curBlock * blockSize + blockSize + 1; i++) {
-						if (i>totPage) break;
-						if (i == pag) {
-				%>
-					<a href="gList.jsp?pag=<%=i %>" style="color:red;" >[<%=i %>]</a>
-				<%
-						} else {
-				%>
-					<a href="gList.jsp?pag=<%=i %>">[<%=i %>]</a>
-				<%	
-						}
-					}
-					if (curBlock < lastBlock) {
-				%>
-						<a class="btn btn-primary" href="gList.jsp?pag=<%=(curBlock + 1) * blockSize + 1 %>">다음블록</a>
-				<%
-					}
-					if (pag != totPage) {
-				%>
-						<a class="btn btn-primary" href="gList.jsp?pag=<%=totPage %>">마지막</a>
-				<%
-					}
-				%>
-				
-			</div>
 		
 	</div>
 	

@@ -48,10 +48,10 @@ function setList() {
 play_btn.addEventListener("click", () => {
     if (sw == 0) {
         songUrl = "../music/" + title_list[playerIndex] + " - " + artist_list[playerIndex] + ".mp3";
-        // songUrl = "./" + title_list[playerIndex] + " - " + artist_list[playerIndex] + ".mp3";
-        // player.src = decodeURIComponent(songUrl);
         player.src = songUrl;
+	console.log(songUrl);
         player.load();
+	//console.log("2."+songUrl);
         controls_img.src = thum_list[playerIndex];
         controls_title.innerHTML = title_list[playerIndex];
         controls_artist.innerHTML = artist_list[playerIndex];

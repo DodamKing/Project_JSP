@@ -48,11 +48,13 @@ public class GuestDAO {
 		}
 	}
 	
-	public List<GuestVO> gList() {
+	public List<GuestVO> gList(int startIndexNo, int pageSize) {
 		List<GuestVO> vos = new ArrayList<GuestVO>();
-		sql = "select * from guest order by idx desc";
+		sql = "select * from guest order by idx desc limit ?,?";
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startIndexNo);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -91,5 +93,35 @@ public class GuestDAO {
 			close();
 		}
 		return -1;
+	}
+	
+	public int gDelete(int idx) {
+		sql = "delete from guest where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
+	
+	public int totRecCnt() {
+		int totRecCnt = 0;
+		sql = "select count(*) from guest";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				totRecCnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return totRecCnt;
 	}
 }

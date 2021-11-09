@@ -7,13 +7,18 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
+/*
 	Gson gson = new Gson();
 	JsonObject jsonObject = new JsonObject();
 	String song_json = request.getParameter("song_json");
 	Map<String, Object> map = gson.fromJson(song_json, Map.class);
 	for (Map.Entry<String, Object> entry : map.entrySet()) {
-		System.out.println(entry.getKey() + "=" + entry.getValue());
+		System.out.println(entry.getKey() + "=" + entry.getValue()); 
 	}
+	*/
+	String song_json = request.getParameter("song_json");
+	System.out.println(song_json); 
+	
 %>
 <!DOCTYPE html>
 <html>

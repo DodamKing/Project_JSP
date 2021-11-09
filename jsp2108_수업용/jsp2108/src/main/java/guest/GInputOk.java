@@ -34,6 +34,9 @@ public class GInputOk extends HttpServlet {
 			content = request.getParameter("content");
 		}
 		
+		name = name.replace("<", "&lt;");
+		name = name.replace(">", "&gt;");
+		
 		GuestVO vo = new GuestVO();
 		
 		vo.setName(name);

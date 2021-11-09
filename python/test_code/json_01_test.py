@@ -22,8 +22,13 @@ for i in range(100):
 
 song_dict = {'title': title, 'artist': artist, 'img': img}
 with open("song.json", "w") as f:
-    song_json = json.dump(song_dict, f)
+    json.dump(song_dict, f)
+    
+with open('song.json') as f:
+    song_json = json.load(f)
 
 # url = "http://127.0.0.1:9090/jsonPost_test/getJson.jsp"
 # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 # response = requests.get(url, data=song_json, headers=headers)
+
+print(song_json)
