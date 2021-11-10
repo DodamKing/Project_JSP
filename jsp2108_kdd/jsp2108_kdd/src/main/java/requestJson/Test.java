@@ -10,7 +10,7 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class test {
+public class Test {
 	public static void main(String[] args) {
 final String HOST_URL = "http://127.0.0.1:5000/";
 		
