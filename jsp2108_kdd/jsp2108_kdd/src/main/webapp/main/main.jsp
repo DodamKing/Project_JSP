@@ -19,7 +19,7 @@
     <title>main</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css?ver=4">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css?ver=5">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/top10.css?ver=1">
     <script>
     	console.log("<%=songs %>");
@@ -250,7 +250,7 @@
             </div>
             <div class="ml-3 pt-3 mr-3">
                 <button id="playlistUp_btn" class="btn" type="button"><i class="fa-solid fa-arrow-down-short-wide fa-2x fa-flip-vertical"></i></button>
-                <button style="display: none;" id="playlistDown_btn" class="btn" type="button"><i class="fa-solid fa-arrow-down-wide-short fa-2x"></i></i></button>
+                <button style="display: none;" id="playlistDown_btn" class="btn" type="button"><i class="fa-solid fa-arrow-down-wide-short fa-2x"></i></button>
             </div>
         </div>
     </footer>
