@@ -28,7 +28,9 @@ for i in range(100):
 # 음원 다운로드
     # url 수집
 yt_url_list = []
-driver = webdriver.Chrome('chromedriver.exe')
+
+driver = webdriver.Chrome('./95/chromedriver.exe')
+
 for i in range(100):
     keyword = '{} {} official audio'.format(title_list[i], artist_list[i])
     url = 'https://www.youtube.com/results?search_query=' + keyword

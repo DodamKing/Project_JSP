@@ -19,7 +19,6 @@ $("button[name='add_btn']").click(function() {
     artist_list.push(artist);
 
     setList();
-    // console.log(thum_list);
 });
 
 $("button[name='delete_btn']").click(function() {
@@ -52,11 +51,13 @@ play_btn.addEventListener("click", () => {
 	
 	else {
     if (sw == 0) {
-        songUrl = "../music/" + title_list[playerIndex] + " - " + artist_list[playerIndex] + ".mp3";
-        player.src = songUrl;
-	console.log(songUrl);
+		let title = title_list[playerIndex].replaceAll("[\\\/:*?\"<>|]", "");
+		let artist = artist_list[playerIndex].replaceAll("[\\\/:*?\"<>|]", "");
+	
+        songUrl = "../music/" + title + " - " + artist + ".mp3";
+		console.log(songUrl)
+		player.src = songUrl;
         player.load();
-	//console.log("2."+songUrl);
         controls_img.src = thum_list[playerIndex];
         controls_title.innerHTML = title_list[playerIndex];
         controls_artist.innerHTML = artist_list[playerIndex];

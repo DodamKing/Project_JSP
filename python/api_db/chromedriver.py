@@ -8,7 +8,6 @@ from selenium.webdriver.chrome.options import Options
 import chromedriver_autoinstaller
 import subprocess
 import shutil
-import re
 
 
 # 차트 수집
@@ -54,22 +53,25 @@ except:
         f'./{chrome_ver}/chromedriver.exe', options=option)
 driver.implicitly_wait(10)
 
-for i in range(10):
-    keyword = '{} - {}'.format(title_list[i], artist_list[i])
-    if os.path.exists('..\\music_db\\' + keyword + '.mp3'):
-        print(keyword + ' is already exist')
 
-    else:
-        url = 'https://www.youtube.com/results?search_query=' + keyword + ' official audio'
-        driver.get(url)
-        soup = bs(driver.page_source, 'html.parser')
-        html = soup.select('a#video-title')[0]
-        video_url = 'https://www.youtube.com' + html.get('href')
 
-        yt = YouTube(video_url)
-        audio = yt.streams.get_by_itag(140)
-        # 파일명에 올 수 없는 문자 제거 나중에 파일 가져올 때도 확인 해야 함
-        keyword = re.sub('[\\\/:*?\"<>|]', '', keyword)
-        audio.download('..\\music_db', keyword + '.mp3')
-        time.sleep(2)
-driver.close()
+
+# for i in range(10):
+#     keyword = '{} - {}'.format(title_list[i], artist_list[i])
+#     if os.path.exists('..\\music_db\\' + keyword + '.mp3'):
+#         print(keyword + ' is already exist')
+
+#     else:
+#         url = 'https://www.youtube.com/results?search_query=' + keyword + ' official audio'
+#         driver.get(url)
+#         soup = bs(driver.page_source, 'html.parser')
+#         html = soup.select('a#video-title')[0]
+#         video_url = 'https://www.youtube.com' + html.get('href')
+
+#         yt = YouTube(video_url)
+#         audio = yt.streams.get_by_itag(140)
+#         # 파일명에 올 수 없는 문자 제거 나중에 파일 가져올 때도 확인 해야 함
+#         keyword = re.sub('[\\\/:*?\"<>|]', '', keyword)
+#         audio.download('..\\music_db', keyword + '.mp3')
+#         time.sleep(2)
+# driver.close()

@@ -24,9 +24,15 @@
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/URLMapping">URL (디렉토리) 매핑</a>
 		    <a class="dropdown-item" href="<%=request.getContextPath() %>/URLMapping.url">URL (확장자) 매핑</a>
 		    <a class="dropdown-item" href="<%=request.getContextPath() %>/URLMapping.url2">URL2 (확장자) 매핑</a>
-		  	<a class="dropdown-item" href="#">URL (임시) 매핑</a>
+		  	<a class="dropdown-item" href="<%=request.getContextPath()%>/password">비밀번호 암호화</a>
 	  	</div>
-      </li>    
+      </li>  
+    </ul>
+    <div class="col"></div>
+    <ul class="navbar-nav col-1" >
+    	<li class="nav-item">
+        	<a class="nav-link" href="<%=request.getContextPath() %>/memLogin.mem">로그인</a>
+    	</li>  
     </ul>
   </div>  
 </nav>

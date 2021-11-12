@@ -259,7 +259,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/main.js?ver=5"></script>
-    <script src="<%=request.getContextPath() %>/js/player.js?ver=5"></script>
+    <script src="<%=request.getContextPath() %>/js/player.js?ver=6"></script>
 </body>
 
 </html>
