@@ -32,7 +32,8 @@ yt_url_list = []
 driver = webdriver.Chrome('./95/chromedriver.exe')
 
 for i in range(100):
-    keyword = '{} {} official audio'.format(title_list[i], artist_list[i])
+    keyword = '{} {} official audio, short'.format(
+        title_list[i], artist_list[i])
     url = 'https://www.youtube.com/results?search_query=' + keyword
 
     driver.get(url)
@@ -47,11 +48,15 @@ for i in range(100):
     keyword = '{} - {}'.format(title_list[i], artist_list[i])
     keyword = re.sub('[\\\/:*?\"<>|]', '', keyword)
 
-    if os.path.exists('..\\music_db\\' + keyword + '.mp3'):
+    # if os.path.exists('..\\music_db\\' + keyword + '.mp3'):
+    if os.path.exists('D:\works\java02_kdd\Project_JSP\jsp2108_kdd\jsp2108_kdd\src\main\webapp\music\\' + keyword + '.mp3'):
         print(keyword + ' is already exist')
         pass
     else:
         yt = YouTube(yt_url_list[i])
         audio = yt.streams.get_by_itag(140)
-        audio.download('..\\music_db', keyword + '.mp3')
+        # audio.download('..\\music_db', keyword + '.mp3')
+        audio.download(
+            'D:\works\java02_kdd\Project_JSP\jsp2108_kdd\jsp2108_kdd\src\main\webapp\music', keyword + '.mp3')
+        print(keyword + ' is downloaded')
         time.sleep(2)

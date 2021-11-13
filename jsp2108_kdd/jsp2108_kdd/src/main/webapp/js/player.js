@@ -51,16 +51,20 @@ play_btn.addEventListener("click", () => {
 	
 	else {
     if (sw == 0) {
-		let title = title_list[playerIndex].replaceAll("[\\\/:*?\"<>|]", "");
-		let artist = artist_list[playerIndex].replaceAll("[\\\/:*?\"<>|]", "");
+		let title = title_list[playerIndex].replace(/[\\\/:*?\"<>|]/g, "");
+		let artist = artist_list[playerIndex].replace(/[\\\/:*?\"<>|]/g, "");
 	
-        songUrl = "../music/" + title + " - " + artist + ".mp3";
+		let hostIndex = location.href.indexOf(location.host) + location.host.length;
+		let contextPath = location.href.substring(hostIndex, location.href.indexOf("/", hostIndex + 1));
+	
+        songUrl = contextPath + "/music/" + title + " - " + artist + ".mp3";
 		console.log(songUrl)
 		player.src = songUrl;
         player.load();
         controls_img.src = thum_list[playerIndex];
         controls_title.innerHTML = title_list[playerIndex];
         controls_artist.innerHTML = artist_list[playerIndex];
+		play_listImg_img.src = thum_list[playerIndex].replace("50", "600");
         sw = 1;
     }
     
@@ -106,10 +110,18 @@ $("#player").on("timeupdate", () => {
 	let per = (player.currentTime / player.duration) * 100;
     play_bar.value = per;
 
-    let min_dur = parseInt(player.duration / 60);
-    let sec_dur = parseInt(player.duration % 60);
-    let min_cur = parseInt(player.currentTime / 60);
-    let sec_cur = parseInt(player.currentTime % 60);
+	let min_dur = 00;
+	let sec_dur = 00;
+	let min_cur = 00;
+	let sec_cur = 00;
+
+	if (!isNaN(player.duration)) {
+	    min_dur = parseInt(player.duration / 60);
+	    sec_dur = parseInt(player.duration % 60);
+	    min_cur = parseInt(player.currentTime / 60);
+	    sec_cur = parseInt(player.currentTime % 60);
+	}
+
     
     if (min_dur < 10) {
         min_dur = "0" + min_dur;

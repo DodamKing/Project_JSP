@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    data = requests.get('https://music.bugs.co.kr/chart')
+    data = requests.get('https://music.bugs.co.kr/chart/track/day/total')
     soup = bs(data.text, 'html.parser')
 
     titles = soup.select('p.title')

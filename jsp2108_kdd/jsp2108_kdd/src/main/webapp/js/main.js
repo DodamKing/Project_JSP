@@ -2,6 +2,7 @@ $().ready(() => {
     mainVideoPlay();
     $("video").on("ended", mainVideoPlay);
     // setInterval(mainVideoPlay(), 1000);
+	player.volume = volume_bar.value / 100;
 });
 
 
@@ -19,7 +20,12 @@ function mainVideoPlay() {
     }
     mainVideoS = "0" +  parseInt(Math.random() * 60);
     console.log(mainVideoH, mainVideoM.substr(-2), mainVideoS.substr(-2));
-    let mainVideoUrl = "../music/sample.mp4#t=0" + mainVideoH + ":" + mainVideoM.substr(-2) + ":" + mainVideoS.substr(-2);
+
+	// contextPath 구하기
+	let hostIndex = location.href.indexOf(location.host) + location.host.length;
+	let contextPath = location.href.substring(hostIndex, location.href.indexOf("/", hostIndex + 1));
+
+    let mainVideoUrl = contextPath + "/music/sample.mp4#t=0" + mainVideoH + ":" + mainVideoM.substr(-2) + ":" + mainVideoS.substr(-2);
     // let mainVideoUrl = "music/sample.mp4#t=02:20:00,02:20:03";
     $("video").prop("src", mainVideoUrl);
 }
@@ -38,14 +44,14 @@ $("#dropMenu").click((e) => {
 // 플레이 리스트
 $("#playlistUp_btn").click((e) => {
     e.stopPropagation();
-    $("#play_listBox").animate({top: "0px"}, 200);
+    $("#play_listContainer").animate({top: "0px"}, 200);
     $("#playlistUp_btn").hide();
     $("#playlistDown_btn").show();
 });
 
 $("#playlistDown_btn").click((e) => {
     e.stopPropagation();
-    $("#play_listBox").animate({top: "100%"}, 200);
+    $("#play_listContainer").animate({top: "100%"}, 200);
     $("#playlistUp_btn").show();
     $("#playlistDown_btn").hide();
 });

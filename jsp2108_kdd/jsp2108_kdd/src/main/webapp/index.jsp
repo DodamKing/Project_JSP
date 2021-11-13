@@ -6,6 +6,6 @@
 	<title>Welcome</title>
 </head>
 <body>
-	<script>location.href="<%=request.getContextPath() %>/main/main.jsp"</script>
+	<script>location.href="<%=request.getContextPath() %>/mamain.ma"</script>
 </body>
 </html>
