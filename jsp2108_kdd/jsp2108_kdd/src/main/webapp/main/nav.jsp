@@ -4,13 +4,36 @@
 	    <div>
 	        <div class="row">
 	            <div class="col-2"><i class="fa-solid fa-user"></i></div>
+	            <%
+	            	if (session.getAttribute("sMid") == null) {
+	            %>
 	            <div class="col" id="dropMenu">사용자 <i class="fa-solid fa-caret-down"></i></div>
+	            <%
+	            	}
+	            	else {
+	            %>
+	            <div class="col" id="dropMenu"><%=mid %> <i class="fa-solid fa-caret-down"></i></div>
+	            <%
+	            	}
+	            %>
 	        </div>
 	        <div class="list-group my-group">
 	            <ul>
-	                <li class="list-group-item list-group-item-light"><a href="">로그인</a></li>
-	                <li class="list-group-item list-group-item-light"><a href="">회원가입</a></li>
+	            <%
+	            	if (session.getAttribute("sMid") == null) {
+	            %>
+	                <li class="list-group-item list-group-item-light"><a href="<%=request.getContextPath() %>/userlogin.user">로그인</a></li>
+                <%
+	            	}
+	            	else {
+                %>
+	                <li class="list-group-item list-group-item-light"><a href="">My 멤버십</a></li>
 	                <li class="list-group-item list-group-item-light"><a href="">공지사항</a></li>
+	                <li class="list-group-item list-group-item-light"><a href="">계정설정</a></li>
+	                <li class="list-group-item list-group-item-light"><a href="">로그아웃</a></li>
+                <%
+	            	}
+                %>
 	            </ul>
 	        </div>
 	    </div>

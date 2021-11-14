@@ -89,8 +89,8 @@ for i in range(len(yt_url_list)):
         audio.download(
             'D:\works\java02_kdd\Project_JSP\jsp2108_kdd\jsp2108_kdd\src\main\webapp\music', name + '.mp3')
         print(name + ' is downloaded')
+        cnt_down += 1
         time.sleep(2)
-    cnt_down += 1
 
 print('insert count: ', cnt_db)
 print('download count:', cnt_down)

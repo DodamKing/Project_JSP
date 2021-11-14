@@ -1,4 +1,4 @@
-const song_list = []
+// const song_list = []
 const thum_list = []
 const title_list = []
 const artist_list = []
@@ -32,6 +32,10 @@ function dellist(index) {
     artist_list.splice(index, 1);
     
     setList();
+
+	if (index <= playerIndex) {
+		playerIndex--;
+	}
 }
 
 // 플레이 리스트에 데이터 뿌리기
@@ -43,6 +47,24 @@ function setList() {
     play_list.innerHTML = res;
 }
 
+// 로드
+function load() {
+	let title = title_list[playerIndex].replace(/[\\\/:*?\"<>|]/g, "");
+	let artist = artist_list[playerIndex].replace(/[\\\/:*?\"<>|]/g, "");
+
+	let hostIndex = location.href.indexOf(location.host) + location.host.length;
+	let contextPath = location.href.substring(hostIndex, location.href.indexOf("/", hostIndex + 1));
+
+    songUrl = contextPath + "/music/" + title + " - " + artist + ".mp3";
+	player.src = songUrl;
+    player.load();
+    controls_img.src = thum_list[playerIndex];
+    controls_title.innerHTML = title_list[playerIndex];
+    controls_artist.innerHTML = artist_list[playerIndex];
+	play_listImg_img.src = thum_list[playerIndex].replace("50", "600");
+}
+
+
 // 플레이버튼 클릭
 play_btn.addEventListener("click", () => {
 	if (thum_list[0] == null) {
@@ -50,24 +72,11 @@ play_btn.addEventListener("click", () => {
 	}
 	
 	else {
-    if (sw == 0) {
-		let title = title_list[playerIndex].replace(/[\\\/:*?\"<>|]/g, "");
-		let artist = artist_list[playerIndex].replace(/[\\\/:*?\"<>|]/g, "");
-	
-		let hostIndex = location.href.indexOf(location.host) + location.host.length;
-		let contextPath = location.href.substring(hostIndex, location.href.indexOf("/", hostIndex + 1));
-	
-        songUrl = contextPath + "/music/" + title + " - " + artist + ".mp3";
-		console.log(songUrl)
-		player.src = songUrl;
-        player.load();
-        controls_img.src = thum_list[playerIndex];
-        controls_title.innerHTML = title_list[playerIndex];
-        controls_artist.innerHTML = artist_list[playerIndex];
-		play_listImg_img.src = thum_list[playerIndex].replace("50", "600");
-        sw = 1;
-    }
-    
+	    if (sw == 0) {
+			load();
+	        sw = 1;
+	    }
+	    
     $(play_btn).hide();
     $(pause_btn).show();
     player.play();	
@@ -108,8 +117,8 @@ $("#mute_btn2").click(() => {
 //재생바
 $("#player").on("timeupdate", () => {
 	let per = (player.currentTime / player.duration) * 100;
-    play_bar.value = per;
-
+	$("#play_bar").val(per);
+ 	
 	let min_dur = 00;
 	let sec_dur = 00;
 	let min_cur = 00;
@@ -140,10 +149,45 @@ $("#player").on("timeupdate", () => {
     $("#controls_time").html(res);
 });
 
+
+// 재생바 이동
 $("#play_bar").on("change", () => {
 	let point = $("#play_bar").val();
     play_bar = point;
     player.currentTime = point * player.duration / 100;
+});
+
+// next button
+$("#next_btn").click(() => {
+	playerIndex++;
+	if (playerIndex >= thum_list.length) {
+		playerIndex = 0;
+	};
+	load();
+	player.play();
+	$("#controls_time").html("00:00 / 00:00");
+});
+
+
+// back button
+$("#back_btn").click(() => {
+	playerIndex--;
+	if (playerIndex <= 0) {
+		playerIndex = 0;
+	};
+	load();
+	player.play();
+	$("#controls_time").html("00:00 / 00:00");
+});
+
+// 연속 재생
+$("#player").on("ended", () => {
+	if (playerIndex >= thum_list.length) {
+		return;
+	}
+	playerIndex++;
+	load();
+	player.play();
 });
 
 

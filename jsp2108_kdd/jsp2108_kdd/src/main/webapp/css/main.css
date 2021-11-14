@@ -269,7 +269,7 @@ div#play_listImg > div {
     -webkit-appearance: none;
     width: 0px;
     height: 5px;
-    box-shadow: -800px 0 0 800px red;
+    box-shadow: -8000px 0 0 8000px red;
 }
 
 #play_bar::-webkit-slider-runnable-track {
