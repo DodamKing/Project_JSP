@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
-public class userLoginDo implements UserInterface {
+public class UserLoginDo implements UserInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)

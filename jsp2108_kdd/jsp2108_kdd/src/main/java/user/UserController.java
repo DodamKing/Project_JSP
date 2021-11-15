@@ -23,13 +23,29 @@ public class UserController extends HttpServlet {
 		}
 		
 		else if (com.equals("/userlogindo")) {
-			command = new userLoginDo();
+			command = new UserLoginDo();
 			command.execute(request, response);
 			view += "/message.jsp";
 		}
 		
 		else if (com.equals("/userloginsuccess")) {
 			view += "/main.jsp";
+		}
+		
+		else if (com.equals("/usersignup")) {
+			view += "/signup.jsp";
+		}
+		
+		else if (com.equals("/useroverlapcheck")) {
+			command = new UserOverlapCheck();
+			command.execute(request, response);
+			view += "/useroverlapcheck.jsp";
+		}
+
+		else if (com.equals("/usersignupdo")) {
+			command = new UserSignUpDo();
+			command.execute(request, response);
+			view += "/login.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);

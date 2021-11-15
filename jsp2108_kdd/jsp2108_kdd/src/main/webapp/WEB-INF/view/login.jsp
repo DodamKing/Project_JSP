@@ -9,11 +9,10 @@
     <title>DD Music 로그인</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css?ver=1">
     
     <style>
     	a {
-    		color: inherit;
+	    color: inherit;
 		}
 		
 		a:hover {
@@ -85,7 +84,7 @@
 <body>
     <section>
 	    <div class="main-container">
-	   		<h5 class="text-right"><a href="">DD Music</a></h5>
+	   		<h5 class="text-right"><a href="<%=request.getContextPath() %>/">DD Music</a></h5>
 	        <div class="container p-3 my-3 border">
                 <div class="form-container">
                     <form action="userlogindo.user" name="loginForm">
@@ -108,7 +107,7 @@
                                 value="로그인">
                         </div>
                         <div class="d-flex form-foot">
-                            <div class="p-2 mr-auto"><a href="">회원가입</a></div>
+                            <div class="p-2 mr-auto"><a href="<%=request.getContextPath() %>/usersignup.user">회원가입</a></div>
                             <div class="p-2 control-r"><a href="">계정 찾기</a></div>
                             <div class="p-2 control-r">|</div>
                             <div class="p-2 control-r"><a href="">비밀번호 찾기</a></div>

@@ -33,16 +33,17 @@ form h2 {
     color: rgb(128, 128, 128);
 }
 
-.login-status {
-    color: black;
-    font-weight: 900;
-    font-size: 0.8em;
-    margin-left: 10px;
+.must-item {
+    text-align: left;
 }
 
-.check-control {
-    cursor: pointer;
-    margin: 10px 0px;
+fieldset legend {
+    font-size: 0.8em;
+}
+
+.lbl {
+    font-size: 1.2em;
+    color: black;
 }
 
 .login-control {
@@ -51,6 +52,11 @@ form h2 {
     height: 50px;
     font-weight: 900;
     margin: 30px 0px;
+}
+
+.demo-box {
+    color: red;
+    font-size: 0.8em;
 }
 
 .form-foot {

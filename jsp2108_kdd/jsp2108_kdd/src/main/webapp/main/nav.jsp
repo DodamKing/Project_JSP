@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav>
 	<div class="card-body nav-w">
 	    <div>
@@ -12,7 +13,7 @@
 	            	}
 	            	else {
 	            %>
-	            <div class="col" id="dropMenu"><%=mid %> <i class="fa-solid fa-caret-down"></i></div>
+	            <div class="col" id="dropMenu">${sMid}<i class="fa-solid fa-caret-down"></i></div>
 	            <%
 	            	}
 	            %>

@@ -34,4 +34,19 @@ public class UserDAO {
 		}
 		return false;
 	}
+
+	public int checkUserId(String userId) {
+		sql = "select * from user_jsp where userId = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 1;
+	}
 }
