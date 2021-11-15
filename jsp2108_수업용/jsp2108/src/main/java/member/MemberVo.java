@@ -17,13 +17,14 @@ public class MemberVo {
 	private String hobby;
 	private String photo;
 	private String content;
-	private char userInfor;
+	private String userInfor;
 	private char userDel;
 	private int point;
 	private int level;
 	private int visitCnt;
 	private String startDate;
 	private String lastDate;
+	private int todayCnt;
 	
 	public int getIdx() {
 		return idx;
@@ -121,10 +122,10 @@ public class MemberVo {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public char getUserInfor() {
+	public String getUserInfor() {
 		return userInfor;
 	}
-	public void setUserInfor(char userInfor) {
+	public void setUserInfor(String userInfor) {
 		this.userInfor = userInfor;
 	}
 	public char getUserDel() {
@@ -163,6 +164,12 @@ public class MemberVo {
 	public void setLastDate(String lastDate) {
 		this.lastDate = lastDate;
 	}
+	public int getTodayCnt() {
+		return todayCnt;
+	}
+	public void setTodayCnt(int todayCnt) {
+		this.todayCnt = todayCnt;
+	}
 	
 	@Override
 	public String toString() {
@@ -171,6 +178,6 @@ public class MemberVo {
 				+ ", address=" + address + ", email=" + email + ", homePage=" + homePage + ", job=" + job + ", hobby="
 				+ hobby + ", photo=" + photo + ", content=" + content + ", userInfor=" + userInfor + ", userDel="
 				+ userDel + ", point=" + point + ", level=" + level + ", visitCnt=" + visitCnt + ", startDate="
-				+ startDate + ", lastDate=" + lastDate + "]";
+				+ startDate + ", lastDate=" + lastDate + ", todayCnt=" + todayCnt + "]";
 	}
 }

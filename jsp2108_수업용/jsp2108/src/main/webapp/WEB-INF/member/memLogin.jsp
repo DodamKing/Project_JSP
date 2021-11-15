@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>title</title>
+	<title>로그인</title>
 	<%@include file="../../include/bs4.jsp" %>
 	<style>
 		a {
@@ -114,7 +114,7 @@ footer {
         <footer class="container">
             Copyright <strong>© DoubleD.</strong> All rights reserved.
         </footer>
-    </div>
+    	</div>
 	</div>
 	
 	<!-- 푸터 -->

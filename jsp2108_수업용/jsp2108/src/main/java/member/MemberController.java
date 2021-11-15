@@ -21,13 +21,33 @@ public class MemberController extends HttpServlet {
 		if (com.equals("/memLogin")) {
 			viewPage += "/memLogin.jsp";
 		}
+		else if (com.equals("/memLoginOk")) {
+			command = new MemLoginOkcommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/message/message.jsp";
+		}
 		else if (com.equals("/memJoin")) {
 			viewPage += "/memJoin.jsp";
+		}
+		else if (com.equals("/memJoinOk")) {
+			command = new MemJoinOkcommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/message/message.jsp";
 		}
 		else if (com.equals("/idCheck")) {
 			command = new IdCheckcommand();
 			command.execute(request, response);
 			viewPage += "/idCheck.jsp";
+		}
+		else if (com.equals("/memMain")) {
+			command = new MemMaincommand();
+			command.execute(request, response);
+			viewPage += "/memMain.jsp";
+		}
+		else if (com.equals("/memLogOut")) {
+			command = new MemLogOutcommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/message/message.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

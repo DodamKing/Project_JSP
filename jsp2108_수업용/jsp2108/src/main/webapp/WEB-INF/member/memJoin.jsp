@@ -1,11 +1,18 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 				pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	Date today = new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	String strToday = sdf.format(today);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>title</title>
+<title>memJoin.jsp</title>
 <%@include file="../../include/bs4.jsp"%>
 </head>
 <body>
@@ -15,7 +22,7 @@
 
 				<div class="container mt-5">
 								<h2>회 원 가 입</h2>
-								<form name="myform" method="post" action=""
+								<form name="myform" method="post" action="memJoinOk.mem"
 												class="was-validated mt-5">
 												<div class="form-group">
 																<label for="mid">아이디 &nbsp; &nbsp;<input
@@ -78,7 +85,7 @@
 												</div>
 												<div class="form-group">
 																<label for="birthday">생일</label> <input type="date"
-																				name="birthday" value="" class="form-control" />
+																				name="birthday" value="<%=strToday %>" class="form-control" />
 												</div>
 												<div class="form-group">
 																<div class="input-group mb-3">
@@ -106,14 +113,20 @@
 																</div>
 												</div>
 												<div class="form-group">
-																<label for="address">주소</label> <input type="text"
-																				class="form-control" id="address"
-																				placeholder="주소를 입력하세요." name="address" />
+																<label for="address">주소</label> 
+																<input type="hidden" class="form-control" id="address" name="address" />
+																<label for="address">우편번호</label> <input type="text" id="sample4_postcode" placeholder="우편번호">
+																<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+																<label for="address">도로명주소</label> <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+																<!-- <input type="text" id="sample4_jibunAddress" placeholder="지번주소"> -->
+																<span id="guide" style="color:#999;display:none"></span>
+																<label for="address">상세주소</label> <input type="text" id="sample4_detailAddress" placeholder="상세주소">
+																<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 												</div>
 												<div class="form-group">
 																<label for="homepage">Homepage address</label> <input
 																				type="text" class="form-control" name="homePage"
-																				value="http://" placeholder="이메일을 입력하세요."
+																				value="http://" 
 																				id="homePage" />
 												</div>
 												<div class="form-group">
@@ -213,8 +226,16 @@
 
 				<!-- 푸터 -->
 				<%@include file="../../include/footer.jsp"%>
-
+				
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="<%=request.getContextPath() %>/js/daumApi.js"></script>
 	<script>
+		let idCheckOn = 0;
+		
+		mid.addEventListener("keyup", () => {
+			idCheckOn = 0;
+		});
+		
 		function idCheck() {
 			let mid = myform.mid.value;
 			let url = "<%=request.getContextPath() %>/idCheck.mem?mid=" + mid;
@@ -225,6 +246,7 @@
 			}
 			else {
 				window.open(url, "nWin", "width=500px, height=250px");
+				idCheckOn = 1;
 			}
 		}
 		
@@ -233,7 +255,41 @@
 		}
 		
 		function fCheck() {
-			
+			var mid = myform.mid.value;
+	    	var pwd = myform.pwd.value;
+	    	var nickName = myform.nickName.value;
+	    	var name = myform.name.value;
+	    	var email1 = myform.email1.value;
+	    	
+	    	if(mid == "") {
+	    		alert("아이디를 입력하세요");
+	    		myform.mid.focus();
+	    	}
+	    	else if(pwd == "") {
+	    		alert("비밀번호를 입력하세요");
+	    		myform.pwd.focus();
+	    	}
+	    	else if(nickName == "") {
+	    		alert("닉네임을 입력하세요");
+	    		myform.nickName.focus();
+	    	}
+	    	else if(name == "") {
+	    		alert("성명을 입력하세요");
+	    		myform.name.focus();
+	    	}
+	    	else if(email1 == "") {
+	    		alert("이메일을 입력하세요");
+	    		myform.email1.focus();
+	    	}
+	    	else {
+				if (idCheckOn == 1) {
+					myform.address.value =sample4_postcode.value + "/" +sample4_roadAddress.value + "/" + sample4_detailAddress.value + "/" + sample4_extraAddress.value; 
+					myform.submit();
+				}
+				else {
+					alert("아이디 중복체크를 하세요.");
+				}
+	    	}
 		}
 	</script>
 </body>
