@@ -80,14 +80,14 @@ for i in range(len(yt_url_list)):
     name = '{} - {}'.format(title[i], artist[i])
     name = re.sub('[\\\/:*?\"<>|]', '', name)
 
-    if os.path.exists('D:\works\java02_kdd\Project_JSP\jsp2108_kdd\jsp2108_kdd\src\main\webapp\music\\' + name + '.mp3'):
+    if os.path.exists('D:\works\java02_kdd\Project_JSP\jsp2108_kdd_\jsp2108_kdd\src\main\webapp\music\\' + name + '.mp3'):
         print(name + ' is already exist')
         pass
     else:
         yt = YouTube(yt_url_list[i])
         audio = yt.streams.get_by_itag(140)
         audio.download(
-            'D:\works\java02_kdd\Project_JSP\jsp2108_kdd\jsp2108_kdd\src\main\webapp\music', name + '.mp3')
+            'D:\works\java02_kdd\Project_JSP\jsp2108_kdd\jsp2108_kdd_\src\main\webapp\music', name + '.mp3')
         print(name + ' is downloaded')
         cnt_down += 1
         time.sleep(2)
