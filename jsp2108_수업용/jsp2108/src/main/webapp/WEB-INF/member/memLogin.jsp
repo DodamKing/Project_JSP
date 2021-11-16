@@ -95,7 +95,7 @@ footer {
                             <input class="form-control input-control" type="password" id="pwd" name="pwd" placeholder="비밀번호" required maxlength="9" >
                         </div>
                         <div class="form-group">
-                            <input class="check-control" type="checkbox" id="loginCheck"> <span class="login-status">로그인 상태 유지</span>
+                            <input class="check-control" type="checkbox" id="loginCheck"> <span class="login-status">아이디 기억하기</span>
                         </div>
                         <div id="demo" class="demo-box"></div>
                         <div class="form-group">

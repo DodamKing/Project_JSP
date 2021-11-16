@@ -20,14 +20,14 @@
 		<p><font color="blue">${sNick} </font> 님 로그인 중이 십니다.</p>
 		<p>현재 <font color="gold">${sGrade} </font>  입니다.</p>
 		<p>최종 접속일 : ${sLastDate}</p>
-		<p>총 방문횟수 : </p>
-		<p>오늘 방문횟수 : </p>
-		<p>포인트 합계 : </p>
+		<p>총 방문횟수 : ${visitCnt }</p>
+		<p>오늘 방문횟수 : ${todayCnt }</p>
+		<p>포인트 합계 : ${point }</p>
 		<hr>
 		<div>
 			<p>활동 내역</p> 
 			<p class="ml-3"> 전체 게시글: 개</p> 
-			<p class="ml-3"> 방명록 자료 갯수 : 개</p> 
+			<p class="ml-3"> 방명록 자료 갯수 : ${guestCnt }개</p> 
 			<p class="ml-3"> 게시판 자료 갯수 : 개</p> 
 			<p class="ml-3"> 자료실 업로드 횟수 : 개</p> 
 		</div>

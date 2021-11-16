@@ -7,5 +7,6 @@
 </head>
 <body>
 	<script>location.href="<%=request.getContextPath() %>/mamain.ma"</script>
+	
 </body>
 </html>

@@ -24,7 +24,7 @@ public class MemLoginOkcommand implements MemberInterface {
 		MemberDAO dao = new MemberDAO();
 		MemberVo vo = dao.loginCheck(mid);
 		
-		if (vo != null) {
+		if (vo.getMid() != null) {
 			long pwdValue = (long) dao.getHashTableSearch(vo.getPwdKey());
 			long intPwd;
 			long encPwd;

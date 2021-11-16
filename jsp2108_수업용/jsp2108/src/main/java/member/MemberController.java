@@ -49,6 +49,21 @@ public class MemberController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/WEB-INF/message/message.jsp";
 		}
+		else if (com.equals("/memUpdate")) {
+//			command = new MemUpdatecommand();
+//			command.execute(request, response);
+			viewPage += "/memUpdate.jsp";
+		}
+		else if (com.equals("/memUpdateOk")) {
+			command = new MemUpdateOkcommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/message/message.jsp";
+		}
+		else if (com.equals("/memDelete")) {
+			command = new MemDeletecommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/message/message.jsp";
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

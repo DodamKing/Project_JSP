@@ -124,4 +124,23 @@ public class GuestDAO {
 		}
 		return totRecCnt;
 	}
+
+	public int getWriteCnt(String mid, String nick, String name) {
+		int guestCnt = 0;
+		sql = "select count(*) from guest where name like ? or name like ? or name like ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + mid + "%");
+			pstmt.setString(2, "%" + nick + "%");
+			pstmt.setString(3, "%" + name + "%");
+			rs = pstmt.executeQuery();
+			rs.next();
+			guestCnt = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return guestCnt;
+	}
 }
