@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DD Music</title>
+    <title>DD Music 회원가입</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signup.css" type="text/css">
@@ -23,7 +23,7 @@
                         <h2>회원가입</h2>
                         <div class="form-group">
                             <div class="lbl">
-                                <span style="color: red;"><b>*</b></span> 아이디 <button id="overlapCheck_btn"
+                                <span style="color: red;"><b>*</b></span> 아이디 <button type="button" id="overlapCheck_btn"
                                     class="btn btn-sm btn-secondary">아이디 중복체크</button>
                             </div>
                             <input class="form-control input-control" type="text" id="userId" name="userId"
@@ -91,6 +91,7 @@
                             <input class="form-control login-control" type="reset" id="reset_btn" name="reset_btn"
                                 value="취소">
                         </div>
+			            <input type="hidden" id="demo99" name="demo99">
                     </form>
                     <div class="d-flex form-foot">
                         <div class="p-2 mr-auto"><a href="<%=request.getContextPath()%>/userlogin.user">로그인</a></div>
@@ -107,7 +108,7 @@
     </section>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="<%=request.getContextPath() %>/js/signup.js?ver=2"></script>
+    <script src="<%=request.getContextPath() %>/js/signup.js?v=1"></script>
 </body>
 
 </html>

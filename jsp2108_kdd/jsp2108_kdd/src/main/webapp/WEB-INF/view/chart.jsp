@@ -8,8 +8,6 @@
 	if (session.getAttribute("sMid") != null) {
 		mid = (String) session.getAttribute("sMid");
 	}
-	
-	ArrayList<SongVO> vos = (ArrayList) request.getAttribute("vos");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -26,41 +24,35 @@
 </head>
 
 <body>
-    <%@include file="../../main/playList.jsp" %>
-    <%@include file="../../main/searchBar.jsp" %>
-    <%@include file="../../main/nav.jsp" %>
-    <%@include file="../../main/header.jsp" %>
+    <%@include file="/main/playList.jsp" %>
+    <%@include file="/main/searchBar.jsp" %>
+    <%@include file="/main/nav.jsp" %>
+    <%@include file="/main/header.jsp" %>
     
     <section>
         <div class="container">
             <div class="card-body">
                 <h2 class="mt-5 mb-5">DD Music Top 100</h2>
                 <table class="table">
-                    <%
-                    	for (int i=0; i<vos.size(); i++) {
-                    %>
-                    
+                    <c:forEach var="vo" items="${vos }" varStatus="st">
                     <tr>
-                        <td><%=i+1 %></td>
-                        <td><div class="imgBox"><img src="<%=vos.get(i).getImg() %>" alt=""></div></td>
+                        <td>${st.index + 1}</td>
+                        <td><div class="imgBox"><img src="${vo.img }" alt=""></div></td>
                         <td>
-                            <div name="top10Title"><%=vos.get(i).getTitle() %></div>
-                            <div name="top10Artist"><%=vos.get(i).getArtist() %></div>
+                            <div name="top10Title">${vo.title }</div>
+                            <div name="top10Artist">${vo.artist }</div>
                         </td>
                         <td><button name="add_btn" type="button" class="btn"><i class="fas fa-plus"></i></button></td>
                     </tr>
-                    
-                    <%
-                    	}
-                    %>
+                    </c:forEach>
                     
                 </table>
             </div>
         </div>
         
-        <%@include file="../../main/sFooter.jsp" %>
+        <%@include file="/main/sFooter.jsp" %>
     </section>
-    <%@include file="../../main/footer.jsp" %>
+    <%@include file="/main/footer.jsp" %>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/main.js?ver=2"></script>

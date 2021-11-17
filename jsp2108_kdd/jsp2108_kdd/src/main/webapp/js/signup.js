@@ -16,6 +16,7 @@ userId.addEventListener("keyup", () => {
         demo1.innerHTML = "";
     }
     overlapCheck = 0;
+	demo99.value = 0;
 });
 
 // pwd.addEventListener("keyup", () => {
@@ -73,31 +74,41 @@ overlapCheck_btn.addEventListener("click", () => {
 	}
     let url = "useroverlapcheck.user?userId=" + userId.value;
     window.open(url, "nWin", "width=500px, height=150px");
-	//overlapCheck = 1;
 })
 
 signup_btn.addEventListener("click", () => {
+	overlapCheck = demo99.value;
+	
 	if (userId.value == "") {
 		alert("아이디를 입력해 주세요.");
+		userId.focus();
 	}
 	else if (pwd.value == "") {
 		alert("비밀번호를 입력해 주세요.");
+		pwd.focus();
 	}
 	else if (email.value == "") {
 		alert("이메일 주소를 입력해 주세요.");
+		email.focus();
 	}
 	else if (phone.value == "") {
 		alert("핸드폰 번호를 입력해 주세요.");
+		phone.focus();
+	}
+	else if (!$("input:radio[name=telecom]").is(":checked")) {
+		alert("통신사를 선택해 주세요.")
 	}
 	else {
 		if (demo1.innerHTML + demo2.innerHTML + demo3.innerHTML + demo4.innerHTML + demo5.innerHTML + demo6.innerHTML != "") {
 			alert("입력란의 형식을 지켜 주세요");
 		}
-		else if (overlapCheck == 0) {
+		else if (overlapCheck !=1 ) {
 				alert("아이디 중복 체크를 해주세요.");
 		}
-		else if (confirm("이대로 회원 가입을  진행 하시겠습니까?")) {
-			//signupForm.submit();
+		else {
+			if (confirm("이대로 회원 가입을  진행 하시겠습니까?")) {
+				signupForm.submit();
+			}
 		}
 	}
 });

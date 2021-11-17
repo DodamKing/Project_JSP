@@ -47,6 +47,11 @@ public class UserController extends HttpServlet {
 			command.execute(request, response);
 			view += "/login.jsp";
 		}
+		else if (com.equals("/userlogout")) {
+			command = new UserLogOutDo();
+			command.execute(request, response);
+			view += "/main.jsp";
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
