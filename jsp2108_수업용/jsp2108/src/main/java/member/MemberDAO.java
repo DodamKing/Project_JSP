@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import conn.GetConn;
 
@@ -189,5 +190,62 @@ public class MemberDAO {
 		} finally {
 			getconn.close();
 		}
+	}
+
+	public int getNewMember() {
+		sql = "select count(*) from member where level = 1";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
+		return 0;
+	}
+
+	public ArrayList<MemberVo> getMemberList() {
+		ArrayList<MemberVo> vos = new ArrayList<MemberVo>();
+		sql = "select * from member order by idx desc";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				vo = new MemberVo();
+				vo.setIdx(rs.getInt("idx"));
+				vo.setMid(rs.getString("mid"));
+				vo.setPwd(rs.getString("pwd"));
+				vo.setPwdKey(rs.getInt("pwdKey"));
+				vo.setNickName(rs.getString("nickName"));
+				vo.setName(rs.getNString("name"));
+				vo.setGender(rs.getString("gender"));
+				vo.setBirthday(rs.getString("birthday"));
+				vo.setTel(rs.getString("tel"));
+				vo.setAddress(rs.getString("address"));
+				vo.setEmail(rs.getString("email"));
+				vo.setHomePage(rs.getString("homePage"));
+				vo.setJob(rs.getString("job"));
+				vo.setHobby(rs.getString("hobby"));
+				vo.setPhoto(rs.getString("photo"));
+				vo.setContent(rs.getString("content"));
+				vo.setUserInfor(rs.getString("userInfor"));
+				vo.setUserDel(rs.getString("userDel"));
+				vo.setPoint(rs.getInt("point"));
+				vo.setLevel(rs.getInt("level"));
+				vo.setVisitCnt(rs.getInt("visitCnt"));
+				vo.setStartDate(rs.getString("startDate"));
+				vo.setLastDate(rs.getString("lastDate"));
+				vos.add(vo);
+			}
+			return vos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
+		return null;
 	}
 }

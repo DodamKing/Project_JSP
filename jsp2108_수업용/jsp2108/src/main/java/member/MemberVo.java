@@ -18,7 +18,7 @@ public class MemberVo {
 	private String photo;
 	private String content;
 	private String userInfor;
-	private char userDel;
+	private String userDel;
 	private int point;
 	private int level;
 	private int visitCnt;
@@ -128,10 +128,10 @@ public class MemberVo {
 	public void setUserInfor(String userInfor) {
 		this.userInfor = userInfor;
 	}
-	public char getUserDel() {
+	public String getUserDel() {
 		return userDel;
 	}
-	public void setUserDel(char userDel) {
+	public void setUserDel(String userDel) {
 		this.userDel = userDel;
 	}
 	public int getPoint() {
