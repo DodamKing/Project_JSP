@@ -3,45 +3,34 @@
 <nav>
 	<div class="card-body nav-w">
 	    <div>
+            <c:if test="${sVO == null }">
+	            <div class="text-center"><a href="userlogin.user">로그인</a></div>
+            </c:if>
 	        <div class="row">
-	            <div class="col-2"><i class="fa-solid fa-user"></i></div>
-	            <%
-	            	if (session.getAttribute("sMid") == null) {
-	            %>
-	            <div class="col" id="dropMenu">사용자 <i class="fa-solid fa-caret-down"></i></div>
-	            <%
-	            	}
-	            	else {
-	            %>
-	            <div class="col" id="dropMenu">${sMid}<i class="fa-solid fa-caret-down"></i></div>
-	            <%
-	            	}
-	            %>
+	            <c:if test="${sVO != null }">
+	           		<div class="col-2"><i class="fa-solid fa-user"></i></div>
+		            <div class="col" id="dropMenu">
+		            	<c:if test="${!empty sVO.nickNm }">${sVO.nickNm }</c:if>
+		            	<c:if test="${empty sVO.nickNm }">${sMid}</c:if>
+		            	<i class="fa-solid fa-caret-down"></i>
+		            </div>
+	            </c:if>
 	        </div>
 	        <div class="list-group my-group">
 	            <ul>
-	            <%
-	            	if (session.getAttribute("sMid") == null) {
-	            %>
-	                <li class="list-group-item list-group-item-light"><a href="<%=request.getContextPath() %>/userlogin.user">로그인</a></li>
-                <%
-	            	}
-	            	else {
-                %>
-	                <li class="list-group-item list-group-item-light"><a href="">My 멤버십</a></li>
-	                <li class="list-group-item list-group-item-light"><a href="">공지사항</a></li>
-	                <li class="list-group-item list-group-item-light"><a href="">계정설정</a></li>
-	                <li class="list-group-item list-group-item-light"><a onclick="return confirm('로그아웃 하시겠습니까?')" href="userlogout.user">로그아웃</a></li>
-                <%
-	            	}
-                %>
+                	<c:if test="${sVO != null }">
+		                <li class="list-group-item list-group-item-light"><a href="">My 멤버십</a></li>
+		                <li class="list-group-item list-group-item-light"><a href="">공지사항</a></li>
+		                <li class="list-group-item list-group-item-light"><a href="">계정설정</a></li>
+		                <li class="list-group-item list-group-item-light"><a onclick="return confirm('로그아웃 하시겠습니까?')" href="userlogout.user">로그아웃</a></li>
+                	</c:if>
 	            </ul>
 	        </div>
 	    </div>
 	    <div>
 	        <ul>
-	            <li><a href="">투데이</a></li>
-                <li><a href="<%=request.getContextPath() %>/machart.ma">차트</a></li>
+	            <li><a href="today">투데이</a></li>
+                <li><a href="chart">차트</a></li>
                 <li><a href="">최신앨범</a></li>
                 <li><a href="">DJ 스테이션</a></li>
                 <li><a href="">MAG</a></li>

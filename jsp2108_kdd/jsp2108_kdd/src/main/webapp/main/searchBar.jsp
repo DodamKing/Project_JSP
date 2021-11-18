@@ -5,6 +5,6 @@
 	}
 </style>
 <div id="title_search" class="row">
-    <h4 class="col"><a href="<%=request.getContextPath() %>/mamain.ma">DD Music</a></h4>
+    <h4 class="col"><a href="today">DD Music</a></h4>
     <div class="col-1"><i class="fa-solid fa-magnifying-glass"></i></div>
 </div>

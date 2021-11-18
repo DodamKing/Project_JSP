@@ -15,10 +15,10 @@
 <body>
     <section>
 	    <div class="main-container">
-	   		<h5 class="text-right"><a href="<%=request.getContextPath() %>/">DD Music</a></h5>
+	   		<h5 class="text-right"><a href="today">DD Music</a></h5>
 	        <div class="container p-3 my-3 border">
                 <div class="form-container">
-                    <form action="userlogindo.user" name="loginForm">
+                    <form action="userlogindo.user" method="post" name="loginForm">
                         <h2>로그인</h2>
                         <div class="form-group">
                             <input class="form-control input-control" type="text" id="userId" name="userId"

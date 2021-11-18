@@ -15,6 +15,7 @@ public class UserController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserInterface command = null;
 		String view = "/WEB-INF/view";
+		String messege = "/WEB-INF/view/message.jsp";
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf("."));
 		
@@ -25,7 +26,7 @@ public class UserController extends HttpServlet {
 		else if (com.equals("/userlogindo")) {
 			command = new UserLoginDo();
 			command.execute(request, response);
-			view += "/message.jsp";
+			view = messege;
 		}
 		
 		else if (com.equals("/userloginsuccess")) {
@@ -45,7 +46,7 @@ public class UserController extends HttpServlet {
 		else if (com.equals("/usersignupdo")) {
 			command = new UserSignUpDo();
 			command.execute(request, response);
-			view += "/login.jsp";
+			view = messege;
 		}
 		else if (com.equals("/userlogout")) {
 			command = new UserLogOutDo();

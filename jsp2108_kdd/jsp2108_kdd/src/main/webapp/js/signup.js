@@ -43,8 +43,8 @@ email.addEventListener("keyup", () => {
     }
 });
 
-phone.addEventListener("keyup", () => {
-    if (phonePattern.test(phone.value)) {
+phoneNb.addEventListener("keyup", () => {
+    if (phonePattern.test(phoneNb.value)) {
         demo4.innerHTML = "";
     } else {
         demo4.innerHTML = "핸드폰 형식을 지켜 주세요.";
@@ -91,7 +91,7 @@ signup_btn.addEventListener("click", () => {
 		alert("이메일 주소를 입력해 주세요.");
 		email.focus();
 	}
-	else if (phone.value == "") {
+	else if (phoneNb.value == "") {
 		alert("핸드폰 번호를 입력해 주세요.");
 		phone.focus();
 	}

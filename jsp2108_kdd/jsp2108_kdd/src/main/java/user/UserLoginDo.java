@@ -25,13 +25,33 @@ public class UserLoginDo implements UserInterface {
 		
 		UserDAO dao = new UserDAO();
 		
+		pwd = pwd.toUpperCase();
+		int pwdKeyNo = dao.getKeyNo(userId);
+		long pwdKey = dao.getKey(pwdKeyNo);
+		long intPwd;
+		String strPwd = "";
+		
+		for (int i=0; i<pwd.length(); i++) {
+			intPwd = pwd.charAt(i);
+			strPwd += intPwd;
+		}
+		
+		intPwd = Long.parseLong(strPwd);
+		long encPwd = intPwd ^ pwdKey;
+		pwd = String.valueOf(encPwd);
+		
+		UserVO vo = dao.getUserVO(userId);
+		
 		if (dao.login(userId, pwd)) {
 			request.setAttribute("res", "loginSuccess");
+			request.setAttribute("url", "today");
 			HttpSession session = request.getSession();
+			session.setAttribute("sVO", vo);
 			session.setAttribute("sMid", userId);
 		}
 		else {
 			request.setAttribute("res", "loginFalse");
+			request.setAttribute("url", "userlogin.user");
 		}
 	}
 

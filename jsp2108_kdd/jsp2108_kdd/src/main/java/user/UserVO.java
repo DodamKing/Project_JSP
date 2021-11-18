@@ -7,8 +7,29 @@ public class UserVO {
 	private String email;
 	private String telecom;
 	private String phoneNb;
-	private String userNn;
+	private String userNm;
+	private String nickNm;
+	private int visible;
+	private int pwdKeyNo;
 	
+	public int getPwdKeyNo() {
+		return pwdKeyNo;
+	}
+	public void setPwdKeyNo(int pwdKeyNo) {
+		this.pwdKeyNo = pwdKeyNo;
+	}
+	public String getNickNm() {
+		return nickNm;
+	}
+	public void setNickNm(String nickNm) {
+		this.nickNm = nickNm;
+	}
+	public int getVisible() {
+		return visible;
+	}
+	public void setVisible(int visible) {
+		this.visible = visible;
+	}
 	public int getIdx() {
 		return idx;
 	}
@@ -45,17 +66,17 @@ public class UserVO {
 	public void setPhoneNb(String phoneNb) {
 		this.phoneNb = phoneNb;
 	}
-	public String getUserNn() {
-		return userNn;
+	public String getUserNm() {
+		return userNm;
 	}
-	public void setUserNn(String userNn) {
-		this.userNn = userNn;
+	public void setUserNm(String userNm) {
+		this.userNm = userNm;
 	}
 	
 	@Override
 	public String toString() {
 		return "UserVO [idx=" + idx + ", userId=" + userId + ", pwd=" + pwd + ", email=" + email + ", telecom="
-				+ telecom + ", phoneNb=" + phoneNb + ", userNn=" + userNn + "]";
+				+ telecom + ", phoneNb=" + phoneNb + ", userNn=" + userNm + ", nickNm=" + nickNm + ", visible="
+				+ visible + "]";
 	}
-	
 }

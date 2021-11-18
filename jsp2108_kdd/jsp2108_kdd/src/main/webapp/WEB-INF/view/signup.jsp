@@ -16,10 +16,10 @@
 <body>
     <section>
         <div class="main-container">
-            <h5 class="text-right"><a href="<%=request.getContextPath()%>/">DD Music</a></h5>
+            <h5 class="text-right"><a href="today">DD Music</a></h5>
             <div class="container p-3 my-3 border">
                 <div class="form-container">
-                    <form action="<%=request.getContextPath()%>/usersignupdo.user" method="post" name="signupForm">
+                    <form action="usersignupdo.user" method="post" name="signupForm">
                         <h2>회원가입</h2>
                         <div class="form-group">
                             <div class="lbl">
@@ -36,7 +36,7 @@
                             </div>
                             <input class="form-control input-control" type="password" id="pwd" name="pwd"
                                 placeholder="비밀번호" required>
-                            <input type="checkbox" id="typeChange"> 비빌번호 보기
+                            <input type="checkbox" id="typeChange"> 비밀번호 보기
                             <div id="demo2" class="demo-box"></div>
                         </div>
                         <div class="form-group">
@@ -54,11 +54,11 @@
                             <div>
                                 SKT <input class="mr-3" type="radio" name="telecom" value="SKT">
                                 KT <input class="mr-3" type="radio" name="telecom" value="KT">
-                                LGU+ <input class="mr-3" type="radio" name="telecom" value="LGU">
+                                LGU+ <input class="mr-3" type="radio" name="telecom" value="LGU+">
                                 알뜰폰 <input class="mr-3" type="radio" name="telecom" value="알뜰폰">
                             </div>
                             <div id="demo4-2" class="demo-box"></div>
-                            <input class="form-control input-control" type="text" id="phone" name="phone"
+                            <input class="form-control input-control" type="text" id="phoneNb" name="phoneNb"
                                 placeholder="01012345678 ( - 제외 )" required>
                             <div id="demo4" class="demo-box"></div>
                         </div>
@@ -94,7 +94,7 @@
 			            <input type="hidden" id="demo99" name="demo99">
                     </form>
                     <div class="d-flex form-foot">
-                        <div class="p-2 mr-auto"><a href="<%=request.getContextPath()%>/userlogin.user">로그인</a></div>
+                        <div class="p-2 mr-auto"><a href="userlogin.user">로그인</a></div>
                         <div class="p-2"><a href="">계정 찾기</a></div>
                         <div class="p-2">|</div>
                         <div class="p-2"><a href="">비밀번호 찾기</a></div>
@@ -108,7 +108,7 @@
     </section>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="<%=request.getContextPath() %>/js/signup.js?v=1"></script>
+    <script src="js/signup.js?v=2"></script>
 </body>
 
 </html>

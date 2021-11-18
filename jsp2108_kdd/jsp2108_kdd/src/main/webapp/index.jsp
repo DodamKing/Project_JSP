@@ -6,7 +6,7 @@
 	<title>Welcome</title>
 </head>
 <body>
-	<script>location.href="<%=request.getContextPath() %>/mamain.ma"</script>
+	<script>location.href="<%=request.getContextPath() %>/today"</script>
 	
 </body>
 </html>
