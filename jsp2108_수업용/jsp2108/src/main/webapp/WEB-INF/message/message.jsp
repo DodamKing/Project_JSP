@@ -29,6 +29,7 @@
   	else if(msg == "memUpdateOk") msg = "회원정보가 수정되었습니다.";
   	else if(msg == "memUpdateNo") msg = "데이터 베이스 오류.";
   	else if(msg == "memberDeleteOk") msg = "회원 정보가 삭제되었습니다.";
+  	else if(msg == "memberLevelChangeOk") msg = "회원 등급이 변경되었습니다.";
   	
     alert(msg);
     if(url != "") location.href = url;

@@ -80,6 +80,31 @@
  				</c:choose>
  			</c:forTokens>
  		</p>
+ 		
+ 		<p>7.반복문예 1차원 배열.<br/>
+			<c:forEach var="arr" items="${arr1 }" varStatus="st">
+				${st.count } : ${arr } <br>
+			</c:forEach>
+ 		</p>
+ 		
+ 		<p>8.반복문예 2차원 배열.<br/>
+			<c:forEach var="arr" items="${arr2 }" varStatus="st1">
+				${st1.count } :
+				<c:forEach var="atom" items="${arr }" varStatus="st2">
+				 ${atom }
+				</c:forEach>
+				<br>
+			</c:forEach>
+ 		</p>
+ 		
+ 		<p>8.반복문예 2차원 dict<br/>
+			<c:forEach var="item" items="${tel }" varStatus="st1">
+				<c:forEach var="tel" items="${item }" varStatus="st2">
+					 ${tel }
+				</c:forEach>
+				<br>
+			</c:forEach>
+ 		</p>
 	</div>
 	
 	<!-- 푸터 -->

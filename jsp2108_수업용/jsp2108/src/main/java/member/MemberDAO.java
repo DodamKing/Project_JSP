@@ -207,11 +207,13 @@ public class MemberDAO {
 		return 0;
 	}
 
-	public ArrayList<MemberVo> getMemberList() {
+	public ArrayList<MemberVo> getMemberList(int startIndexNo, int pageSize) {
 		ArrayList<MemberVo> vos = new ArrayList<MemberVo>();
-		sql = "select * from member order by idx desc";
+		sql = "select * from member order by idx desc limit ? , ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startIndexNo);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				vo = new MemberVo();
@@ -247,5 +249,60 @@ public class MemberDAO {
 			getconn.close();
 		}
 		return null;
+	}
+
+	public MemberVo getMemberInfor(int idx) {
+		sql = "select * from member where idx = ?";
+		vo = new MemberVo();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo.setIdx(rs.getInt("idx"));
+				vo.setMid(rs.getString("mid"));
+				vo.setPwd(rs.getString("pwd"));
+				vo.setPwdKey(rs.getInt("pwdKey"));
+				vo.setNickName(rs.getString("nickName"));
+				vo.setName(rs.getNString("name"));
+				vo.setGender(rs.getString("gender"));
+				vo.setBirthday(rs.getString("birthday"));
+				vo.setTel(rs.getString("tel"));
+				vo.setAddress(rs.getString("address"));
+				vo.setEmail(rs.getString("email"));
+				vo.setHomePage(rs.getString("homePage"));
+				vo.setJob(rs.getString("job"));
+				vo.setHobby(rs.getString("hobby"));
+				vo.setPhoto(rs.getString("photo"));
+				vo.setContent(rs.getString("content"));
+				vo.setUserInfor(rs.getString("userInfor"));
+				vo.setUserDel(rs.getString("userDel"));
+				vo.setPoint(rs.getInt("point"));
+				vo.setLevel(rs.getInt("level"));
+				vo.setVisitCnt(rs.getInt("visitCnt"));
+				vo.setStartDate(rs.getString("startDate"));
+				vo.setLastDate(rs.getString("lastDate"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
+		return vo;
+	}
+
+	public int totRecCnt() {
+		sql = "select count(*) from member";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
+		return 0;
 	}
 }

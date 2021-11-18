@@ -7,10 +7,15 @@
 <meta charset="UTF-8">
 	<title>adLeft.jsp</title>
 	<%@include file="/include/bs4.jsp" %>
+	<style type="text/css">
+		body {
+			background-color: #ddd;
+		}
+	</style>
 </head>
 <body>
 	<div class="container mt-5">
-		<h3>메뉴</h3>
+		<h4>메뉴</h4>
 		<hr>
 		<p><a href="${ctp}/adMemberList.ad" target="adContent">회원관리</a></p>
 	</div>
