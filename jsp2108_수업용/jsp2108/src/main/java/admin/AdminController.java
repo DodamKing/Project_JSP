@@ -16,9 +16,15 @@ public class AdminController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AdimnInterface command = null;
 		String viewPage = "/WEB-INF/admin";
+		String message = "/WEB-INF/message/message.jsp";
 		
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf("."));
+		
+		/*
+		 * if (com.indexOf("?") != -1) { com = "/" + uri.substring(uri.lastIndexOf("?")
+		 * + 1, uri.lastIndexOf(".")); }
+		 */
 		
 		String mid = "";
 		int level = -1;
@@ -31,12 +37,12 @@ public class AdminController extends HttpServlet {
 			level = (int) session.getAttribute("sLv");
 		}
 		
-		if (mid == "" || level != 0) {
+		if (mid == "" || level >= 4) {
 			viewPage = "/WEB-INF/member/memLogin.jsp";
 		}
 		
 		
-		if (com.equals("/adMenu")) {
+		else if (com.equals("/adMenu")) {
 			viewPage += "/adMenu.jsp";
 		}
 		else if (com.equals("/adLeft")) {
@@ -52,6 +58,11 @@ public class AdminController extends HttpServlet {
 			command.execute(request, response);
 			viewPage += "/member/adMemberList.jsp";
 		}
+		else if (com.equals("/memList")) {
+			command = new AdMemberListCommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/member/memList.jsp";
+		}
 		else if (com.equals("/adMemberLevel")) {
 			command = new AdMemberLevelCommand();
 			command.execute(request, response);
@@ -61,6 +72,16 @@ public class AdminController extends HttpServlet {
 			command = new AdMemberInforCommand();
 			command.execute(request, response);
 			viewPage += "/member/adMemberInfor.jsp";
+		}
+		else if (com.equals("/memInfor")) {
+			command = new AdMemberInforCommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/member/memInfor.jsp";
+		}
+		else if (com.equals("/adMemberReset")) {
+			command = new AdMemberResetCommand();
+			command.execute(request, response);
+			viewPage = message;
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

@@ -17,10 +17,12 @@
 	<div class="container mt-5">
 		<h4>메뉴</h4>
 		<hr>
+		<p><a href="adContent.ad" target="adContent">관리자메인</a></p>
 		<p><a href="${ctp}/adMemberList.ad" target="adContent">회원관리</a></p>
+		<p><a href="javascript:logoutCheck()" target="adContent">로그아웃</a></p>
+	 	<p><a href="${ctp}/" target="_top">홈으로</a></p>
 	</div>
 	
-	 <p><a href="${ctp}/" target="_top">돌아가기</a></p>
 	
 </body>
 </html>

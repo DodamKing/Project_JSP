@@ -35,6 +35,9 @@ public class StudyController extends HttpServlet {
 		else if (com.equals("/jstl3")) {
 			viewPage += "/jstl/jstl3.jsp";
 		}
+		else if (com.equals("/ajax1")) {
+			viewPage += "/ajax/ajax1.jsp";
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

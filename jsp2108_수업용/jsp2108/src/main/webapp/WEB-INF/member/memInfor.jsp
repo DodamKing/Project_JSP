@@ -53,7 +53,7 @@
 				<tr><td>today : ${vo.todayCnt }</td></tr>
 			</table>
 		</div>
-		<a href="adMemberList.ad" class="btn btn-primary">돌아가기</a>
+		<a href="memList.ad" class="btn btn-primary">돌아가기</a>
 	</div>
 
 </body>

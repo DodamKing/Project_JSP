@@ -64,6 +64,10 @@ public class MemberController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/WEB-INF/message/message.jsp";
 		}
+		/*
+		 * else if (com.equals("/memList")) { command = new adMemberListcommand();
+		 * command.execute(request, response); viewPage += "/memList.jsp"; }
+		 */
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

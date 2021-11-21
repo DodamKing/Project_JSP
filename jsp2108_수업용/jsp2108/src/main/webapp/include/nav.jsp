@@ -48,6 +48,15 @@
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/jstl3.st">JSTL학습3</a>
 	  	</div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link btn dropdown-toggle" data-toggle="dropdown" href="#">ajax</a>
+        <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    	Dropdown button
+  		</button> -->
+		<div class="dropdown-menu">
+		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/ajax1.st">ajax1</a>
+	  	</div>
+      </li>
       <%
       	} 
       %>  
@@ -65,7 +74,7 @@
 		  		<%
 		  			if (lv != 1) {
 		  		%>
-		  		<a class="dropdown-item" href="<%=request.getContextPath() %>/memList.mem">회원리스트</a>
+		  		<a class="dropdown-item" href="<%=request.getContextPath() %>/memList.ad">회원리스트</a>
 		  		<%
 		  			}
 		  			if (lv != 0) {

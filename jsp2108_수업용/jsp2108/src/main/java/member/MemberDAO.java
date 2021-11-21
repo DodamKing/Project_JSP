@@ -20,7 +20,7 @@ public class MemberDAO {
 	
 	public String idCheck(String mid) {
 		String name = "";
-		sql = "select * from member where mid = ?";
+		sql = "select name from member where mid = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
@@ -207,14 +207,32 @@ public class MemberDAO {
 		return 0;
 	}
 
-	public ArrayList<MemberVo> getMemberList(int startIndexNo, int pageSize) {
+	public ArrayList<MemberVo> getMemberList(int startIndexNo, int pageSize, int level, String mid) {
 		ArrayList<MemberVo> vos = new ArrayList<MemberVo>();
 		sql = "select * from member order by idx desc limit ? , ?";
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startIndexNo);
-			pstmt.setInt(2, pageSize);
-			rs = pstmt.executeQuery();
+			if (level == -1 && mid.equals("")) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, startIndexNo);
+				pstmt.setInt(2, pageSize);
+				rs = pstmt.executeQuery();
+			}
+			else if (level != -1 && mid.equals("")) {
+				sql = "select * from member where level = ? order by idx desc limit ?, ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, level);
+				pstmt.setInt(2, startIndexNo);
+				pstmt.setInt(3, pageSize);
+				rs = pstmt.executeQuery();
+			} 
+			else {
+				sql = "select * from member where mid like ? order by idx desc limit ?, ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, '%' + mid + '%');
+				pstmt.setInt(2, startIndexNo);
+				pstmt.setInt(3, pageSize);
+				rs = pstmt.executeQuery();
+			}
 			while (rs.next()) {
 				vo = new MemberVo();
 				vo.setIdx(rs.getInt("idx"));
@@ -291,11 +309,25 @@ public class MemberDAO {
 		return vo;
 	}
 
-	public int totRecCnt() {
+	public int totRecCnt(int level, String mid) {
 		sql = "select count(*) from member";
 		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+			if (level == -1 && mid.equals("")) {
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+			}
+			else if (level != -1 && mid.equals("")) {
+				sql = "select count(*) from member where level = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, level);
+				rs = pstmt.executeQuery();
+			}
+			else {
+				sql = "select count(*) from member where mid like ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, '%' + mid + '%');
+				rs = pstmt.executeQuery();
+			}
 			rs.next();
 			return rs.getInt(1);
 		} catch (SQLException e) {
@@ -304,5 +336,18 @@ public class MemberDAO {
 			getconn.close();
 		}
 		return 0;
+	}
+
+	public void setMemberReset(int idx) {
+		sql = "delete from member where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
 	}
 }
