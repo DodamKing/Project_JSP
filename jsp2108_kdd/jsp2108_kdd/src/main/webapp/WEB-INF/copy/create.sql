@@ -23,3 +23,7 @@ insert into hashTable values (16,'21212121');
 insert into hashTable values (17,'32323232');
 insert into hashTable values (18,'43434343');
 insert into hashTable values (19,'54545454');
+
+select * from user_jsp;
+
+alter database java02_kdd default character set utf8 collate utf8_general_ci;

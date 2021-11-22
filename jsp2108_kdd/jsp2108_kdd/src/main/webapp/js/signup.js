@@ -93,10 +93,18 @@ signup_btn.addEventListener("click", () => {
 	}
 	else if (phoneNb.value == "") {
 		alert("핸드폰 번호를 입력해 주세요.");
-		phone.focus();
+		phoneNb.focus();
 	}
 	else if (!$("input:radio[name=telecom]").is(":checked")) {
 		alert("통신사를 선택해 주세요.")
+	}
+	else if (userNm.value == "") {
+		alert("이름을 입력해 주세요.");
+		userNm.focus();
+	}
+	else if (nickNm.value == "") {
+		alert("닉네임을 입력해 주세요.");
+		nickNm.focus();
 	}
 	else {
 		if (demo1.innerHTML + demo2.innerHTML + demo3.innerHTML + demo4.innerHTML + demo5.innerHTML + demo6.innerHTML != "") {

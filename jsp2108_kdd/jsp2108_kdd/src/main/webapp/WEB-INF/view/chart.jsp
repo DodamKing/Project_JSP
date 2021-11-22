@@ -19,8 +19,12 @@
     <title>DD Music Chart Top 100</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/top100.css?ver=2">
+   <%--  <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/top100.css"> --%>
+    <style>
+	    <%@include file="/css/main.css" %>
+	    <%@include file="/css/top100.css" %>
+    </style>
 </head>
 
 <body>
@@ -39,8 +43,8 @@
                         <td>${st.index + 1}</td>
                         <td><div class="imgBox"><img src="${vo.img }" alt=""></div></td>
                         <td>
-                            <div name="top10Title">${vo.title }</div>
-                            <div name="top10Artist">${vo.artist }</div>
+                            <div name="top100Title">${vo.title }</div>
+                            <div name="top100Artist">${vo.artist }</div>
                         </td>
                         <td><button name="add_btn" type="button" class="btn"><i class="fas fa-plus"></i></button></td>
                     </tr>
@@ -56,7 +60,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/main.js?ver=2"></script>
-    <script src="<%=request.getContextPath() %>/js/player.js?ver=4"></script>
+    <script src="<%=request.getContextPath() %>/js/player.js?ver=1"></script>
 </body>
 
 </html>

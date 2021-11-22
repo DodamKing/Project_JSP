@@ -13,7 +13,10 @@
     <title>DD Music</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css?v=1" >
+    <!-- <link rel="stylesheet" href="css/main.css" > -->
+    <style>
+	    <%@include file="/css/main.css" %>
+    </style>
 </head>
 
 <body>
@@ -83,8 +86,8 @@
                             <div>관련 뉴스 보기</div>
                         </div>
                         <div class="col">
-                            <dia href="" v class="section-img-box"><img class="section-img" src="img/4.png" alt="">
-                            </dia>
+                            <a href="" class="section-img-box"><img class="section-img" src="img/4.png" alt="">
+                            </a>
                             <a href="">자우림이 단독 콘서트 '영원한 사랑'을 개최 합니다</a>
                             <div>관련 뉴스 보기</div>
                         </div>
@@ -109,7 +112,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/main.js?ver=2"></script>
-    <script src="<%=request.getContextPath() %>/js/player.js?ver=4"></script>
+    <script src="<%=request.getContextPath() %>/js/player.js?ver=1"></script>
 </body>
 
 </html>

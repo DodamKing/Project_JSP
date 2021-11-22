@@ -8,9 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DD Music 회원가입</title>
+    <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signup.css" type="text/css"> --%>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signup.css" type="text/css">
+    <style>
+	    <%@include file="/css/signup.css" %>
+    </style>
 </head>
 
 <body>
@@ -23,8 +26,8 @@
                         <h2>회원가입</h2>
                         <div class="form-group">
                             <div class="lbl">
-                                <span style="color: red;"><b>*</b></span> 아이디 <button type="button" id="overlapCheck_btn"
-                                    class="btn btn-sm btn-secondary">아이디 중복체크</button>
+                                아이디 <button type="button" id="overlapCheck_btn"
+                                    class="btn btn-sm btn-warning">아이디 중복체크</button>
                             </div>
                             <input class="form-control input-control" type="text" id="userId" name="userId"
                                 placeholder="아이디" autofocus required>
@@ -32,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <div class="lbl">
-                                <span style="color: red;"><b>*</b></span> 비밀번호
+                                비밀번호
                             </div>
                             <input class="form-control input-control" type="password" id="pwd" name="pwd"
                                 placeholder="비밀번호" required>
@@ -41,7 +44,7 @@
                         </div>
                         <div class="form-group">
                             <div class="lbl">
-                                <span style="color: red;"><b>*</b></span> 이메일
+                                이메일
                             </div>
                             <input class="form-control input-control" type="text" id="email" name="email"
                                 placeholder="name@example.com" required>
@@ -49,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <div class="lbl">
-                                <span style="color: red;"><b>*</b></span> 휴대폰 번호
+                                휴대폰 번호
                             </div>
                             <div>
                                 SKT <input class="mr-3" type="radio" name="telecom" value="SKT">
@@ -61,11 +64,6 @@
                             <input class="form-control input-control" type="text" id="phoneNb" name="phoneNb"
                                 placeholder="01012345678 ( - 제외 )" required>
                             <div id="demo4" class="demo-box"></div>
-                        </div>
-                        <div class="form-group" id="must">
-                            <fieldset class="must-item">
-                                <legend><span style="color: red;"><b>*</b></span> 는 필수 입력 사항 입니다.</legend>
-                            </fieldset>
                         </div>
                         <div class="form-group">
                             <div class="lbl">
@@ -108,7 +106,7 @@
     </section>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/signup.js?v=2"></script>
+    <script src="js/signup.js?v=3"></script>
 </body>
 
 </html>

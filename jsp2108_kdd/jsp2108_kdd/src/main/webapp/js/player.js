@@ -11,8 +11,8 @@ let sw = 0;
 $("button[name='add_btn']").click(function() {
     let topIndex = $("button[name='add_btn']").index(this);
     let thum = $("section table img")[topIndex].src;
-    let title = $("div[name='top10Title']")[topIndex].innerText;
-    let artist = $("div[name='top10Artist']")[topIndex].innerText;
+    let title = $("div[name='top100Title']")[topIndex].innerText;
+    let artist = $("div[name='top100Artist']")[topIndex].innerText;
 
     thum_list.push(thum);
     title_list.push(title);

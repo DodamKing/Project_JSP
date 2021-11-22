@@ -31,7 +31,7 @@ function mainVideoPlay() {
 }
 
 // 검색버튼 클릭 이벤트
-$("i.fa-magnifying-glass").click((e) => {
+$("i.fa-magnifying-glass").click(() => {
     $("header > div:first-child").toggle();
 });
 

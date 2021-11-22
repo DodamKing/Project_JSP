@@ -9,7 +9,10 @@
     <title>DD Music 로그인</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
+    <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css"> --%>
+    <style>
+	    <%@include file="/css/login.css" %>
+    </style>
 </head>
 
 <body>

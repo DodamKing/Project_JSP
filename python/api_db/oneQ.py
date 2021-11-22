@@ -34,11 +34,12 @@ yt_url_list = []
 title = []
 artist = []
 
-options = webdriver.ChromeOptions()
-options.add_argument('--headless')
-options.add_argument('--window-size=1024,768')
-options.add_argument('--disable-gpu')
-driver = webdriver.Chrome('./95/chromedriver.exe', options=options)
+# options = webdriver.ChromeOptions()
+# options.add_argument('--headless')
+# options.add_argument('--window-size=1024,768')
+# options.add_argument('--disable-gpu')
+# driver = webdriver.Chrome('./95/chromedriver.exe', options=options)
+driver = webdriver.Chrome('./95/chromedriver.exe')
 
 for i in range(100):
     sql = 'select * from song where title = %s and artist = %s'

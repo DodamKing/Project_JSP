@@ -5,9 +5,9 @@ import os
 import re
 
 driver = webdriver.Chrome('./95/chromedriver.exe')
-title = '가진다는 말은 좀 그렇지?'
-artist = '10CM'
-keyword = '{} {} official audio -long'.format(title, artist)
+title = '이제 겨우 하루'
+artist = '서은광 (비투비)'
+keyword = '{} {} official audio, short'.format(title, artist)
 url = 'https://www.youtube.com/results?search_query=' + keyword
 
 driver.get(url)
