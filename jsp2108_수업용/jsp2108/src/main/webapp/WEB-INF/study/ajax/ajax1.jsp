@@ -5,7 +5,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>title</title>
+  <title>ajax1.jsp</title>
   <%@ include file="/include/bs4.jsp" %>
   <script>
     function idCheck() {
@@ -60,18 +60,24 @@
 			success : (data) => {
 				if (data != -1) alert("등록 성공 함");
 			}
-		});	
+		});	 
 	}
 	
 	function userCheck() {
+		location.reload();
 		
-		$.ajax({
+		/* $.ajax({
 			type : "post",
 			url : "usergetuser",
 			success : (data) => {
-				if (data != -1) alert("가져 왔다 치자");
+				if (data == "1") alert("가져 왔다 치자" + data);
+				location.reload();
 			}
-		});	
+		});	 */
+	}
+	
+	function delCheck() {
+		
 	}
   </script>
 </head>
@@ -102,17 +108,22 @@
   			<td><input type="button" value="조회" onclick="userCheck()" /></td>
   		</tr>
   	</table>
-  	<table>
+  	<table class="table">
   		<tr>
   			<td>번호</td>
   			<td>이름</td>
   			<td>나이</td>
+  			<td>처리</td>
   		</tr>
   		<c:forEach var="vo" items="${vos }">
   			<tr>
   				<td>${vo.idx }</td>
   				<td>${vo.name }</td>
   				<td>${vo.age }</td>
+  				<td>
+  					<a href="userUpdate.st?idx=${vo.idx}" class="btn btn-secondary btn-sm">수정</a>
+  					<a href="javascript:delCheck(${vo.idx})" class="btn btn-secondary btn-sm">삭제</a>
+				</td>
   			</tr>
   		</c:forEach>
   	</table>

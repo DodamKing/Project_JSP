@@ -23,7 +23,9 @@ public class UserGet extends HttpServlet {
 		
 		request.setAttribute("vos", vos);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/ajax1");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/study/ajax/ajax1.jsp");
 		dispatcher.forward(request, response);
+		
+		response.getWriter().write("1");
 	}
 }

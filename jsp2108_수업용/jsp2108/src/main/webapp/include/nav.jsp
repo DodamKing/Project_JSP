@@ -19,7 +19,7 @@
       	if (lv >= 0 && lv <= 4) {
       %>
       <li class="nav-item">
-        <a class="nav-link" href="#">게시판</a>
+        <a class="nav-link" href="boList.bo">게시판</a>
       </li>
       <%
       	} if (lv == 0 || lv == 2 || lv == 3) {
@@ -55,6 +55,7 @@
   		</button> -->
 		<div class="dropdown-menu">
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/ajax1.st">ajax1</a>
+		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/ajax2.st">ajax2</a>
 	  	</div>
       </li>
       <%

@@ -36,7 +36,22 @@ public class StudyController extends HttpServlet {
 			viewPage += "/jstl/jstl3.jsp";
 		}
 		else if (com.equals("/ajax1")) {
+			command = new Ajax1Command();
+			command.execute(request, response);
 			viewPage += "/ajax/ajax1.jsp";
+		}
+		else if (com.equals("/ajax2")) {
+			viewPage += "/ajax/ajax2.jsp";
+		}
+		else if (com.equals("/userUpdate")) {
+			command = new UserUpdateCommand();
+			command.execute(request, response);
+			viewPage += "/ajax/userUpdate.jsp";
+		}
+		else if (com.equals("/userUpdateOk")) {
+			command = new UserUpdateOkCommand();
+			command.execute(request, response);
+			viewPage += "/ajax/userUpdate.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

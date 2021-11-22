@@ -31,6 +31,7 @@
   	else if(msg == "memberDeleteOk") msg = "회원 정보가 삭제되었습니다.";
   	else if(msg == "memberLevelChangeOk") msg = "회원 등급이 변경되었습니다.";
   	else if(msg == "memberResetOk") msg = "정상 탈퇴 처리 되었습니다.";
+  	else if(msg == "loginCheck") msg = "로그인 후 사용하세요.";
   	
     alert(msg);
     if(url != "") location.href = url;
