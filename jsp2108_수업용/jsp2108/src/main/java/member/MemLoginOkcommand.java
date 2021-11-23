@@ -51,6 +51,7 @@ public class MemLoginOkcommand implements MemberInterface {
 				dao.setLastDateUpdate(mid);
 				
 				request.setAttribute("msg", "memberLoginOk");
+				request.setAttribute("val", vo.getNickName());
 				request.setAttribute("url", request.getContextPath() + "/memMain.mem");
 			}
 			else {

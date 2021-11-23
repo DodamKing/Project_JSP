@@ -18,6 +18,7 @@ public class BoController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardInterface command;
 		String viewPage = "/WEB-INF/board";
+		String message = "/WEB-INF/message/message.jsp";
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf("."));
 		
@@ -45,6 +46,30 @@ public class BoController extends HttpServlet {
 			command = new BoInputCommand();
 			command.execute(request, response);
 			viewPage += "/boInput.jsp";
+		}
+		
+		else if (com.equals("/boInputOk")) {
+			command = new BoInputOkCommand();
+			command.execute(request, response);
+			viewPage = message;
+		}
+		
+		else if (com.equals("/boContent")) {
+			command = new BoContentCommand();
+			command.execute(request, response);
+			viewPage += "/boContent.jsp";
+		}
+
+		else if (com.equals("/boDelete")) {
+			command = new BoDeleteCommand();
+			command.execute(request, response);
+			viewPage = message;
+		}
+
+		else if (com.equals("/boGood")) {
+			command = new BoGoodCommand();
+			command.execute(request, response);
+			viewPage += "/boContent.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

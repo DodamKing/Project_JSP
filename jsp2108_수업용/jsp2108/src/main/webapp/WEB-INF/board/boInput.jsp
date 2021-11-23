@@ -8,6 +8,11 @@
 	<title>title</title>
 	<%@include file="/include/bs4.jsp" %>
 </head>
+<style>
+	th {
+		text-align: center;
+	}
+</style>
 <body>
 	<!-- 헤더영역 -->
 	<%@include file="/include/header_home.jsp" %>
@@ -22,24 +27,24 @@
 		</table>
 	  <table class="table">
 	    <tr>
-	      <th>글쓴이</th>
+	      <th style="width:150px;">글쓴이</th>
 	      <td>${sNick}</td>
 	    </tr>
 	    <tr>
 	      <th>글제목</th>
-	      <td><input type="text" name="title" placeholder="글제목을 입력하세요" class="form-control"/></td>
+	      <td><input type="text" name="title" placeholder="글 제목을 입력하세요." class="form-control" required/></td>
 	    </tr>
 	    <tr>
 	      <th>이메일</th>
-	      <td><input type="text" name="email" placeholder="이메일을 입력하세요" value="${email}" class="form-control"/></td>
+	      <td><input type="text" name="email" placeholder="이메일을 입력하세요." value="${email}" class="form-control"/></td>
 	    </tr>
 	    <tr>
 	      <th>홈페이지</th>
-	      <td><input type="text" name="homePage" placeholder="홈페이지 주소를 입력하세요" value="${homePage}" class="form-control"/></td>
+	      <td><input type="text" name="homePage" placeholder="홈페이지 주소를 입력하세요." value="${homePage}" class="form-control"/></td>
 	    </tr>
 	    <tr>
 	      <th>글내용</th>
-	      <td><textarea rows="6" name="content" class="form-control"></textarea></td>
+	      <td><textarea rows="6" name="content" class="form-control" placeholder="내용을 입력하세요." required=></textarea></td>
 	    </tr>
 	    <tr>
 	      <td colspan="2" class="text-right">
@@ -55,6 +60,11 @@
 	
 	<!-- 푸터 -->
 	<%@include file="/include/footer.jsp" %>
-	
+	<script>
+		function fCheck() {
+			
+			myform.submit();
+		}
+	</script>
 </body>
 </html>

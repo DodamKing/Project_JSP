@@ -16,7 +16,7 @@
         <a class="nav-link" href="<%=request.getContextPath() %>/guest/gList.jsp">방명록</a>
       </li>
       <%
-      	if (lv >= 0 && lv <= 4) {
+      	if (lv >= 2 && lv <= 4) {
       %>
       <li class="nav-item">
         <a class="nav-link" href="boList.bo">게시판</a>
