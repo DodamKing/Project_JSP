@@ -29,10 +29,6 @@ public class UserController extends HttpServlet {
 			view = messege;
 		}
 		
-		else if (com.equals("/userloginsuccess")) {
-			view += "/main.jsp";
-		}
-		
 		else if (com.equals("/usersignup")) {
 			view += "/signup.jsp";
 		}
@@ -56,9 +52,21 @@ public class UserController extends HttpServlet {
 		}
 		
 		else if (com.equals("/userprofile")) {
-			command = new UserProfile();
+			command = new UserUpdateCommand();
 			command.execute(request, response);
 			view += "/userProfile.jsp";
+		}
+
+		else if (com.equals("/userupdate")) {
+			command = new UserUpdateCommand();
+			command.execute(request, response);
+			view += "/userUpdate.jsp";
+		}
+		
+		else if (com.equals("/userupdatedo")) {
+			command = new UserUpdateDo();
+			command.execute(request, response);
+			view = "userprofile.user";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);

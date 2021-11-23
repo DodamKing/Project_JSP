@@ -18,7 +18,7 @@ public class UserDAO {
 	private UserVO vo;
 	
 	public boolean login(String userId, String pwd) {
-		sql = "select * from user_jsp where userId = ? and pwd = ?";
+		sql = "select * from user_jsp where userId = ? and pwd = ? and visible = 1";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
@@ -122,7 +122,8 @@ public class UserDAO {
 				vo.setPhoneNb(rs.getString(7));
 				vo.setUserNm(rs.getString(8));
 				vo.setNickNm(rs.getString(9));
-				vo.setVisible(rs.getInt(10));
+				vo.setMembership(rs.getInt(10));
+				vo.setVisible(rs.getInt(11));
 			}
 			return vo;
 		} catch (SQLException e) {
@@ -131,5 +132,23 @@ public class UserDAO {
 			getconn.close();
 		}
 		return null;
+	}
+
+	public void setUserUpdate(UserVO vo) {
+		sql = "update user_jsp set email = ?, telecom = ?, phoneNb = ?, userNm = ?, nickNm = ? where userId = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getEmail());
+			pstmt.setString(2, vo.getTelecom());
+			pstmt.setString(3, vo.getPhoneNb());
+			pstmt.setString(4, vo.getUserNm());
+			pstmt.setString(5, vo.getNickNm());
+			pstmt.setString(6, vo.getUserId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
 	}
 }

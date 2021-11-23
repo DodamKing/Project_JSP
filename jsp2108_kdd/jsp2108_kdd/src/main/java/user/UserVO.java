@@ -10,26 +10,9 @@ public class UserVO {
 	private String userNm;
 	private String nickNm;
 	private int visible;
+	private int membership;
 	private int pwdKeyNo;
 	
-	public int getPwdKeyNo() {
-		return pwdKeyNo;
-	}
-	public void setPwdKeyNo(int pwdKeyNo) {
-		this.pwdKeyNo = pwdKeyNo;
-	}
-	public String getNickNm() {
-		return nickNm;
-	}
-	public void setNickNm(String nickNm) {
-		this.nickNm = nickNm;
-	}
-	public int getVisible() {
-		return visible;
-	}
-	public void setVisible(int visible) {
-		this.visible = visible;
-	}
 	public int getIdx() {
 		return idx;
 	}
@@ -72,11 +55,35 @@ public class UserVO {
 	public void setUserNm(String userNm) {
 		this.userNm = userNm;
 	}
+	public String getNickNm() {
+		return nickNm;
+	}
+	public void setNickNm(String nickNm) {
+		this.nickNm = nickNm;
+	}
+	public int getVisible() {
+		return visible;
+	}
+	public void setVisible(int visible) {
+		this.visible = visible;
+	}
+	public int getMembership() {
+		return membership;
+	}
+	public void setMembership(int membership) {
+		this.membership = membership;
+	}
+	public int getPwdKeyNo() {
+		return pwdKeyNo;
+	}
+	public void setPwdKeyNo(int pwdKeyNo) {
+		this.pwdKeyNo = pwdKeyNo;
+	}
 	
 	@Override
 	public String toString() {
 		return "UserVO [idx=" + idx + ", userId=" + userId + ", pwd=" + pwd + ", email=" + email + ", telecom="
-				+ telecom + ", phoneNb=" + phoneNb + ", userNn=" + userNm + ", nickNm=" + nickNm + ", visible="
-				+ visible + "]";
+				+ telecom + ", phoneNb=" + phoneNb + ", userNm=" + userNm + ", nickNm=" + nickNm + ", visible="
+				+ visible + ", membership=" + membership + ", pwdKeyNo=" + pwdKeyNo + "]";
 	}
 }
