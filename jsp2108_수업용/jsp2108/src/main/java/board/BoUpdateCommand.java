@@ -1,14 +1,12 @@
 package board;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-public class BoGoodCommand implements BoardInterface {
+public class BoUpdateCommand implements BoardInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,31 +24,12 @@ public class BoGoodCommand implements BoardInterface {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
 		
-		String sw = "";
-		if (request.getParameter("sw") != null) {
-			sw = request.getParameter("sw");
-		}
-		
 		BoardDAO dao = new BoardDAO();
-		
-		HttpSession session = request.getSession();
-		ArrayList<String> goodIdx = (ArrayList) session.getAttribute("sGoodIdx");
-		if (goodIdx == null) {
-			goodIdx = new ArrayList<String>();
-			session.setAttribute("sGoodIdx", goodIdx);
-		}
-		String goodidx_ = session.getId() + "good" + idx;
-		if (!goodIdx.contains(goodidx_) ) {
-			dao.setGoodUpdate(idx);
-			goodIdx.add(goodidx_);
-		}
-		
 		BoardVO vo = dao.getBoardContent(idx);
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("pag", pag);
 		request.setAttribute("pageSize", pageSize);
-		request.setAttribute("sw", sw);
 	}
 
 }

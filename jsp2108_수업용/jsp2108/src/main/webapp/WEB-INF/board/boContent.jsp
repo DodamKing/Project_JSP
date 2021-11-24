@@ -16,6 +16,14 @@
 		text-align: center;
 	}
 	
+	div.container > div:hover {
+		cursor: pointer;
+	}
+	
+	#good3:hover {
+		cursor: pointer;
+	}
+	
 	
 </style>
 <body>
@@ -25,12 +33,13 @@
 	
 	<div class="container mt-5">
 		<h2 class="text-center mb-5">게시글 개별 보기</h2>
+		<div class="text-right" onclick="goodCheck()" title="좋아요">💗(ajax로 처리) : ${vo.good } </div>
 		<table class="table table-bordered">
 			<tr>
 				<th>글쓴이</th>
 				<td class="row">
-					<div class="col">${vo.nickName }</div>
-					<div class="col"><a href="boGood.bo?idx=${vo.idx }&pag=${pag}&pageSize=${pageSize}"> 👍 : ${vo.good } </a></div>
+					<div class="col-6">${vo.nickName }</div>
+					<div class="col"><a href="boGood.bo?idx=${vo.idx }&pag=${pag}&pageSize=${pageSize}&sw=good"> 👍(확장자패턴) : ${vo.good } </a></div>
 				</td>
 				<th>글쓴날짜</th>
 				<td>${fn:substring(vo.wDate, 0, 19) }</td>
@@ -52,7 +61,12 @@
 			</tr>
 			<tr>
 				<th>글제목</th>
-				<td colspan="3">${vo.title }</td>
+				<td colspan="3">
+					<div class="row">
+						<div class="col">${vo.title }</div>
+						<div id="good3" class="col-3" onclick="goodCheck2()"> 😍(취소기능추가) : ${vo.good } </div>
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<th style="vertical-align: middle;">글내용</th>
@@ -61,12 +75,32 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4" class="text-center">
-					<c:if test="${sMid == vo.mid }">
-						<input class="btn btn-primary" type="button" value="수정하기" onclick="location.href=''" />
-						<input class="btn btn-primary" type="button" value="삭제하기" onclick="delCheck()" />
-					</c:if>
-					<input class="btn btn-primary" type="button" value="돌아가기" onclick="location.href='boList.bo?pag=${pag}&pageSize=${pageSize }'" />
+				<td colspan="4" >
+					<div class="row">
+						<div class="col">
+							<c:if test="${sMid == vo.mid }">
+								<input class="btn btn-primary" type="button" value="수정하기" onclick="location.href='boUpdate.bo?idx=${vo.idx}&page=${pag }&pageSize=${pageSize }'" />
+								<input class="btn btn-primary" type="button" value="삭제하기" onclick="delCheck()" />
+							</c:if>
+						</div>
+						<div class="col-4 text-right">
+							<c:if test="${sw != 'srch' && sw != 'good' }">
+								<c:if test="${voPrev != null }">
+									<input title="${voPrev.title}" class="btn btn-primary" type="button" value="이전글" onclick="location.href='boContent.bo?idx=${voPrev.idx }&pag=${pag}&pageSize=${pageSize }'" />
+								</c:if>
+								<c:if test="${voNext != null }">
+									<input title="${voNext.title}" class="btn btn-primary" type="button" value="다음글" onclick="location.href='boContent.bo?idx=${voNext.idx }&pag=${pag}&pageSize=${pageSize }'" />
+								</c:if>
+								<input class="btn btn-primary" type="button" value="돌아가기" onclick="location.href='boList.bo?pag=${pag}&pageSize=${pageSize }'" />
+							</c:if>
+							<c:if test="${sw == 'srch' }">
+								<input class="btn btn-primary" type="button" value="돌아가기" onclick="history.back()" />
+							</c:if>
+							<c:if test="${sw == 'good' }">
+								<input class="btn btn-primary" type="button" value="돌아가기" onclick="history.go(-2)" />
+							</c:if>
+						</div>
+					</div>
 				</td>
 			</tr>
 		</table>
@@ -78,6 +112,46 @@
 		function delCheck() {
 			let ans = confirm("게시글을 삭제 하시겠습니까?");
 			if (ans) location.href="boDelete.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}";
+		}
+		
+		function goodCheck() {
+			let query = {
+					idx : ${vo.idx}
+			}
+			
+			$.ajax({
+				type : "post",
+				url : "bogood",
+				data : query,
+				success : (data) => {
+					if (data == "1") {
+						location.reload();
+					}
+					else if (data == "0") {
+						alert("벌써 좋아요를 누르셨습니다.");
+					}
+				}
+			})
+		}
+		
+		function goodCheck2() {
+			let query = {
+					idx : ${vo.idx}
+			}
+			
+			$.ajax({
+				type : "post",
+				url : "bogoodTwo",
+				data : query,
+				success : (data) => {
+					if (data == "1") {
+						location.reload();
+					}
+					else if (data == "0") {
+						alert("벌써 좋아요를 누르셨습니다.");
+					}
+				}
+			})
 		}
 	</script>
 </body>

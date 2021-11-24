@@ -20,16 +20,37 @@
 			<table class="table table-borderless text-right">
 				<tr>
 					<td>
+						<div class="text-left ml-3">
+							<form name="srchForm" method="post" action="boSearch.bo">
+								<select name="srch" onchange="srchChange()">
+									<option value="title">글제목</option>
+									<option value="nickName">글쓴이</option>
+									<option value="content">글내용</option>
+								</select>
+								<input type="text" name="srchString" >
+								<input type="button" value="검색" onclick="srchCheck()" >
+								<input type="hidden" name="pag" value="${pag }" >
+      							<input type="hidden" name="pagSize" value="${pagSize }" >
+							</form>
+						</div>
+					</td>
+					<td>
 	    				<select id="pageSize" name="pageSize" onchange="pageCheck()" class="p-0 m-0">
 			          		<option value="5" ${pageSize==5 ? 'selected' : ''}>5건</option>
 		          			<option value="10" ${pageSize==10 ? 'selected' : ''}>10건</option>
 			          		<option value="15" ${pageSize==15 ? 'selected' : ''}>15건</option>
 			          		<option value="20" ${pageSize==20 ? 'selected' : ''}>20건</option>
 			        	</select>
+			        	<select id="lately" name="lately" onchange="latelyCheck()">
+							<option value="">최신글보기</option>
+							<c:forEach var="i" begin="1" end="30">
+								<option value="${i }" ${lately==i ? 'selected' : ''}>${i }일전</option>
+							</c:forEach>
+						</select>
 			      	</td>
 				</tr>
 				<tr>
-					<td>
+					<td colspan="2">
 						<a href="boInput.bo" class="btn btn-primary">글쓰기</a>
 					</td>
 				
@@ -96,18 +117,18 @@
 			${pag }Page / ${totPage }Page
 		</div> --%>
 		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="boList.bo?pag=1&pageSize=${pageSize }">처음</a></li>
-			<li class="page-item"><a class="page-link" href="boList.bo?pag=${(curBlock - 1) * blockSize + 1 }&pageSize=${pageSize }">Prev</a></li>
+			<li class="page-item"><a class="page-link" href="boList.bo?pag=1&pageSize=${pageSize }&lately=${lately}">처음</a></li>
+			<li class="page-item"><a class="page-link" href="boList.bo?pag=${(curBlock - 1) * blockSize + 1 }&pageSize=${pageSize }&lately=${lately}">Prev</a></li>
 		<c:forEach var="i" begin="${curBlock * blockSize + 1 }" end="${curBlock * blockSize + blockSize }">
 			<c:if test="${i == pag && i <= totPage }">
-				<li class="page-item active"><a class="page-link" href="boList.bo?pag=${i }&pageSize=${pageSize }">${i }</a></li>
+				<li class="page-item active"><a class="page-link" href="boList.bo?pag=${i }&pageSize=${pageSize }&lately=${lately}">${i }</a></li>
 			</c:if>
 			<c:if test="${i != pag && i <= totPage }">
-				<li class="page-item"><a class="page-link" href="boList.bo?pag=${i }&pageSize=${pageSize }">${i }</a></li>
+				<li class="page-item"><a class="page-link" href="boList.bo?pag=${i }&pageSize=${pageSize }&lately=${lately}">${i }</a></li>
 			</c:if>
 		</c:forEach>
-			<li class="page-item"><a class="page-link" href="boList.bo?pag=${(curBlock + 1) * blockSize + 1 }&pageSize=${pageSize }">Next</a></li>
-			<li class="page-item"><a class="page-link" href="boList.bo?pag=${totPage }&pageSize=${pageSize }">마지막</a></li>
+			<li class="page-item"><a class="page-link" href="boList.bo?pag=${(curBlock + 1) * blockSize + 1 }&pageSize=${pageSize }&lately=${lately}">Next</a></li>
+			<li class="page-item"><a class="page-link" href="boList.bo?pag=${totPage }&pageSize=${pageSize }&lately=${lately}">마지막</a></li>
 		</ul>
 	</div>
 	
@@ -119,6 +140,45 @@
 			var pageSize = document.getElementById("pageSize").value;
 	    	location.href = "boList.bo?page=${pag}&pageSize="+pageSize;
 		}
+		
+		function latelyCheck() {
+			let l = $("#lately").val();
+			var pageSize = document.getElementById("pageSize").value;
+			if (l == null) {
+				return;
+			}
+			else {
+				location.href = "boList.bo?page=${pag}&pageSize="+pageSize+"&lately="+l;
+			}
+			
+			/* let data = {
+					lately : $("#lately").val(),
+					pag : ${pag},
+					pageSize : ${pageSize}
+			}
+			
+			$.ajax({
+				type : "post",
+				url : "boList.bo",
+				data : data,
+				success : () => {
+					location.reload();
+				}
+			}); */
+		}
+		
+		function srchChange() {
+			srchForm.srchString.focus();
+		}
+		
+		function srchCheck() {
+			let srch = $("#srchString").val();
+			if (srch == "") {
+				return;
+			}
+			srchForm.submit();
+		}
+		
 	</script>
 </body>
 </html>

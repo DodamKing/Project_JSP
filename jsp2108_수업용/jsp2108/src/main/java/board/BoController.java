@@ -71,6 +71,25 @@ public class BoController extends HttpServlet {
 			command.execute(request, response);
 			viewPage += "/boContent.jsp";
 		}
+
+		else if (com.equals("/boUpdate")) {
+			command = new BoUpdateCommand();
+			command.execute(request, response);
+			viewPage += "/boUpdate.jsp";
+		}
+
+		else if (com.equals("/boUpdateOk")) {
+			command = new BoUpdateOkCommand();
+			command.execute(request, response);
+			viewPage = message;
+		}
+	
+		else if (com.equals("/boSearch")) {
+			command = new BoSrchCommand();
+			command.execute(request, response);
+			viewPage += "/boSrch.jsp";
+		}
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

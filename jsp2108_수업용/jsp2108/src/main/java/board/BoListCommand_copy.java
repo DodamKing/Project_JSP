@@ -1,33 +1,26 @@
 package board;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BoListCommand implements BoardInterface {
+import member.MemberVo;
+
+public class BoListCommand_copy implements BoardInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int lately = 0;
-		if (request.getParameter("lately") != null && request.getParameter("lately") != "") {
-			lately = Integer.parseInt(request.getParameter("lately"));
-		}
 		BoardDAO dao = new BoardDAO();
 		
 		int pageSize = 5;
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		int totRecCnt = 1; 
-		if (lately == 0) {
-			totRecCnt = dao.totRecCnt();
-		}
-		else {
-			totRecCnt = dao.totRecCnt(lately);
-		}
+		int totRecCnt = dao.totRecCnt();
 		int totPage;
 		if (totRecCnt % pageSize == 0) {
 			totPage = totRecCnt / pageSize;
@@ -64,13 +57,8 @@ public class BoListCommand implements BoardInterface {
 			curBlock = lastBlock;
 			pag = totPage;
 		}
-		List<BoardVO> vos;
-		if (lately == 0) {
-			vos = dao.getBoardList(startIndexNo, pageSize);
-		}
-		else {
-			vos = dao.getLatelyBoardList(startIndexNo, pageSize, lately);
-		}
+		
+		List<BoardVO> vos = dao.getBoardList(startIndexNo, pageSize);
 		
 		request.setAttribute("vos", vos);
 		request.setAttribute("pag", pag);
@@ -80,7 +68,6 @@ public class BoListCommand implements BoardInterface {
 		request.setAttribute("curBlock", curBlock);
 		request.setAttribute("lastBlock", lastBlock);
 		request.setAttribute("pageSize", pageSize);
-		request.setAttribute("lately", lately);
 		
 	}
 

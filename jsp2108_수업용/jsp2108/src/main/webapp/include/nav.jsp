@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	int lv = -1;
 	if (session.getAttribute("sLv") != null) {
@@ -68,7 +69,10 @@
     <div class="col"></div>
 	<ul class="navbar-nav col-2" >
     	<li class="nav-item dropdown">
-        	<a class="nav-link btn dropdown-toggle" data-toggle="dropdown" href="#">회원관리</a>
+        	<a class="nav-link btn dropdown-toggle" data-toggle="dropdown" href="#">
+        		<c:if test="${sNick == null }">회원관리</c:if>
+        		<c:if test="${sNick != null }">${sNick } 님</c:if>
+    		</a>
 			<div class="dropdown-menu">
 		  		<a class="dropdown-item" href="<%=request.getContextPath() %>/memMain.mem">회원방</a>
 		  		<a class="dropdown-item" href="<%=request.getContextPath() %>/memUpdate.mem">회원정보변경</a>

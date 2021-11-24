@@ -167,5 +167,177 @@ public class BoardDAO {
 			getConn.close();
 		}
 	}
+
+
+	public List<BoardVO> getLatelyBoardList(int startIndexNo, int pageSize, int lately) {
+		List<BoardVO> vos = new ArrayList<BoardVO>();
+		sql = "select * from board where wDate > date_sub(now(), interval ? day) order by idx desc limit ?, ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, lately);
+			pstmt.setInt(2, startIndexNo);
+			pstmt.setInt(3, pageSize);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				vo = new BoardVO();
+				vo.setIdx(rs.getInt(1));
+				vo.setNickName(rs.getString(2));
+				vo.setTitle(rs.getString(3));
+				vo.setEmail(rs.getString(4));
+				vo.setHomePage(rs.getString(5));
+				vo.setContent(rs.getString(6));
+				vo.setwDate(rs.getString(7));
+				vo.setReadNum(rs.getInt(8));
+				vo.setHostIp(rs.getString(9));
+				vo.setGood(rs.getInt(10));
+				vo.setMid(rs.getString(11));
+				
+				vo.setwCDate(rs.getString(7));
+				
+				TimeDiff timeDiff = new TimeDiff();
+				int res = timeDiff.timeDiff(vo.getwCDate());
+				vo.setwNdate(res);
+				
+				vos.add(vo);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}  finally {
+			getConn.close();
+		}
+		return vos;
+	}
+
+
+	public int totRecCnt(int lately) {
+		sql = "select count(*) from board where wDate > date_sub(now(), interval ? day)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, lately);
+			rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			getConn.close();
+		}
+		return 0;
+	}
+
+
+	public int setBoUpdate(BoardVO vo) {
+		sql = "update board set title = ?, email = ?, homePage = ?, content = ?, hostIp = ? where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getEmail());
+			pstmt.setString(3, vo.getHomePage());
+			pstmt.setString(4, vo.getContent());
+			pstmt.setString(5, vo.getHostIp());
+			pstmt.setInt(6, vo.getIdx());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			getConn.close();
+		}
+		return 0;
+	}
+
+
+	public BoardVO getotherBoardContent(String str, int idx) {
+		vo = new BoardVO();
+		if (str.equals("prev")) {
+			sql = "select * from board where idx > ? limit 1";
+		}
+		else {
+			sql = "select * from board where idx < ? order by idx desc limit 1";
+		}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo.setIdx(rs.getInt(1));
+				vo.setNickName(rs.getString(2));
+				vo.setTitle(rs.getString(3));
+				vo.setEmail(rs.getString(4));
+				vo.setHomePage(rs.getString(5));
+				vo.setContent(rs.getString(6));
+				vo.setwDate(rs.getString(7));
+				vo.setReadNum(rs.getInt(8));
+				vo.setHostIp(rs.getString(9));
+				vo.setGood(rs.getInt(10));
+				vo.setMid(rs.getString(11));
+				return vo;
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			getConn.close();
+		}
+		return null;
+	}
+
+
+	public int totRecCnt(String srch, String srchString) {
+		sql = "select count(*) from board where " + srch + " like ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt. setString(1, "%" + srchString + "%");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			};
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			getConn.close();
+		}
+		return 0;
+	}
+
+
+	public List<BoardVO> getBoardSrchList(String srch, String srchString, int startIndexNo, int pageSize) {
+		List<BoardVO> vos = new ArrayList<BoardVO>();
+		sql = "select * from board where " + srch + " like ? order by idx desc limit ?, ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + srchString + "%");
+			pstmt.setInt(2, startIndexNo);
+			pstmt.setInt(3, pageSize);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				vo = new BoardVO();
+				vo.setIdx(rs.getInt(1));
+				vo.setNickName(rs.getString(2));
+				vo.setTitle(rs.getString(3));
+				vo.setEmail(rs.getString(4));
+				vo.setHomePage(rs.getString(5));
+				vo.setContent(rs.getString(6));
+				vo.setwDate(rs.getString(7));
+				vo.setReadNum(rs.getInt(8));
+				vo.setHostIp(rs.getString(9));
+				vo.setGood(rs.getInt(10));
+				vo.setMid(rs.getString(11));
+				
+				vo.setwCDate(rs.getString(7));
+				
+				TimeDiff timeDiff = new TimeDiff();
+				int res = timeDiff.timeDiff(vo.getwCDate());
+				vo.setwNdate(res);
+				
+				vos.add(vo);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}  finally {
+			getConn.close();
+		}
+		return vos;
+	}
 	
 }

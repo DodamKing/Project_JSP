@@ -26,6 +26,11 @@ public class BoContentCommand implements BoardInterface {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
 		
+		String sw = "";
+		if (request.getParameter("sw") != null) {
+			sw = request.getParameter("sw");
+		}
+		
 		BoardDAO dao = new BoardDAO();
 		
 		HttpSession session = request.getSession();
@@ -41,10 +46,19 @@ public class BoContentCommand implements BoardInterface {
 		}
 		
 		BoardVO vo = dao.getBoardContent(idx);
+
+		
+		BoardVO voPrev = dao.getotherBoardContent("prev", idx);
+		BoardVO voNext = dao.getotherBoardContent("next", idx);
+		
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("pag", pag);
 		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("voPrev", voPrev);
+		request.setAttribute("voNext", voNext);
+		request.setAttribute("sw", sw);
+		
 	}
 
 }

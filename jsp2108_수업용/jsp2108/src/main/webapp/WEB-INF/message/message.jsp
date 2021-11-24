@@ -37,6 +37,7 @@
   	else if(msg == "boDeleteOk") msg = "게시글이 삭제 되었습니다.";
   	else if(msg == "boDeleteNo") msg = "데이터 베이스 오류.";
   	else if(msg == "No") msg = "데이터 베이스 오류.";
+  	else if(msg == "boUpdateOk") msg = "게시글이 수정 되었습니다.";
   	
     alert(msg);
     if(url != "") location.href = url;
