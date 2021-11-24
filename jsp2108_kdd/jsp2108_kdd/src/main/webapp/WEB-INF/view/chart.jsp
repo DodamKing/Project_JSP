@@ -26,22 +26,21 @@
     <%@include file="/main/searchBar.jsp" %>
     <%@include file="/main/nav.jsp" %>
     <%@include file="/main/header.jsp" %>
-    
     <section>
         <div class="container">
             <div class="card-body">
                 <h2 class="mt-5 mb-5">DD Music Top 100</h2>
                 <table class="table">
                     <c:forEach var="vo" items="${vos }" varStatus="st">
-                    <tr>
-                        <td>${st.index + 1}</td>
-                        <td><div class="imgBox"><img src="${vo.img }" alt=""></div></td>
-                        <td>
-                            <div name="top100Title">${vo.title }</div>
-                            <div name="top100Artist">${vo.artist }</div>
-                        </td>
-                        <td><button name="add_btn" type="button" class="btn"><i class="fas fa-plus"></i></button></td>
-                    </tr>
+	                    <tr>
+	                        <td>${st.index + 1}</td>
+	                        <td><div class="imgBox"><img src="${vo.img }" alt=""></div></td>
+	                        <td>
+	                            <div name="top100Title">${vo.title }</div>
+	                            <div name="top100Artist">${vo.artist }</div>
+	                        </td>
+	                        <td><button name="add_btn" type="button" class="btn"><i class="fas fa-plus"></i></button></td>
+	                    </tr>
                     </c:forEach>
                     
                 </table>
@@ -54,7 +53,10 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/main.js?ver=2"></script>
-    <script src="<%=request.getContextPath() %>/js/player.js?ver=1"></script>
+    <%-- <script src="<%=request.getContextPath() %>/js/player.js?ver=2"></script> --%>
+    <script>
+   		<%@include file="/js/player.js" %>
+    </script>
 </body>
 
 </html>

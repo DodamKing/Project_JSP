@@ -19,6 +19,17 @@ $("button[name='add_btn']").click(function() {
     artist_list.push(artist);
 
     setList();
+
+	data = {
+		title : title,
+		artist : artist
+	}
+
+	$.ajax({
+		type : "post",
+		url : "usersaveplaylist.user",
+		data : data
+	});
 });
 
 $("button[name='delete_btn']").click(function() {
@@ -40,9 +51,9 @@ function dellist(index) {
 
 // 플레이 리스트에 데이터 뿌리기
 function setList() {
-    let res = "";
+	let res = "";
     for (let i=0; i<thum_list.length; i++) {
-        res += "<div class='d-flex p-1'><div class='imgBox mr-4'><img src='" + thum_list[i] + "'></div><div><div class='playlist_t'>" + title_list[i] + "</div><div class='playlist_a'>" + artist_list[i] + "</div></div><div class='ml-auto'><button name='delete_btn' type='button' class='btn' onclick='dellist(" + i + ")' ><i class='fa-regular fa-trash-can'></i></button></div></div>";
+        res = play_list.innerHTML + "<div class='d-flex p-1'><div class='imgBox mr-4'><img src='" + thum_list[i] + "'></div><div><div class='playlist_t'>" + title_list[i] + "</div><div class='playlist_a'>" + artist_list[i] + "</div></div><div class='ml-auto'><button name='delete_btn' type='button' class='btn' onclick='dellist(" + i + ")' ><i class='fa-regular fa-trash-can'></i></button></div></div>";
     }
     play_list.innerHTML = res;
 }

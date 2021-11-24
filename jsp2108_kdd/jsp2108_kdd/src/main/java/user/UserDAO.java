@@ -123,7 +123,10 @@ public class UserDAO {
 				vo.setUserNm(rs.getString(8));
 				vo.setNickNm(rs.getString(9));
 				vo.setMembership(rs.getInt(10));
-				vo.setVisible(rs.getInt(11));
+				vo.setMembershipDate(rs.getString(11));
+				vo.setMembershipCnt(rs.getInt(12));
+				vo.setPlayList(rs.getString(13));
+				vo.setVisible(rs.getInt(14));
 			}
 			return vo;
 		} catch (SQLException e) {
@@ -151,4 +154,84 @@ public class UserDAO {
 			getconn.close();
 		}
 	}
+
+	public int signOut(String userId) {
+		sql = "update user_jsp set visible = 0 where userId = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			getconn.close();
+		}
+		return 0;
+	}
+
+	public UserVO getMemberShip(String mid) {
+		vo = new UserVO();
+		sql = "select *, date_add(membershipDate, interval 29 day) from user_jsp where userId = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+			rs.next();
+			vo.setNickNm(rs.getString("nickNm"));
+			vo.setMembership(rs.getInt("membership"));
+			vo.setMembershipDate(rs.getString("membershipDate"));
+			vo.setNextMembershipDate(rs.getString("date_add(membershipDate, interval 29 day)"));
+			vo.setMembershipCnt(rs.getInt("membershipCnt"));
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			getconn.close();
+		}
+		return vo;
+	}
+
+	public void setMemberShip(String mid) {
+		sql = "update user_jsp set membership = 1, membershipDate = now(), membershipCnt = 1 where userId = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}  finally {
+			getconn.close();
+		}
+	}
+
+	public String getPlayList(String mid) {
+		sql = "select playList from user_jsp where userId = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getString(1);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}  finally {
+			getconn.close();
+		}
+		return null;
+	}
+
+	public void setPlayList(String mid, String playList) {
+		sql = "update user_jsp set playList = ? where userId = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, playList);
+			pstmt.setString(2, mid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}  finally {
+			getconn.close();
+		}
+
+	}
+
 }

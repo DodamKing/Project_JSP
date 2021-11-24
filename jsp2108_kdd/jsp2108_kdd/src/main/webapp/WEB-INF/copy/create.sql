@@ -27,3 +27,8 @@ insert into hashTable values (19,'54545454');
 select * from user_jsp;
 
 alter database java02_kdd default character set utf8 collate utf8_general_ci;
+
+select membershipDate from user_jsp where userId = 'admin';
+
+select *, date_add(membershipDate, interval 29 day) from user_jsp where userId = 'admin';
+

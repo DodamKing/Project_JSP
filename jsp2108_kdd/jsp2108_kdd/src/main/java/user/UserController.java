@@ -68,6 +68,30 @@ public class UserController extends HttpServlet {
 			command.execute(request, response);
 			view = "userprofile.user";
 		}
+
+		else if (com.equals("/userdel")) {
+			command = new UserDelDo();
+			command.execute(request, response);
+			view = messege;
+		}
+
+		else if (com.equals("/usermembership")) {
+			command = new UserMemberShipCommand();
+			command.execute(request, response);
+			view += "/userMembership.jsp";
+		}
+
+		else if (com.equals("/membershipdo")) {
+			command = new UserMemberShipDoCommand();
+			command.execute(request, response);
+			return;
+		}
+
+		else if (com.equals("/usersaveplaylist")) {
+			command = new UserSavePlayListDoCommand();
+			command.execute(request, response);
+			return;
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
