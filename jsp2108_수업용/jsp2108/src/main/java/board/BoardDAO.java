@@ -16,12 +16,13 @@ public class BoardDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private BoardVO vo;
+	private ReplyBoardVO replyBoardVO;
 	private String sql;
 	
 	
 	public List<BoardVO> getBoardList(int startIndexNo, int pageSize) {
 		List<BoardVO> vos = new ArrayList<BoardVO>();
-		sql = "select * from board order by idx desc limit ?, ?";
+		sql = "select *, (select count(*) from replyBoard where boardIdx = board.idx) as replyCnt from board order by idx desc limit ?, ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startIndexNo);
@@ -46,6 +47,8 @@ public class BoardDAO {
 				TimeDiff timeDiff = new TimeDiff();
 				int res = timeDiff.timeDiff(vo.getwCDate());
 				vo.setwNdate(res);
+				
+				vo.setReplyCnt(rs.getInt("replyCnt"));
 				
 				vos.add(vo);
 			}
@@ -338,6 +341,98 @@ public class BoardDAO {
 			getConn.close();
 		}
 		return vos;
+	}
+
+
+	public void replyInput(ReplyBoardVO vo) {
+		sql = "insert into replyBoard values (default, ?, ?, ?, default, ?, ?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getBoardIdx());
+			pstmt.setString(2, vo.getMid());
+			pstmt.setString(3, vo.getNickName());
+			pstmt.setString(4, vo.getHostIp());
+			pstmt.setString(5, vo.getContent());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}  finally {
+			getConn.close();
+		}
+	}
+
+
+	public List<ReplyBoardVO> getReplyBoard(int idx) {
+		List<ReplyBoardVO> vos = new ArrayList<ReplyBoardVO>();
+		sql = "select * from replyBoard where boardIdx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ReplyBoardVO vo = new ReplyBoardVO();
+				vo.setIdx(rs.getInt(1));
+				vo.setBoardIdx(rs.getInt(2));
+				vo.setMid(rs.getString(3));
+				vo.setNickName(rs.getString(4));
+				vo.setwDate(rs.getString(5));
+				vo.setHostIp(rs.getString(6));
+				vo.setContent(rs.getString(7));
+				
+				vos.add(vo);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}  finally {
+			getConn.close();
+		}
+		return vos;
+	}
+
+
+	public String getReply(int idx) {
+		sql = "select * from replyBoard where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getString("content");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}  finally {
+			getConn.close();
+		}
+		return "";
+	}
+
+
+	public void setReplyUpdate(int replyIdx, String content) {
+		sql = "update replyBoard set content = ? where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, content);
+			pstmt.setInt(2, replyIdx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			getConn.close();
+		}
+	}
+
+
+	public void setReplyDelete(int idx) {
+		sql = "delete from replyBoard where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			getConn.close();
+		}
 	}
 	
 }

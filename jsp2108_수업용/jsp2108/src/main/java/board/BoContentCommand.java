@@ -2,6 +2,7 @@ package board;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,8 @@ public class BoContentCommand implements BoardInterface {
 		int idx = 0;
 		int pag = 1;
 		int pageSize = 5;
+		int lately = 0;
+		int replyIdx = 0;
 		
 		if (request.getParameter("idx") != null) {
 			idx = Integer.parseInt(request.getParameter("idx"));
@@ -25,6 +28,13 @@ public class BoContentCommand implements BoardInterface {
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
+		if (request.getParameter("lately") != null) {
+			lately = Integer.parseInt(request.getParameter("lately"));
+		}
+		if (request.getParameter("replyIdx") != null) {
+			replyIdx = Integer.parseInt(request.getParameter("replyIdx"));
+		}
+		
 		
 		String sw = "";
 		if (request.getParameter("sw") != null) {
@@ -47,17 +57,26 @@ public class BoContentCommand implements BoardInterface {
 		
 		BoardVO vo = dao.getBoardContent(idx);
 
-		
 		BoardVO voPrev = dao.getotherBoardContent("prev", idx);
 		BoardVO voNext = dao.getotherBoardContent("next", idx);
+		
+		List<ReplyBoardVO> replyVOS = dao.getReplyBoard(idx);
+		
+		if (replyIdx != 0) {
+			String replyContent = dao.getReply(replyIdx);
+			request.setAttribute("replyContent", replyContent);
+		}
 		
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("pag", pag);
 		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("lately", lately);
 		request.setAttribute("voPrev", voPrev);
 		request.setAttribute("voNext", voNext);
 		request.setAttribute("sw", sw);
+		request.setAttribute("replyIdx", replyIdx);
+		request.setAttribute("replyVOS", replyVOS);
 		
 	}
 

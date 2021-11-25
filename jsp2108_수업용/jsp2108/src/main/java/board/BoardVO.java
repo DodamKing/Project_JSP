@@ -13,8 +13,11 @@ public class BoardVO {
 	private int good;
 	private String mid;
 	
+	
+	
 	private String wCDate;
 	private int wNdate;
+	private int replyCnt;
 	
 	
 	public int getIdx() {
@@ -95,12 +98,19 @@ public class BoardVO {
 	public void setwNdate(int wNdate) {
 		this.wNdate = wNdate;
 	}
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
 	
 	@Override
 	public String toString() {
 		return "BoardVO [idx=" + idx + ", nickName=" + nickName + ", title=" + title + ", email=" + email
 				+ ", homePage=" + homePage + ", content=" + content + ", wDate=" + wDate + ", readNum=" + readNum
 				+ ", hostIp=" + hostIp + ", good=" + good + ", mid=" + mid + ", wCDate=" + wCDate + ", wNdate=" + wNdate
-				+ "]";
-	} 
+				+ ", replyCnt=" + replyCnt + "]";
+	}
+	
 }

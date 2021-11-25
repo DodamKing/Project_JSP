@@ -15,7 +15,7 @@ public class AdminDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private String sql;
-	MemberVo vo;
+	MemberVo memberVO;
 	
 	public void setMemberLevelChange(int idx, int level) {
 		sql = "update member set level = ? where idx = ?";

@@ -57,6 +57,9 @@ public class BoController extends HttpServlet {
 		else if (com.equals("/boContent")) {
 			command = new BoContentCommand();
 			command.execute(request, response);
+			/*
+			 * if (request.getParameter("replyContent") != null) { return; }
+			 */
 			viewPage += "/boContent.jsp";
 		}
 
@@ -88,6 +91,24 @@ public class BoController extends HttpServlet {
 			command = new BoSrchCommand();
 			command.execute(request, response);
 			viewPage += "/boSrch.jsp";
+		}
+
+		else if (com.equals("/boReplyInput")) {
+			command = new BoReplyInputCommand();
+			command.execute(request, response);
+			viewPage = message;
+		}
+	
+		else if (com.equals("/boReplyUpdate")) {
+			command = new BoReplyUpdateCommand();
+			command.execute(request, response);
+			return;
+		}
+
+		else if (com.equals("/boreplyDelete")) {
+			command = new BoreplyDeleteCommand();
+			command.execute(request, response);
+			return;
 		}
 		
 		
