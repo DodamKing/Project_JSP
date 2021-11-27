@@ -191,7 +191,7 @@ public class UserDAO {
 	}
 
 	public void setMemberShip(String mid) {
-		sql = "update user_jsp set membership = 1, membershipDate = now(), membershipCnt = 1 where userId = ?";
+		sql = "update user_jsp set membership = 1, membershipDate = now(), membershipCnt = membershipCnt + 1 where userId = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
@@ -212,7 +212,7 @@ public class UserDAO {
 			rs.next();
 			return rs.getString(1);
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.out.println("getPlayList" + e.getMessage());
 		}  finally {
 			getconn.close();
 		}
@@ -227,7 +227,7 @@ public class UserDAO {
 			pstmt.setString(2, mid);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.out.println("setPlayList" + e.getMessage());
 		}  finally {
 			getconn.close();
 		}

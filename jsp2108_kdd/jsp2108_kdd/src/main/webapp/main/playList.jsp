@@ -10,8 +10,8 @@
 	    <div class="container mt-3">
 	        <h4>이어지는 노래</h4>
 	        <div id="play_list" class="pfc mt-3" >
-				<c:forEach var="vo" items="${playlist }" varStatus="st">
-					<c:if test="${!empty playlist }">
+				<c:forEach var="vo" items="${sPlaylist }" varStatus="st">
+					<c:if test="${!empty sPlaylist }">
 			        	<div class='d-flex p-1'>
 			        		<div class='imgBox mr-4'>
 			        			<img src='${vo.img}'>
@@ -21,7 +21,7 @@
 			    				<div class='playlist_a'>${vo.artist }</div>
 			    			</div>
 			    			<div class='ml-auto'>
-			    				<button name='delete_btn' type='button' class='btn' onclick='dellist(${st.index })' ><i class='fa-regular fa-trash-can'></i></button>
+			    				<button name='delete_btn' type='button' class='btn' onclick='delList(${st.index })' ><i class='fa-regular fa-trash-can'></i></button>
 							</div>
 						</div>
 					</c:if>

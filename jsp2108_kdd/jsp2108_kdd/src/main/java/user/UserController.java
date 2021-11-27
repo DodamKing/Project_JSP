@@ -93,6 +93,12 @@ public class UserController extends HttpServlet {
 			return;
 		}
 		
+		else if (com.equals("/userdelplaylist")) {
+			command = new UserdelPlayListDoCommand();
+			command.execute(request, response);
+			return;
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}

@@ -17,6 +17,7 @@ public class UserMemberShipCommand implements UserInterface {
 		UserVO vo = dao.getMemberShip(mid);
 		
 		request.setAttribute("vo", vo);
+		session.setAttribute("sMembership", vo.getMembership());
 	}
 
 }

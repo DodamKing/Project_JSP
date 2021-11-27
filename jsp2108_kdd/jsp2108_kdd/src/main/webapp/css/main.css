@@ -163,6 +163,10 @@ footer {
     overflow: hidden;
 }
 
+/* .playlist_t , .playlist_a {
+	overflow: hidden;		
+} */
+
 .imgBox {
     border: 1px solid;
     width: 50px;

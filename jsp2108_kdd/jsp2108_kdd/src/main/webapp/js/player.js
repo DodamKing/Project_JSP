@@ -7,6 +7,12 @@ let songUrl;
 let playerIndex = 0;
 let sw = 0;
 
+<c:forEach var="vo" items="${sPlaylist}"> 
+	thum_list.push("${vo.img}");
+    title_list.push("${vo.title}");
+    artist_list.push("${vo.artist}");
+</c:forEach>	
+
 // 플레이 리스트 추가
 $("button[name='add_btn']").click(function() {
     let topIndex = $("button[name='add_btn']").index(this);
@@ -14,30 +20,35 @@ $("button[name='add_btn']").click(function() {
     let title = $("div[name='top100Title']")[topIndex].innerText;
     let artist = $("div[name='top100Artist']")[topIndex].innerText;
 
-    thum_list.push(thum);
-    title_list.push(title);
-    artist_list.push(artist);
-
-    setList();
-
-	data = {
-		title : title,
-		artist : artist
+	if (!thum_list.includes(thum)) {
+	    thum_list.push(thum);
+	    title_list.push(title);
+	    artist_list.push(artist);
+	
+	    setList();
+	
+		data = {
+			title : title,
+			artist : artist
+		}
+	
+		$.ajax({
+			type : "post",
+			url : "usersaveplaylist.user",
+			data : data
+		});
 	}
 
-	$.ajax({
-		type : "post",
-		url : "usersaveplaylist.user",
-		data : data
-	});
 });
 
-$("button[name='delete_btn']").click(function() {
-    alert("gg");
-});
 
 // 플레이 리스트 음원 삭제
-function dellist(index) {
+function delList(index) {
+	data = {
+		title : title_list[index],
+		artist : artist_list[index]
+	}
+	
     thum_list.splice(index, 1);
     title_list.splice(index, 1);
     artist_list.splice(index, 1);
@@ -47,14 +58,23 @@ function dellist(index) {
 	if (index <= playerIndex) {
 		playerIndex--;
 	}
+	
+	$.ajax({
+		type : "post",
+		url : "userdelplaylist.user",
+		data : data
+	});
+	
 }
 
 // 플레이 리스트에 데이터 뿌리기
 function setList() {
 	let res = "";
+	
     for (let i=0; i<thum_list.length; i++) {
-        res = play_list.innerHTML + "<div class='d-flex p-1'><div class='imgBox mr-4'><img src='" + thum_list[i] + "'></div><div><div class='playlist_t'>" + title_list[i] + "</div><div class='playlist_a'>" + artist_list[i] + "</div></div><div class='ml-auto'><button name='delete_btn' type='button' class='btn' onclick='dellist(" + i + ")' ><i class='fa-regular fa-trash-can'></i></button></div></div>";
-    }
+        res += "<div class='d-flex p-1'><div class='imgBox mr-4'><img src='" + thum_list[i] + "'></div><div><div class='playlist_t'>" + title_list[i] + "</div><div class='playlist_a'>" + artist_list[i] + "</div></div><div class='ml-auto'><button name='delete_btn' type='button' class='btn' onclick='delList(" + i + ")' ><i class='fa-regular fa-trash-can'></i></button></div></div>";
+	}
+	
     play_list.innerHTML = res;
 }
 
@@ -158,6 +178,12 @@ $("#player").on("timeupdate", () => {
 
     let res = min_cur + ":" + sec_cur + " / " + min_dur + ":" + sec_dur;
     $("#controls_time").html(res);
+
+	if (${empty sMid} || ${sVO.membership == 0}) {
+		if (player.currentTime > 60 && player.currentTime < player.duration) {
+			player.currentTime = player.duration;
+		}
+	}
 });
 
 
@@ -193,10 +219,15 @@ $("#back_btn").click(() => {
 
 // 연속 재생
 $("#player").on("ended", () => {
+	playerIndex++;
 	if (playerIndex >= thum_list.length) {
+		$(play_btn).show();
+    	$(pause_btn).hide();
+		playerIndex = 0;
+		sw = 0;
 		return;
 	}
-	playerIndex++;
+
 	load();
 	player.play();
 });

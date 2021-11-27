@@ -24,27 +24,30 @@ public class DDchart extends HttpServlet {
 		MaInterface command = new GetChartData();
 		command.execute(request, response);
 		
-		SongDAO songDAO = new SongDAO();
-		UserDAO userDAO = new UserDAO();
 		
-		HttpSession session = request.getSession();
-		String mid = (String) session.getAttribute("sMid");
-		
-		if (mid != null) {
-			String playList;
-			String[] arrPlayList;
-			ArrayList<Integer> intPlayList = new ArrayList<Integer>();
+		SongDAO songDAO = new SongDAO(); UserDAO userDAO = new UserDAO();
+		  
+		HttpSession session = request.getSession(); String mid = (String)
+		session.getAttribute("sMid");
+		  
+		if (mid != null) { 
+			String playList; 
+			String[] arrPlayList; 
+			ArrayList<Integer> intPlayList = new ArrayList<Integer>(); 
 			ArrayList<SongVO> vos = new ArrayList<SongVO>();
-			playList = userDAO.getPlayList(mid);
-			arrPlayList = playList.split("/");
-			
-			for (int i=0; i<arrPlayList.length; i++) {
-				intPlayList.add(Integer.parseInt(arrPlayList[i]));
+			playList = userDAO.getPlayList(mid); 
+			if (!playList.equals("")) {
+				arrPlayList = playList.split("/");
+				
+				for (int i=0; i<arrPlayList.length; i++) {
+					intPlayList.add(Integer.parseInt(arrPlayList[i])); 
+					}
+				
+				vos = songDAO.getSongvos(intPlayList); 
+				request.setAttribute("playlist", vos);
 			}
-			
-			vos = songDAO.getSongvos(intPlayList);
-			request.setAttribute("playlist", vos);
-		}
+		  }
+		 
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);

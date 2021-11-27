@@ -1,11 +1,15 @@
 package user;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
+
+import song.SongDAO;
+import song.SongVO;
 
 public class UserLoginDo implements UserInterface {
 
@@ -23,11 +27,12 @@ public class UserLoginDo implements UserInterface {
 			pwd = request.getParameter("pwd");
 		}
 		
-		UserDAO dao = new UserDAO();
+		UserDAO userDAO = new UserDAO();
+		SongDAO songDAO = new SongDAO();
 		
 		pwd = pwd.toUpperCase();
-		int pwdKeyNo = dao.getKeyNo(userId);
-		long pwdKey = dao.getKey(pwdKeyNo);
+		int pwdKeyNo = userDAO.getKeyNo(userId);
+		long pwdKey = userDAO.getKey(pwdKeyNo);
 		long intPwd;
 		String strPwd = "";
 		
@@ -40,14 +45,33 @@ public class UserLoginDo implements UserInterface {
 		long encPwd = intPwd ^ pwdKey;
 		pwd = String.valueOf(encPwd);
 		
-		UserVO vo = dao.getUserVO(userId);
 		
-		if (dao.login(userId, pwd)) {
+		if (userDAO.login(userId, pwd)) {
 			request.setAttribute("res", "loginSuccess");
 			request.setAttribute("url", "today");
+			
+			UserVO vo = userDAO.getUserVO(userId);
+			String playList;
+			String[] arrPlayList;
+			ArrayList<Integer> intPlayList = new ArrayList<Integer>();
+			ArrayList<SongVO> vos = new ArrayList<SongVO>();
 			HttpSession session = request.getSession();
+			
+			playList = userDAO.getPlayList(userId);
+			if (!playList.equals("")) {
+				arrPlayList = playList.split("/");
+				
+				for (int i=0; i<arrPlayList.length; i++) {
+					intPlayList.add(Integer.parseInt(arrPlayList[i]));
+				}
+				
+				vos = songDAO.getSongvos(intPlayList);
+				session.setAttribute("sPlaylist", vos);
+			}
+			
 			session.setAttribute("sVO", vo);
 			session.setAttribute("sMid", userId);
+			
 		}
 		else {
 			request.setAttribute("res", "loginFalse");

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import song.SongDAO;
 
-public class UserSavePlayListDoCommand implements UserInterface {
+public class UserdelPlayListDoCommand implements UserInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +25,7 @@ public class UserSavePlayListDoCommand implements UserInterface {
 			
 			UserDAO userDAO = new UserDAO();
 			String playList = userDAO.getPlayList(mid);
-			playList += songIdx + "/";
+			playList = playList.replace(songIdx + "/", "");
 			userDAO.setPlayList(mid, playList);
 		}
 	}

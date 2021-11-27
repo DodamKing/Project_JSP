@@ -46,15 +46,13 @@
                 </table>
             </div>
         </div>
-        
         <%@include file="/main/sFooter.jsp" %>
     </section>
     <%@include file="/main/footer.jsp" %>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="<%=request.getContextPath() %>/js/main.js?ver=2"></script>
-    <%-- <script src="<%=request.getContextPath() %>/js/player.js?ver=2"></script> --%>
     <script>
+   		<%@include file="/js/main.js" %>
    		<%@include file="/js/player.js" %>
     </script>
 </body>

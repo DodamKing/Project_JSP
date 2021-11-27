@@ -13,7 +13,6 @@
     <title>DD Music</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="css/main.css" > -->
     <style>
 	    <%@include file="/css/main.css" %>
     </style>
@@ -111,8 +110,10 @@
     <%@include file="../../main/footer.jsp" %>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="<%=request.getContextPath() %>/js/main.js?ver=2"></script>
-    <script src="<%=request.getContextPath() %>/js/player.js?ver=1"></script>
+    <script>
+   		<%@include file="/js/main.js" %>
+   		<%@include file="/js/player.js" %>
+    </script>
 </body>
 
 </html>
