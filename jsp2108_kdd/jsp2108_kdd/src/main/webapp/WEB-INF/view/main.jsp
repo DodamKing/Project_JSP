@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
 	    <%@include file="/css/main.css" %>
+	    <%@include file="/css/top100.css" %>
     </style>
 </head>
 

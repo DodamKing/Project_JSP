@@ -53,7 +53,7 @@ public class UserDAO {
 	}
 
 	public int insertUser(UserVO vo) {
-		sql = "insert into user_jsp values (default, ?, ?, ?, ?, ?, ?, ?, ?, default)";
+		sql = "insert into user_jsp values (default, ?, ?, ?, ?, ?, ?, ?, ?, default, default, default, default, default)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getUserId());

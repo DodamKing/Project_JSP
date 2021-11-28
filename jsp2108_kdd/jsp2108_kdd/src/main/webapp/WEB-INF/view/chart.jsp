@@ -39,7 +39,7 @@
 	                            <div name="top100Title">${vo.title }</div>
 	                            <div name="top100Artist">${vo.artist }</div>
 	                        </td>
-	                        <td><button name="add_btn" type="button" class="btn"><i class="fas fa-plus"></i></button></td>
+	                        <td><button name="add_btn" type="button" class="btn"><i title="곡 추가" class="fas fa-plus"></i></button></td>
 	                    </tr>
                     </c:forEach>
                     

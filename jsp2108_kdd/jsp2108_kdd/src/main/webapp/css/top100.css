@@ -22,3 +22,11 @@ div.card-body > table div:nth-child(2) {
     height: 25px;
     overflow: hidden;
 }
+
+.playlist_t:hover {
+	cursor: pointer;
+}
+
+.playlist_a:hover {
+	cursor: pointer;
+}

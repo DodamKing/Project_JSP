@@ -44,7 +44,7 @@ public class DDchart extends HttpServlet {
 					}
 				
 				vos = songDAO.getSongvos(intPlayList); 
-				request.setAttribute("playlist", vos);
+				session.setAttribute("sPlaylist", vos);
 			}
 		  }
 		 

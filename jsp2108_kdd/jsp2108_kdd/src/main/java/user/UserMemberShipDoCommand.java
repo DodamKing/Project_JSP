@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class UserMemberShipDoCommand implements UserInterface {
 
@@ -17,6 +18,12 @@ public class UserMemberShipDoCommand implements UserInterface {
 		
 		UserDAO dao = new UserDAO();
 		dao.setMemberShip(mid);
+		
+		/*
+		 * HttpSession session = request.getSession(); UserVO vo =
+		 * dao.getMemberShip(mid); session.setAttribute("sMembership",
+		 * vo.getMembership());
+		 */
 	}
 
 }

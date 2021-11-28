@@ -72,7 +72,7 @@ function setList() {
 	let res = "";
 	
     for (let i=0; i<thum_list.length; i++) {
-        res += "<div class='d-flex p-1'><div class='imgBox mr-4'><img src='" + thum_list[i] + "'></div><div><div class='playlist_t'>" + title_list[i] + "</div><div class='playlist_a'>" + artist_list[i] + "</div></div><div class='ml-auto'><button name='delete_btn' type='button' class='btn' onclick='delList(" + i + ")' ><i class='fa-regular fa-trash-can'></i></button></div></div>";
+        res += "<div class='d-flex p-1'><div class='imgBox mr-4'><img src='" + thum_list[i] + "'></div><div><div class='playlist_t' title='" + title_list[i] + "'>" + title_list[i] + "</div><div class='playlist_a' title='" + artist_list[i] + "'>" + artist_list[i] + "</div></div><div class='ml-auto'><button name='delete_btn' type='button' class='btn' onclick='delList(" + i + ")' ><i class='fa-regular fa-trash-can'></i></button></div></div>";
 	}
 	
     play_list.innerHTML = res;
@@ -92,6 +92,8 @@ function load() {
     controls_img.src = thum_list[playerIndex];
     controls_title.innerHTML = title_list[playerIndex];
     controls_artist.innerHTML = artist_list[playerIndex];
+    controls_title.title = title_list[playerIndex];
+    controls_artist.title = artist_list[playerIndex];
 	play_listImg_img.src = thum_list[playerIndex].replace("50", "600");
 }
 
@@ -180,8 +182,10 @@ $("#player").on("timeupdate", () => {
     $("#controls_time").html(res);
 
 	if (${empty sMid} || ${sVO.membership == 0}) {
-		if (player.currentTime > 60 && player.currentTime < player.duration) {
-			player.currentTime = player.duration;
+		if (${empty sMembership || sMembership == 0}) {
+			if (player.currentTime > 60 && player.currentTime < player.duration) {
+				player.currentTime = player.duration;
+			}
 		}
 	}
 });

@@ -1,15 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <footer>
     <input id="play_bar" type="range" value="0">
     <div class="d-flex ml-4">
         <div class="pt-3">
-            <div class="row">
-                <div class="imgBox"><img id="controls_img" src="<%=request.getContextPath() %>/img/music.png" alt=""></div>
-                <div class="controls-song ml-2 mt-2">
-                    <div id="controls_title">노래제목</div>
-                    <div id="controls_artist">가수</div>
-                </div>
-            </div>
+        	<c:if test="${empty sPlaylist }">
+	            <div class="row">
+	                <div class="imgBox"><img id="controls_img" src="<%=request.getContextPath() %>/img/music.png" alt=""></div>
+	                <div class="controls-song ml-2 mt-2">
+	                    <div id="controls_title">노래제목</div>
+	                    <div id="controls_artist">가수</div>
+	                </div>
+	            </div>
+            </c:if>
+        	<c:if test="${!empty sPlaylist }">
+	            <div class="row">
+	                <div class="imgBox"><img id="controls_img" src="${sPlaylist[0].img }" alt=""></div>
+	                <div class="controls-song ml-2 mt-2">
+	                    <div id="controls_title" title="${sPlaylist[0].title }">${sPlaylist[0].title }</div>
+	                    <div id="controls_artist" title="${sPlaylist[0].artist }">${sPlaylist[0].artist }</div>
+	                </div>
+	            </div>
+            </c:if>
         </div>
         <div class="ml-3 mt-4">
             <button class="btn" type="button" title="좋아요"><i class="fa-regular fa-heart"></i></button>

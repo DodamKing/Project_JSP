@@ -163,9 +163,16 @@ footer {
     overflow: hidden;
 }
 
-/* .playlist_t , .playlist_a {
-	overflow: hidden;		
-} */
+#controls_title:hover {
+    cursor: pointer;
+}
+
+#controls_artist {
+    cursor: pointer;
+}
+
+
+
 
 .imgBox {
     border: 1px solid;
