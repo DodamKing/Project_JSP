@@ -262,6 +262,10 @@
 																				</label>
 																</div>
 												</div>
+												<div class="input-group">
+													회원사진 <img src="data/member/<%=vo.getPhoto() %>">
+													<input type="file" name="fName" id="file" class="form-control-file border">
+												</div>
 												<div class="mt-5 mb-5 text-right">
 																<button type="button" class="btn btn-secondary mr-1"
 																				onclick="fCheck()">정보수정</button>
@@ -270,6 +274,7 @@
 																				onclick="location.href='<%=request.getContextPath() %>/memMain.mem';">돌아가기</button>
 												</div>
 												<input type="hidden" name="mid" value="${sMid }" >
+												<input type="hidden" name="photo" >
 								</form>
 				</div>
 

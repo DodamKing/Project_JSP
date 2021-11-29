@@ -50,13 +50,15 @@
 	  	</div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link btn dropdown-toggle" data-toggle="dropdown" href="#">ajax</a>
+        <a class="nav-link btn dropdown-toggle" data-toggle="dropdown" href="#">학습실2</a>
         <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
     	Dropdown button
   		</button> -->
 		<div class="dropdown-menu">
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/ajax1.st">ajax1</a>
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/ajax2.st">ajax2</a>
+		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/pdsTest1.st">pds연습</a>
+		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/pdsTest2.st">pds연습2</a>
 	  	</div>
       </li>
       <%

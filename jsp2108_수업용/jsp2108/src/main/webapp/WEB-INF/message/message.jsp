@@ -39,6 +39,7 @@
   	else if(msg == "No") msg = "데이터 베이스 오류.";
   	else if(msg == "boUpdateOk") msg = "게시글이 수정 되었습니다.";
   	else if(msg == "replyBoardInputOk") msg = "댓글이 등록 되었습니다.";
+  	else if(msg == "fileOk") msg = "파일이 업로드 되었습니다.";
   	
     alert(msg);
     if(url != "") location.href = url;

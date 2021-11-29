@@ -22,7 +22,7 @@
 
 				<div class="container mt-5">
 								<h2>회 원 가 입</h2>
-								<form name="myform" method="post" action="memJoinOk.mem"
+								<form name="myform" method="post" action="memJoinOk.mem" enctype="multipart/form-data"
 												class="was-validated mt-5">
 												<div class="form-group">
 																<label for="mid">아이디 &nbsp; &nbsp;<input
@@ -214,6 +214,10 @@
 																				</label>
 																</div>
 												</div>
+												<div class="input-group">
+													회원사진
+													<input type="file" name="fName" id="file" class="form-control-file border">
+												</div>
 												<div class="mt-5 mb-5 text-right">
 																<button type="button" class="btn btn-secondary mr-1"
 																				onclick="fCheck()">회원가입</button>
@@ -221,7 +225,8 @@
 																<button type="button" class="btn btn-secondary"
 																				onclick="location.href='<%=request.getContextPath() %>/memLogin.mem';">돌아가기</button>
 												</div>
-								</form>
+												<input type="hidden" name="photo" >
+											</form>
 				</div>
 
 				<!-- 푸터 -->
@@ -261,6 +266,11 @@
 	    	var name = myform.name.value;
 	    	var email1 = myform.email1.value;
 	    	
+	    	let fName = myform.fName.value;
+			let ext = fName.substring(fName.lastIndexOf(".") + 1);
+			let uExt = ext.toUpperCase();
+			let maxSize = 1024 * 1024 * 2;
+	    	
 	    	if(mid == "") {
 	    		alert("아이디를 입력하세요");
 	    		myform.mid.focus();
@@ -283,7 +293,28 @@
 	    	}
 	    	else {
 				if (idCheckOn == 1) {
-					myform.address.value =sample4_postcode.value + "/" +sample4_roadAddress.value + "/" + sample4_detailAddress.value + "/" + sample4_extraAddress.value; 
+					myform.address.value = sample4_postcode.value + "/" +sample4_roadAddress.value + "/" + sample4_detailAddress.value + "/" + sample4_extraAddress.value;
+					
+					if (fName.trim() == "") {
+						myform.photo.value = "music.png"
+					}
+					else {
+						if (uExt != "JPG" && uExt != "GIF" && uExt != "PNG") {
+							alert("업로드 가능한 파일은 'jpg, gif, png' 입니다.")
+							return;
+						}
+						
+						if (fName.includes(" ")) {
+							alert("파일명에 공백이 포함 될 수 업습니다.");
+							return;
+						}
+						
+						let fileSize = document.getElementById("file").files[0].size;
+						if (fileSize > maxSize) {
+							alert("업로드 가능한 용량은 최대 2MB 입니다.");
+							return;
+						}
+					}
 					myform.submit();
 				}
 				else {

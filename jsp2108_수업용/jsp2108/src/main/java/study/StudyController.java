@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import board.LoginCheckCommand;
 
 @WebServlet("*.st")
 public class StudyController extends HttpServlet {
@@ -17,8 +20,19 @@ public class StudyController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf("."));
 		String viewPage = "/WEB-INF/study";
+		
+		int level = -1;
+		HttpSession session = request.getSession();
+		
+		if (session.getAttribute("sLv") != null) {
+			level = (int) session.getAttribute("sLv");
+		}
+		
+		if (level != 0) {
+			viewPage = "/index.jsp";
+		}
 				
-		if (com.equals("/el1")) {
+		else if (com.equals("/el1")) {
 			viewPage += "/el/el1.jsp";
 		}
 		else if (com.equals("/el2")) {
@@ -52,6 +66,19 @@ public class StudyController extends HttpServlet {
 			command = new UserUpdateOkCommand();
 			command.execute(request, response);
 			viewPage += "/ajax/userUpdate.jsp";
+		}
+		else if (com.equals("/pdsTest1")) {
+			viewPage += "/pdsTest/upLoad1.jsp";
+		}
+		else if (com.equals("/upLoad1Ok")) {
+			command = new PdsTest1OkCommand();
+			command.execute(request, response);
+			viewPage = "WEB-INF/message/message.jsp";
+		}
+		else if (com.equals("/stDownLoad")) {
+			command = new StDownLoadCommand();
+			command.execute(request, response);
+			viewPage += "/pdsTest/downLoad1.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

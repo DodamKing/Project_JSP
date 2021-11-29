@@ -2,9 +2,13 @@ package member;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class MemJoinOkcommand implements MemberInterface {
 
@@ -33,63 +37,75 @@ public class MemJoinOkcommand implements MemberInterface {
 		String userInfor = "";
 		
 		
-		if (request.getParameter("mid") != null) {
-			mid = request.getParameter("mid").trim();
+		ServletContext application = request.getServletContext();
+		String realPath = application.getRealPath("/data/member");
+		int maxSize = 1024 * 1024 * 2;
+		String encoding = "utf-8";
+		
+		MultipartRequest multipartRequest = new MultipartRequest(request, realPath, maxSize, encoding, new DefaultFileRenamePolicy());
+		
+		if (multipartRequest.getParameter("mid") != null) {
+			mid = multipartRequest.getParameter("mid").trim();
 		}
-		if (request.getParameter("pwd") != null) {
-			pwd = request.getParameter("pwd").trim();
+		if (multipartRequest.getParameter("pwd") != null) {
+			pwd = multipartRequest.getParameter("pwd").trim();
 		}
-		if (request.getParameter("nickName") != null) {
-			nickName = request.getParameter("nickName").trim();
+		if (multipartRequest.getParameter("nickName") != null) {
+			nickName = multipartRequest.getParameter("nickName").trim();
 		}
-		if (request.getParameter("name") != null) {
-			name = request.getParameter("name").trim();
+		if (multipartRequest.getParameter("name") != null) {
+			name = multipartRequest.getParameter("name").trim();
 		}
 		name_ = name;
-		if (request.getParameter("gender") != null) {
-			gender = request.getParameter("gender").trim();
+		if (multipartRequest.getParameter("gender") != null) {
+			gender = multipartRequest.getParameter("gender").trim();
 		}
-		if (request.getParameter("birthday") != null) {
-			birthday = request.getParameter("birthday").trim();
+		if (multipartRequest.getParameter("birthday") != null) {
+			birthday = multipartRequest.getParameter("birthday").trim();
 		}
-		if (request.getParameter("tel1") != null) {
-			tel1 = request.getParameter("tel1").trim();
+		if (multipartRequest.getParameter("tel1") != null) {
+			tel1 = multipartRequest.getParameter("tel1").trim();
 		}
-		if (request.getParameter("tel2") != null) {
-			tel2 = request.getParameter("tel2").trim();
+		if (multipartRequest.getParameter("tel2") != null) {
+			tel2 = multipartRequest.getParameter("tel2").trim();
 		}
-		if (request.getParameter("tel3") != null) {
-			tel3 = request.getParameter("tel3").trim();
+		if (multipartRequest.getParameter("tel3") != null) {
+			tel3 = multipartRequest.getParameter("tel3").trim();
 		}
 		tel = tel1 + "-" + tel2 + "-" + tel3;
-		if (request.getParameter("address") != null) {
-			address = request.getParameter("address").trim();
+		if (multipartRequest.getParameter("address") != null) {
+			address = multipartRequest.getParameter("address").trim();
 		}
-		if (request.getParameter("email1") != null) {
-			email1 = request.getParameter("email1").trim();
+		if (multipartRequest.getParameter("email1") != null) {
+			email1 = multipartRequest.getParameter("email1").trim();
 		}
-		if (request.getParameter("email2") != null) {
-			email2 = request.getParameter("email2").trim();
+		if (multipartRequest.getParameter("email2") != null) {
+			email2 = multipartRequest.getParameter("email2").trim();
 		}
 		email = email1 + "@" + email2;
-		if (request.getParameter("homePage") != null) {
-			homePage = request.getParameter("homePage").trim();
+		if (multipartRequest.getParameter("homePage") != null) {
+			homePage = multipartRequest.getParameter("homePage").trim();
 		}
-		if (request.getParameter("job") != null) {
-			job = request.getParameter("job").trim();
+		if (multipartRequest.getParameter("job") != null) {
+			job = multipartRequest.getParameter("job").trim();
 		}
-		if (request.getParameter("userInfor") != null) {
-			userInfor = request.getParameter("userInfor");
+		if (multipartRequest.getParameter("userInfor") != null) {
+			userInfor = multipartRequest.getParameter("userInfor");
 		}
-		hobbys = request.getParameterValues("hobby");
+		hobbys = multipartRequest.getParameterValues("hobby");
 		for (int i=0; i<hobbys.length; i++) {
 			hobby += hobbys[i] + "/";
 		}
 		hobby = hobby.substring(0, hobby.lastIndexOf("/"));
 		if (request.getParameter("content") != null) {
-			content = request.getParameter("content").trim();
+			content = multipartRequest.getParameter("content").trim();
 		}
 		
+		
+		String photo = multipartRequest.getParameter("photo");
+		if (!photo.equals("music.png")) {
+			photo = multipartRequest.getFilesystemName("fName");
+		}
 		
 		MemberDAO dao = new MemberDAO();
 		
@@ -135,6 +151,7 @@ public class MemJoinOkcommand implements MemberInterface {
 		vo.setHomePage(homePage);
 		vo.setJob(job);
 		vo.setHobby(hobby);
+		vo.setPhoto(photo);
 		vo.setContent(content);
 		vo.setUserInfor(userInfor);
 		

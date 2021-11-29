@@ -29,7 +29,7 @@
 				<tr><td>홈페이지 : ${vo.homePage }</td></tr>
 				<tr><td>직업 : ${vo.job }</td></tr>
 				<tr><td>취미 : ${vo.hobby }</td></tr>
-				<tr><td>사진 : <img src="img/${vo.photo }" width="100px"></td></tr>
+				<tr><td>사진 : <img src="data/member/${vo.photo }" width="100px"></td></tr>
 				<tr><td>자기소개 : <div style="display:inline-block;"> ${fn:replace(vo.content, newLine, "<br>")} </div> </td></tr>
 				<tr><td>정보공개 : ${vo.userInfor }</td></tr>
 				<tr>
