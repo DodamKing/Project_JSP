@@ -4,19 +4,19 @@ from pytube import YouTube
 import os
 import re
 
-driver = webdriver.Chrome('./95/chromedriver.exe')
-title = '이제 겨우 하루'
-artist = '서은광 (비투비)'
-keyword = '{} {} official audio, short'.format(title, artist)
-url = 'https://www.youtube.com/results?search_query=' + keyword
+# driver = webdriver.Chrome('./95/chromedriver.exe')
+title = '잠들지 않는 별'
+artist = '벤'
+# keyword = '{} {} official audio, short'.format(title, artist)
+# url = 'https://www.youtube.com/results?search_query=' + keyword
 
-driver.get(url)
-soup = bs(driver.page_source, 'html.parser')
-html = soup.select('a#video-title')[0]
-video_url = 'https://www.youtube.com' + html.get('href')
-# video_url = 'https://www.youtube.com/watch?v=H99SezEMflU'
+# driver.get(url)
+# soup = bs(driver.page_source, 'html.parser')
+# html = soup.select('a#video-title')[0]
+# video_url = 'https://www.youtube.com' + html.get('href')
+video_url = 'https://www.youtube.com/watch?v=wT9Qqunzx3I'
 
-driver.close()
+# driver.close()
 
 fileName = '{} - {}'.format(title, artist)
 fileName = re.sub('[\\\/:*?\"<>|]', '', fileName)

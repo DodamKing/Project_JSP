@@ -6,14 +6,14 @@ public class SongVO {
 	private String title;
 	private String artist;
 	private String album;
-	private String imreleaseg;
-	private String imgenreg;
+	private String releaseDate;
+	private String genre;
 	private String music;
 	private String words;
 	private String arranger;
 	private String lyrics;
 	private int likeCnt;
-	private String ilikeListmg;
+	private String likeList;
 	
 	public int getIdx() {
 		return idx;
@@ -45,17 +45,17 @@ public class SongVO {
 	public void setAlbum(String album) {
 		this.album = album;
 	}
-	public String getImreleaseg() {
-		return imreleaseg;
+	public String getReleaseDate() {
+		return releaseDate;
 	}
-	public void setImreleaseg(String imreleaseg) {
-		this.imreleaseg = imreleaseg;
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
 	}
-	public String getImgenreg() {
-		return imgenreg;
+	public String getGenre() {
+		return genre;
 	}
-	public void setImgenreg(String imgenreg) {
-		this.imgenreg = imgenreg;
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 	public String getMusic() {
 		return music;
@@ -87,19 +87,19 @@ public class SongVO {
 	public void setLikeCnt(int likeCnt) {
 		this.likeCnt = likeCnt;
 	}
-	public String getIlikeListmg() {
-		return ilikeListmg;
+	public String getLikeList() {
+		return likeList;
 	}
-	public void setIlikeListmg(String ilikeListmg) {
-		this.ilikeListmg = ilikeListmg;
+	public void setLikeList(String likeList) {
+		this.likeList = likeList;
 	}
 	
 	@Override
 	public String toString() {
 		return "SongVO [idx=" + idx + ", img=" + img + ", title=" + title + ", artist=" + artist + ", album=" + album
-				+ ", imreleaseg=" + imreleaseg + ", imgenreg=" + imgenreg + ", music=" + music + ", words=" + words
-				+ ", arranger=" + arranger + ", lyrics=" + lyrics + ", likeCnt=" + likeCnt + ", ilikeListmg="
-				+ ilikeListmg + "]";
+				+ ", releaseDate=" + releaseDate + ", genre=" + genre + ", music=" + music + ", words=" + words
+				+ ", arranger=" + arranger + ", lyrics=" + lyrics + ", likeCnt=" + likeCnt + ", likeList=" + likeList
+				+ "]";
 	}
 	
 }

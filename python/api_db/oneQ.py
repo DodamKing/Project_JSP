@@ -64,9 +64,15 @@ for i in range(100):
         driver.get(url)
         soup = bs(driver.page_source, 'html.parser')
         if soup.select('a#video-title') == []:
-            continue
-        html = soup.select('a#video-title')[0]
-        video_url = 'https://www.youtube.com' + html.get('href')
+            pass
+        index = 0
+        while True:
+            html = soup.select('a#video-title')[index]
+            video_url = 'https://www.youtube.com' + html.get('href')
+            if YouTube(video_url).length > 600:
+                index += 1
+            else:
+                break
         yt_url_list.append(video_url)
         title.append(title_list[i])
         artist.append(artist_list[i])
