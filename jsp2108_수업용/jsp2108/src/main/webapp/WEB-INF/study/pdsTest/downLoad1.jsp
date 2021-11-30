@@ -19,7 +19,7 @@
 		<p>서버에 저장 되어 있는 파일 리스트</p>
 		<p>${ctp}</p>
 		<hr>
-		<table class="table table-hover  text-center">
+		<table class="table table-hover text-center">
 			<tr class="table-dark text-dark">
 				<th>번호</th>
 				<th>파일명</th>

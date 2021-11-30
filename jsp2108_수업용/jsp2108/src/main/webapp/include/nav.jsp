@@ -25,9 +25,12 @@
       <%
       	} if (lv == 0 || lv == 2 || lv == 3) {
       %>
-      <li class="nav-item">
-        <a class="nav-link" href="#">자료실</a>
-      </li>
+        <li class="nav-item dropdown">
+	        <a class="nav-link btn dropdown-toggle" data-toggle="dropdown" href="#">자료실</a>
+			<div class="dropdown-menu">
+			  	<a class="dropdown-item" href="pdsList.pds">자료실리스트</a>
+		  	</div>
+      	</li>
       <%
       	}
       	if (lv == 0 || lv == 3) {
@@ -42,6 +45,7 @@
 		    <a class="dropdown-item" href="<%=request.getContextPath() %>/URLMapping.url">URL (확장자) 매핑</a>
 		    <a class="dropdown-item" href="<%=request.getContextPath() %>/URLMapping.url2">URL2 (확장자) 매핑</a>
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/password">비밀번호 암호화</a>
+		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/shaPassword.st">SHA 암호화</a>
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/el1.st">EL학습1</a>
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/el2.st">EL학습2</a>
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/jstl1.st">JSTL학습1</a>
@@ -51,14 +55,12 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link btn dropdown-toggle" data-toggle="dropdown" href="#">학습실2</a>
-        <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-    	Dropdown button
-  		</button> -->
 		<div class="dropdown-menu">
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/ajax1.st">ajax1</a>
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/ajax2.st">ajax2</a>
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/pdsTest1.st">pds연습</a>
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/pdsTest2.st">pds연습2</a>
+		  	<a class="dropdown-item" href="pdsTest3.st">동적폼?</a>
 	  	</div>
       </li>
       <%

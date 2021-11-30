@@ -80,6 +80,19 @@ public class StudyController extends HttpServlet {
 			command.execute(request, response);
 			viewPage += "/pdsTest/downLoad1.jsp";
 		}
+		else if (com.equals("/pdsTest3")) {
+			command = new DynamicFormCommand();
+			command.execute(request, response);
+			viewPage += "/dynamicForm/dynamicForm.jsp";
+		}
+		else if (com.equals("/shaPassword")) {
+			viewPage += "/password/shaPassword.jsp";
+		}
+		else if (com.equals("/shaPasswordOk")) {
+			command = new ShaPasswordCommand();
+			command.execute(request, response);
+			return;
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
