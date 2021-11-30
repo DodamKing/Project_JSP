@@ -16,6 +16,8 @@ import org.json.JSONObject;
 
 import com.google.gson.Gson;
 
+import song.SongDAO;
+
 public class HttpURLConnectionGetJson {
 	JSONArray songs;
 	
@@ -41,7 +43,6 @@ public class HttpURLConnectionGetJson {
 			while ((line = br.readLine()) != null) {
 				sb += line;
 			}
-//			System.out.println(sb);
 			
 			
 			JSONObject object = new JSONObject(sb);
@@ -54,7 +55,7 @@ public class HttpURLConnectionGetJson {
 		}
 	}
 	
-	
+	SongDAO dao = new SongDAO();
 	// json을 바로 vo에 담을 수도 있음
 	public ArrayList<SongVO> getSong() {
 		Gson gson = new Gson();
@@ -63,7 +64,8 @@ public class HttpURLConnectionGetJson {
 		for (int i=0; i<songs.length(); i++) {
 			SongVO vo = new SongVO();
 			vo = gson.fromJson(songs.getJSONObject(i).toString(), SongVO.class);
-//			System.out.println(vo);
+			int idx = dao.getSongIdx(vo.getTitle(), vo.getArtist());
+			vo.setIdx(idx);
 			vos.add(vo);
 		}
 		return vos;

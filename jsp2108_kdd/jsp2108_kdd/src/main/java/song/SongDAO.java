@@ -58,4 +58,33 @@ public class SongDAO {
 		}
 		return vos;
 	}
+
+	public SongVO getSongvo(int idx) {
+		vo = new SongVO();
+		sql = "select * from song where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			rs.next();
+			vo.setIdx(idx);
+			vo.setImg(rs.getString(2));
+			vo.setTitle(rs.getString(3));
+			vo.setArtist(rs.getString(4));
+			vo.setAlbum(rs.getString(5));
+			vo.setReleaseDate(rs.getString(6));
+			vo.setGenre(rs.getString(7));
+			vo.setMusic(rs.getString(8));
+			vo.setWords(rs.getString(9));
+			vo.setArranger(rs.getString(10));
+			vo.setLyrics(rs.getString(11));
+			vo.setLikeCnt(rs.getInt(12));
+			vo.setLikeList(rs.getString(13));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
+		return vo;
+	}
 }

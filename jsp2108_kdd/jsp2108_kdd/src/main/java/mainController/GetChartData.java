@@ -3,6 +3,7 @@ package mainController;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +14,7 @@ public class GetChartData implements MaInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
-			throws SecurityException, IOException {
+			throws ServletException, IOException {
 		HttpURLConnectionGetJson songs = new HttpURLConnectionGetJson();
 		ArrayList<SongVO> vos = songs.getSong();
 		

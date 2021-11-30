@@ -3,6 +3,7 @@
 <%@page import="requestJson.HttpURLConnectionGetJson"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -25,7 +26,7 @@
     <%@include file="/main/playList.jsp" %>
     <%@include file="/main/searchBar.jsp" %>
     <%@include file="/main/nav.jsp" %>
-    <%@include file="/main/header.jsp" %>
+    <%@include file="/main/header_NV.jsp" %>
     <section>
         <div class="container">
             <div class="card-body">
@@ -34,9 +35,9 @@
                     <c:forEach var="vo" items="${vos }" varStatus="st">
 	                    <tr>
 	                        <td>${st.index + 1}</td>
-	                        <td><div class="imgBox"><img src="${vo.img }" alt=""></div></td>
+	                        <td><div class="imgBox"><a href="${fn:replace(vo.img, 50, 800) }" target="_blank"><img src="${vo.img }" alt=""></a></div></td>
 	                        <td>
-	                            <div name="top100Title">${vo.title }</div>
+	                            <div name="top100Title"><a href="sotrack.so?idx=${vo.idx }">${vo.title }</a></div>
 	                            <div name="top100Artist">${vo.artist }</div>
 	                        </td>
 	                        <td><button name="add_btn" type="button" class="btn"><i title="곡 추가" class="fas fa-plus"></i></button></td>
