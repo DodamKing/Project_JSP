@@ -42,16 +42,16 @@ public class PdsDAO {
 	
 	public int totRecCnt(String part) {
 		try {
-		sql = "select count(*) from psd ";
-		pstmt = conn.prepareStatement(sql);
-		if (!part.equals("전체")) {
-			sql = "select count(*) from psd where part = ?";
+			sql = "select count(*) from psd ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, part);
-		}
-		rs = pstmt.executeQuery();
-		rs.next();
-		return rs.getInt(1);
+			if (!part.equals("전체")) {
+				sql = "select count(*) from psd where part = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, part);
+			}
+			rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -105,6 +105,67 @@ public class PdsDAO {
 				getConn.close();
 			}
 		return vos;
+	}
+
+	public PdsVO getPdsContent(int idx) {
+		vo = new PdsVO();
+		sql = "select * from psd where idx = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			rs.next();
+			
+			vo.setIdx(rs.getInt(1));
+			vo.setMid(rs.getString(2));
+			vo.setNickName(rs.getString(3));
+			vo.setfName(rs.getString(4));
+			vo.setfSName(rs.getString(5));
+			vo.setfSize(rs.getInt(6));
+			vo.setTitle(rs.getString(7));
+			vo.setPart(rs.getString(8));
+			vo.setPwd(rs.getString(9));
+			vo.setfDate(rs.getString(10));
+			vo.setDownNum(rs.getInt(11));
+			vo.setOpewnSw(rs.getString(12));
+			vo.setContent(rs.getString(13));
+			
+			TimeDiff timeDiff = new TimeDiff();
+			int res = timeDiff.timeDiff(vo.getfDate());
+			vo.setwNdate(res);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getConn.close();
+		}
+		return vo;
+	}
+
+	public void setPdsDownUpdate(int idx) {
+		sql = "update psd set downNum = downNum + 1 where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getConn.close();
+		}
+	}
+
+	public void pdsDelete(int idx) {
+		sql = "delete from psd where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getConn.close();
+		}
 	}
 	
 	

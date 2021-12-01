@@ -9,6 +9,20 @@
 <meta charset="UTF-8">
 	<title>pdsList.jsp</title>
 	<%@include file="/include/bs4.jsp" %>
+	<style>
+		a:hover {
+			text-decoration: none;
+			color: red;
+		}
+		a {
+			color: black;
+		}
+		#down_btn:hover {
+			color: red;
+			cursor: pointer;
+		}
+	
+	</style>
 </head>
 <body>
 	<!-- 헤더영역 -->
@@ -40,6 +54,7 @@
 					<th>제목</th>
 					<th>올린이</th>
 					<th>업로드날짜</th>
+					<th>분류</th>
 					<th>파일명</th>
 					<th>다운수</th>
 					<th>비고</th>
@@ -48,7 +63,8 @@
 					<tr>
 						<td style="vertical-align: middle;">${curScrStartNo }</td>
 						<td style="vertical-align: middle;" class="text-left">
-							${vo.title }
+							<c:if test="${vo.opewnSw == '공개' || sMid == vo.mid || sLv == 0}"><a href="javascript:nWin(${vo.idx })">${vo.title }</a></c:if>
+							<c:if test="${vo.opewnSw == '비공개' && sMid != vo.mid && sLv != 0}">${vo.title }</c:if>
 							<c:if test="${vo.wNdate <= 24 }"><img src="img/new.gif"></c:if>
 						</td>
 						<td style="vertical-align: middle;">${vo.nickName }</td>
@@ -56,15 +72,21 @@
 							<c:if test="${vo.wNdate <= 24 }">${fn:substring(vo.fDate, 11, 19) }</c:if>
 							<c:if test="${vo.wNdate > 24 }">${fn:substring(vo.fDate, 0, 10) }</c:if>
 						</td>
-						<td class="text-left">
-							<c:set var="fNames" value="${fn:split(vo.fName, '/') }" />
-							<c:forEach var="fName" items="${fNames }">
-								${fName }<br>
-							</c:forEach>
-							(<fmt:formatNumber value="${vo.fSize / 1024 }" pattern="#,###" />KByte)
+						<td style="vertical-align: middle;">${vo.part }</td>
+						<td> <!-- 파일 다운 로드 -->
+							<c:if test="${vo.opewnSw == '공개' || sMid == vo.mid || sLv == 0}">
+								<c:set var="fNames" value="${fn:split(vo.fName, '/') }" />
+								<c:set var="fSNames" value="${fn:split(vo.fSName, '/') }" />
+								<c:forEach var="fName" items="${fNames }" varStatus="st">
+									<a href="data/pds/${fSNames[st.index] } " download="${fName }" onclick="downCheck(${vo.idx})">${fName }</a><br>
+								</c:forEach>
+								<a href="pdsDown.pds?idx=${vo.idx }">파일받기 (<fmt:formatNumber value="${vo.fSize / 1024 }" pattern="#,###" />KByte)</a>
+								<%-- <div id="down_btn" onclick="pdsDown(${vo.idx})">파일받기 (<fmt:formatNumber value="${vo.fSize / 1024 }" pattern="#,###" />KByte)</div> --%>
+							</c:if>
+							<c:if test="${vo.opewnSw == '비공개' && sMid != vo.mid && sLv != 0}">비공개</c:if>
 						</td>
 						<td style="vertical-align: middle;">${vo.downNum }</td>
-						<td style="vertical-align: middle;"><a href="" class="btn btn-warning btn-sm">삭제</a></td>
+						<td style="vertical-align: middle;"><a href="javascript:pdsDelCheck(${vo.idx }, '${vo.fSName }')" class="btn btn-warning btn-sm">삭제</a></td>
 					</tr>
 					<c:set var="curScrStartNo" value="${curScrStartNo - 1 }" />
 				</c:forEach>
@@ -96,6 +118,61 @@
 		function partCheck() {
 			let part = partForm.part.value;
 			location.href = "pdsList.pds?part=" + part + "&pag=" + ${pag};
+		}
+		
+		function nWin(idx) {
+			let url = "pdsContent.pds?idx=" + idx;
+			let mWidth = 500;
+			let mHeight = 400;
+			let mLeft = window.screen.width / 2 - mWidth / 2;
+			let mTop = window.screen.height / 2 - mHeight / 2;
+			window.open(url, "pdsWin", "width=" + mWidth + ", height=" + mHeight +", left=" + mLeft + ", top=" + mTop);
+		}
+		
+		function downCheck(idx) {
+			$.ajax({
+				type : "post",
+				url : "pdsDownUpdate.pds",
+				data : {idx : idx},
+				success : () => {
+					location.reload();
+				}
+			});
+		}
+		
+		function pdsDelCheck(idx, fSName) {
+			if(confirm("삭제하시겠습니까?")) {
+				let pwd = prompt("비밀번호를 입력 하세요.");
+				
+				let data = {
+					idx : idx,
+					fSName : fSName,
+					pwd : pwd
+				}
+				
+				$.ajax({
+					type : "post",
+					url : "pdsDelete.pds",
+					data : data,
+					success : (data) => {
+						if (data == "1") {
+							alert("삭제 완료!");	
+							location.reload()
+						}
+						else {
+							alert("삭제 실패!");
+						}
+					}
+				});
+			}
+		}
+		
+		function pdsDown(idx) {
+			$.ajax({
+				type : "post",
+				url : "pdsDown.pds",
+				data : {idx : idx}
+			});
 		}
 	</script>
 </body>
