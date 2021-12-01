@@ -29,6 +29,7 @@
     <%@include file="/main/header_NV.jsp" %>
 
 	<section>
+	    <%@include file="/main/modal.jsp" %>
 		<div class="container mt-5 mb-5 bg-secondary pb-3" style="width: 70%; border-radius: 5px;">
 			<div>
 				<h3 class="text-white pl-3 pt-4">${vo.title }<span style="float: right;" class="text-rigth btn btn-dark"><a href="chart">돌아가기</a></span></h3>

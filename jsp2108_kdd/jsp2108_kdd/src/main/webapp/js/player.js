@@ -11,12 +11,12 @@ let sw = 0;
 	thum_list.push("${vo.img}");
     title_list.push("${vo.title}");
     artist_list.push("${vo.artist}");
-</c:forEach>	
+</c:forEach>
 
 // 플레이 리스트 추가
-$("button[name='add_btn']").click(function() {
+$("button[name='add_btn']").click(function() { 
     let topIndex = $("button[name='add_btn']").index(this);
-    let thum = $("section table img")[topIndex].src;
+    let thum = $("img[name='top100Img']")[topIndex].src;
     let title = $("div[name='top100Title']")[topIndex].innerText;
     let artist = $("div[name='top100Artist']")[topIndex].innerText;
 
@@ -236,7 +236,30 @@ $("#player").on("ended", () => {
 	player.play();
 });
 
-
+//가사 모달
+$("#lyrics_btn").click(() => {
+	modal_i.src = controls_img.src.replace("50","200");
+	$("#modal_t").html($("#controls_title").html());
+	$("#modal_a").html($("#controls_artist").html());
+	
+	if (controls_img.src.includes("music.png")) return;
+			
+	let data = {
+		title : $("#controls_title").html(),
+		artist : $("#controls_artist").html()
+	}
+	
+	$.ajax({
+		type : "post",
+		url : "solyrics.so",
+		data : data,
+		success : (data) => {
+			data = data.replace(/\n/g, "<br>");
+			$("#modal_c").html(data);
+		}
+	});
+	
+});
 
 
 

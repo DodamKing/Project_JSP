@@ -28,7 +28,7 @@ public class SongDAO {
 			rs.next();
 			return rs.getInt(1);
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage() + " getSongIdx");
 		} finally {
 			getconn.close();
 		}
@@ -87,4 +87,22 @@ public class SongDAO {
 		}
 		return vo;
 	}
+
+	public String getLyrics(String title, String artist) {
+		sql = "select lyrics from song where title = ? and artist = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, artist);
+			rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getString(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
+		return null;
+	}
+
 }

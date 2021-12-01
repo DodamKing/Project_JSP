@@ -25,10 +25,11 @@ public class DDchart extends HttpServlet {
 		command.execute(request, response);
 		
 		
-		SongDAO songDAO = new SongDAO(); UserDAO userDAO = new UserDAO();
+		SongDAO songDAO = new SongDAO(); 
+		UserDAO userDAO = new UserDAO();
 		  
-		HttpSession session = request.getSession(); String mid = (String)
-		session.getAttribute("sMid");
+		HttpSession session = request.getSession(); 
+		String mid = (String) session.getAttribute("sMid");
 		  
 		if (mid != null) { 
 			String playList; 

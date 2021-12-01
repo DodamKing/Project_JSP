@@ -23,6 +23,12 @@ public class SongController extends HttpServlet {
 			command.execute(request, response);
 			view += "/songInfor.jsp";
 		}
+
+		else if (com.equals("/solyrics")) {
+			command = new GetLyricsCommand();
+			command.execute(request, response);
+			return;
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
