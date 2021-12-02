@@ -61,6 +61,7 @@
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/pdsTest1.st">pds연습</a>
 		  	<a class="dropdown-item" href="<%=request.getContextPath() %>/pdsTest2.st">pds연습2</a>
 		  	<a class="dropdown-item" href="pdsTest3.st">동적폼?</a>
+		  	<a class="dropdown-item" href="calendar.st">달력</a>
 	  	</div>
       </li>
       <%
@@ -79,6 +80,7 @@
     		</a>
 			<div class="dropdown-menu">
 		  		<a class="dropdown-item" href="<%=request.getContextPath() %>/memMain.mem">회원방</a>
+		  		<a class="dropdown-item" href="schedule.sc">일정관리</a>
 		  		<a class="dropdown-item" href="<%=request.getContextPath() %>/memUpdate.mem">회원정보변경</a>
 		  		<%
 		  			if (lv != 1) {

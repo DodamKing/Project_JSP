@@ -85,7 +85,7 @@
 							</c:if>
 							<c:if test="${vo.opewnSw == '비공개' && sMid != vo.mid && sLv != 0}">비공개</c:if>
 						</td>
-						<td style="vertical-align: middle;">${vo.downNum }</td>
+						<td class="align-middle">${vo.downNum }</td>
 						<td style="vertical-align: middle;"><a href="javascript:pdsDelCheck(${vo.idx }, '${vo.fSName }')" class="btn btn-warning btn-sm">삭제</a></td>
 					</tr>
 					<c:set var="curScrStartNo" value="${curScrStartNo - 1 }" />
@@ -171,7 +171,10 @@
 			$.ajax({
 				type : "post",
 				url : "pdsDown.pds",
-				data : {idx : idx}
+				data : {idx : idx},
+				success : () => {
+					location.reload();
+				}
 			});
 		}
 	</script>

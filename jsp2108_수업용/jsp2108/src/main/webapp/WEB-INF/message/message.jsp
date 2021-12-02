@@ -41,6 +41,9 @@
   	else if(msg == "replyBoardInputOk") msg = "댓글이 등록 되었습니다.";
   	else if(msg == "fileOk") msg = "파일이 업로드 되었습니다.";
   	else if(msg == "pdsInputOk") msg = "파일이 업로드 되었습니다.";
+  	else if(msg == "scInputOk") msg = "일정이 추가 되었습니다.";
+  	else if(msg == "scUpdateOk") msg = "일정이 수정 되었습니다.";
+  	else if(msg == "scDeleteOk") msg = "일정이 삭제 되었습니다.";
   	
     alert(msg);
     if(url != "") location.href = url;

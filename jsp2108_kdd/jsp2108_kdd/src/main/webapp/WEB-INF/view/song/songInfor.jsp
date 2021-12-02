@@ -21,15 +21,16 @@
 	    }
     </style>
 </head>
-
+		
 <body>
 	<%@include file="/main/playList.jsp" %>
     <%@include file="/main/searchBar.jsp" %>
     <%@include file="/main/nav.jsp" %>
     <%@include file="/main/header_NV.jsp" %>
 
+	    
 	<section>
-	    <%@include file="/main/modal.jsp" %>
+		<%@include file="/main/modal.jsp" %>
 		<div class="container mt-5 mb-5 bg-secondary pb-3" style="width: 70%; border-radius: 5px;">
 			<div>
 				<h3 class="text-white pl-3 pt-4">${vo.title }<span style="float: right;" class="text-rigth btn btn-dark"><a href="chart">돌아가기</a></span></h3>
@@ -93,10 +94,6 @@
     		let title = "${vo.title}".replace(/[\\\/:*?\"<>|]/g, "");
     		let artist = "${vo.artist}".replace(/[\\\/:*?\"<>|]/g, "");
 
-    		/* let hostIndex = location.href.indexOf(location.host) + location.host.length;
-    		let contextPath = location.href.substring(hostIndex, location.href.indexOf("/", hostIndex + 1)); */
-
-    	    /* songUrl = contextPath + "/music/" + title + " - " + artist + ".mp3"; */
     	    songUrl = "music/" + title + " - " + artist + ".mp3";
     		player.src = songUrl;
     	    player.load();

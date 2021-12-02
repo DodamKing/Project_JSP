@@ -42,7 +42,8 @@ public class PdsDownCommand implements PdsInterface {
 		
 		for (int i=0; i<fSNames.length; i++) {
 			File file = new File(realPath + fSNames[i]);
-			File file_ = new File(zipPath + zipName);
+			/* File file_ = new File(zipPath + zipName); */
+			File file_ = new File(zipPath + fNames[i]);
 			
 			file.renameTo(file_);
 			fis = new FileInputStream(file_);
@@ -50,7 +51,6 @@ public class PdsDownCommand implements PdsInterface {
 				zos.putNextEntry(new ZipEntry(fNames[i]));
 			}
 			catch (Exception e) {
-				System.out.println("중복된 파일명");
 				/*
 				 * String fName = fNames[i].substring(0, fNames[i].lastIndexOf(".")); String ext
 				 * = fNames[i].substring(fNames[i].lastIndexOf(".")); zos.putNextEntry(new
@@ -70,7 +70,7 @@ public class PdsDownCommand implements PdsInterface {
 			zos.closeEntry();
 			fis.close();
 			
-			file_.renameTo(file);
+			/* file_.renameTo(file); */
 		}
 		zos.close();
 		
@@ -107,7 +107,9 @@ public class PdsDownCommand implements PdsInterface {
 		sos.close();
 		fis.close();
 		
-		/* new File(zipPath + zipName).delete(); */
+		new File(zipPath + zipName).delete(); 
+		
+		dao.setPdsDownUpdate(idx);
 	}
 
 }
