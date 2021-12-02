@@ -7,7 +7,7 @@ conn = pymysql.connect(host='localhost', user='root',
                        password='1234', db='java02_kdd')
 cursors = conn.cursor()
 
-sql = 'select title, artist from song where idx > 451'
+sql = 'select title, artist from song where idx = 385'
 cursors.execute(sql)
 result = cursors.fetchall()
 
@@ -27,21 +27,24 @@ for item in result:
 
         try:
             driver.get(url + query)
-            driver.implicitly_wait(2)
+            driver.implicitly_wait(10)
             soup = bs(driver.page_source, 'html.parser')
             html = soup.select('ul.tab_list li.tab a')[1].get('href')
             key = 'https://search.naver.com/search.naver' + html
+            sleep(10)
 
         except:
             driver.get(url + title)
-            driver.implicitly_wait(2)
+            driver.implicitly_wait(10)
             soup = bs(driver.page_source, 'html.parser')
             html = soup.select('ul.tab_list a')[1].get('href')
             key = 'https://search.naver.com/search.naver' + html
+            sleep(10)
 
         driver.get(key)
-        driver.implicitly_wait(2)
+        driver.implicitly_wait(10)
         soup = bs(driver.page_source, 'html.parser')
+        sleep(10)
 
         try:
             data = soup.select('div.info_group dd')
