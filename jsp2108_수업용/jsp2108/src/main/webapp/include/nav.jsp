@@ -81,6 +81,7 @@
 			<div class="dropdown-menu">
 		  		<a class="dropdown-item" href="<%=request.getContextPath() %>/memMain.mem">회원방</a>
 		  		<a class="dropdown-item" href="schedule.sc">일정관리</a>
+		  		<a class="dropdown-item" href="webMassage.wm">내메일</a>
 		  		<a class="dropdown-item" href="<%=request.getContextPath() %>/memUpdate.mem">회원정보변경</a>
 		  		<%
 		  			if (lv != 1) {
