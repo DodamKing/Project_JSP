@@ -7,11 +7,12 @@ conn = pymysql.connect(host='localhost', user='root',
                        password='1234', db='java02_kdd')
 cursors = conn.cursor()
 
-sql = 'select title, artist from song where idx = 385'
+sql = 'select title, artist from song where idx > 481 and idx < 486'
 cursors.execute(sql)
 result = cursors.fetchall()
 
 for item in result:
+    sw = 0
     title = item[0]
     artist = item[1]
 
@@ -21,30 +22,43 @@ for item in result:
     row = cursors.fetchall()
 
     if row[0] == ('',):
-        driver = webdriver.Chrome('./95/chromedriver.exe')
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        driver = webdriver.Chrome('./95/chromedriver.exe', options=options)
+        driver.implicitly_wait(10)
         query = title + ' ' + artist
         url = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query='
+        driver.get(url + query)
+        soup = bs(driver.page_source, 'html.parser')
 
-        try:
-            driver.get(url + query)
-            driver.implicitly_wait(10)
-            soup = bs(driver.page_source, 'html.parser')
-            html = soup.select('ul.tab_list li.tab a')[1].get('href')
-            key = 'https://search.naver.com/search.naver' + html
-            sleep(10)
-
-        except:
+        if soup.select('ul.tab_list li.tab a') == []:
             driver.get(url + title)
-            driver.implicitly_wait(10)
             soup = bs(driver.page_source, 'html.parser')
-            html = soup.select('ul.tab_list a')[1].get('href')
-            key = 'https://search.naver.com/search.naver' + html
-            sleep(10)
+
+            if soup.select('ul.tab_list li.tab a') == []:
+                print(title, '검색 실패')
+                driver.close()
+                continue
+
+        html = soup.select('ul.tab_list a')[1].get('href')
+        key = 'https://search.naver.com/search.naver' + html
+
+        # try:
+        #     driver.get(url + query)
+        #     driver.implicitly_wait(10)
+        #     soup = bs(driver.page_source, 'html.parser')
+        #     html = soup.select('ul.tab_list li.tab a')[1].get('href')
+        #     key = 'https://search.naver.com/search.naver' + html
+
+        # except:
+        #     driver.get(url + title)
+        #     driver.implicitly_wait(10)
+        #     soup = bs(driver.page_source, 'html.parser')
+        #     html = soup.select('ul.tab_list a')[1].get('href')
+        #     key = 'https://search.naver.com/search.naver' + html
 
         driver.get(key)
-        driver.implicitly_wait(10)
         soup = bs(driver.page_source, 'html.parser')
-        sleep(10)
 
         try:
             data = soup.select('div.info_group dd')
@@ -121,7 +135,7 @@ for item in result:
             print(title, 'insert')
 
         except:
-            print(title, '검색 못 함')
+            print(title, '오류가 나긴 함')
             pass
 
         driver.close()
@@ -131,3 +145,5 @@ for item in result:
 
 cursors.close()
 conn.close()
+
+print('program end')
