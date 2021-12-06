@@ -64,7 +64,7 @@ for i in range(100):
         driver.get(url)
         soup = bs(driver.page_source, 'html.parser')
         if soup.select('a#video-title') == []:
-            pass
+            continue
         index = 0
         while True:
             html = soup.select('a#video-title')[index]

@@ -17,6 +17,7 @@
 </head>
 
 <body>
+<jsp:include page="/main/title.jsp" />
     <section>
         <div class="main-container">
             <h5 class="text-right"><a href="today">DD Music</a></h5>
@@ -106,7 +107,7 @@
     </section>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/signup.js?v=3"></script>
+    <script src="js/signup.js?v=1"></script>
 </body>
 
 </html>

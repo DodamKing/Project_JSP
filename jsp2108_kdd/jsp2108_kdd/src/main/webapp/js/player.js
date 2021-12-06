@@ -229,6 +229,7 @@ $("#player").on("ended", () => {
     	$(pause_btn).hide();
 		playerIndex = 0;
 		sw = 0;
+		player.currentTime = 0;
 		return;
 	}
 
@@ -246,7 +247,7 @@ $("#lyrics_btn").click(() => {
 			
 	let data = {
 		title : $("#controls_title").html(),
-		artist : $("#controls_artist").html()
+		artist : $("#controls_artist").html(),
 	}
 	
 	$.ajax({

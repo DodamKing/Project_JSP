@@ -245,9 +245,12 @@ button[type="button"]:hover {
 }
 
 div#play_listImg > div {
-	width: 600px;
+	width: 500px;
+	/* width: 30%; */
 	margin: 5% 20%;
+	/* margin: auto; */
 	z-index: 998;
+	position: fixed;
 }
 
 #play_listBox {

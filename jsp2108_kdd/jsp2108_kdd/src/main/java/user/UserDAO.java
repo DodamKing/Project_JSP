@@ -95,8 +95,9 @@ public class UserDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
-			rs.next();
-			return rs.getInt(1);
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

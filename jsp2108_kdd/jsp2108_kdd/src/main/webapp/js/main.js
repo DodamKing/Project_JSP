@@ -67,3 +67,28 @@ $(document).click((e) => {
         }
     }*/
 });
+
+//좋아요 버튼
+$("#like_btn1").click(() => {
+	$("#like_btn1").hide();
+	$("#like_btn2").show();
+	
+	let data = {
+		title : $("#controls_title").html(),
+		artist : $("#controls_artist").html()
+	}
+	
+	if (controls_img.src.includes("music.png")) return;
+	
+	$.ajax({
+		type : "post",
+		url : "solike.so",
+		data : data,
+	});
+	
+});
+
+$("#like_btn2").click(() => {
+	$("#like_btn1").show();
+	$("#like_btn2").hide();
+});

@@ -25,8 +25,7 @@ public class SongDAO {
 			pstmt.setString(1, title);
 			pstmt.setString(2, artist);
 			rs = pstmt.executeQuery();
-			rs.next();
-			return rs.getInt(1);
+			if (rs.next()) return rs.getInt(1);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + " getSongIdx");
 		} finally {
@@ -103,6 +102,49 @@ public class SongDAO {
 			getconn.close();
 		}
 		return null;
+	}
+
+	public void setLikeCnt(int idx) {
+		sql = "update song set likeCnt = likeCnt + 1 where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
+	}
+
+	public String getLikeList(int idx) {
+		sql = "select likeList from song where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getString(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
+		return "";
+	}
+
+	public void setLikeList(int idx, String likeList) {
+		sql ="update song set likeList = ? where idx = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, likeList);
+			pstmt.setInt(2, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
 	}
 
 }

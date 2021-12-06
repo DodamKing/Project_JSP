@@ -19,9 +19,9 @@
 	        <div class="list-group my-group">
 	            <ul>
                 	<c:if test="${sVO != null }">
-		                <li class="list-group-item list-group-item-light"><a href="usermembership.user">My 멤버십</a></li>
+		                <li class="list-group-item list-group-item-light"><a href="usermembership.user" target="_blank">My 멤버십</a></li>
 		                <li class="list-group-item list-group-item-light"><a href="">공지사항</a></li>
-		                <li class="list-group-item list-group-item-light"><a href="userprofile.user">계정설정</a></li>
+		                <li class="list-group-item list-group-item-light"><a href="userprofile.user" target="_blank">계정설정</a></li>
 		                <li class="list-group-item list-group-item-light"><a onclick="return confirm('로그아웃 하시겠습니까?')" href="userlogout.user">로그아웃</a></li>
                 	</c:if>
 	            </ul>

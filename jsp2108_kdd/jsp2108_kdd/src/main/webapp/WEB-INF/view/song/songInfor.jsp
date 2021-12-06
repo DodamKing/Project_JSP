@@ -33,41 +33,48 @@
 		<%@include file="/main/modal.jsp" %>
 		<div class="container mt-5 mb-5 bg-secondary pb-3" style="width: 70%; border-radius: 5px;">
 			<div>
-				<h3 class="text-white pl-3 pt-4">${vo.title }<span style="float: right;" class="text-rigth btn btn-dark"><a href="chart">돌아가기</a></span></h3>
-				<p class="text-white pl-3">노래 | ${vo.artist } | ${vo.releaseDate }</p>
+				<c:if test="${empty vo.idx }">	
+					<h3 class="text-white pl-3 pt-4">준비중입니다.<span style="float: right;" class="text-rigth btn btn-dark"><a href="chart">돌아가기</a></span></h3>
+				</c:if>
+				<c:if test="${!empty vo.idx }">
+					<h3 class="text-white pl-3 pt-4">${vo.title }<span style="float: right;" class="text-rigth btn btn-dark"><a href="chart">돌아가기</a></span></h3>
+					<p class="text-white pl-3">노래 | ${vo.artist } | ${vo.releaseDate }</p>
+				</c:if>
 				<div class="bg-white p-3 mb-3" style="border-radius: 15px;">
 					<h5><b>곡정보</b></h5>
-					<table class="table table-borderless text-secondary">
-						<tr>
-							<th width="100px">아티스트</th>
-							<td>${vo.artist }</td>
-							<td rowspan="7"><div id="playThum" title="재생" style="width: 300px; float: right;" onclick="playThis()"><img style="border-radius: 100%" src="${vo.img }"></div></td>
-						</tr>
-						<tr>
-							<th>앨범</th>
-							<td>${vo.album }</td>
-						</tr>
-						<tr>
-							<th>발매</th>
-							<td>${vo.releaseDate }</td>
-						</tr>
-						<tr>
-							<th>장르</th>
-							<td>${vo.genre }</td>
-						</tr>
-						<tr>
-							<th>작곡</th>
-							<td>${vo.music }</td>
-						</tr>
-						<tr>
-							<th>작사</th>
-							<td>${vo.words }</td>
-						</tr>
-						<tr>
-							<th>편곡</th>
-							<td>${vo.arranger }</td>
-						</tr>
-					</table>
+					<c:if test="${!empty vo.idx }">
+						<table class="table table-borderless text-secondary">
+							<tr>
+								<th width="100px">아티스트</th>
+								<td>${vo.artist }</td>
+								<td rowspan="7"><div id="playThum" title="재생" style="width: 100%; float: right;" onclick="playThis()"><img style="border-radius: 100%" src="${vo.img }"></div></td>
+							</tr>
+							<tr>
+								<th>앨범</th>
+								<td>${vo.album }</td>
+							</tr>
+							<tr>
+								<th>발매</th>
+								<td>${vo.releaseDate }</td>
+							</tr>
+							<tr>
+								<th>장르</th>
+								<td>${vo.genre }</td>
+							</tr>
+							<tr>
+								<th>작곡</th>
+								<td>${vo.music }</td>
+							</tr>
+							<tr>
+								<th>작사</th>
+								<td>${vo.words }</td>
+							</tr>
+							<tr>
+								<th>편곡</th>
+								<td>${vo.arranger }</td>
+							</tr>
+						</table>
+					</c:if>
 				</div>
 			</div>
 			<div class="bg-white p-3" style="border-radius: 15px;">

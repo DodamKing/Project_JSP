@@ -16,6 +16,7 @@
 </head>
 
 <body>
+<jsp:include page="/main/title.jsp" />
     <section>
 	    <div class="main-container">
 	   		<h5 class="text-right"><a href="today">DD Music</a></h5>

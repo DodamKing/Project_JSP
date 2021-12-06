@@ -13,45 +13,63 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
     	th {
-    		width: 150px;
-    		/* text-align: center; */
+    		width: 200px;
+    		text-align: center;
+    		font-size: 20px;
+    	}
+    	
+    	td {
+    		background: #FFBC97;
+    		color: #F9F3F3;
+    		font-size: 20px;
     	}
     </style>
 </head>
 
 <body>
 	<c:if test="${sVO == null }"><script>location.href="today"</script></c:if>
-	<div class="container mt-5">
-		<h2>DD Music 프로필</h2>
-		<table class="table table-borderless">
-			<tr>
-				<th>아이디</th>
-				<td>${vo.userId }</td>
-			</tr>
-			<tr>
-				<th>이메일 주소</th>
-				<td>${vo.email }</td>
-			</tr>
-			<tr>
-				<th>휴대폰 번호</th>
-				<td>${fn:substring(vo.phoneNb, 0, 3)}-${fn:substring(vo.phoneNb, 3, 7)}-${fn:substring(vo.phoneNb, 7, 11) }</td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td>${vo.userNm }</td>
-			</tr>
-			<tr>
-				<th>별명</th>
-				<td>${vo.nickNm }</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="button" value="수정" class="btn btn-warning" onclick="location.href='userupdate.user'" />
-					<input type="button" value="탈퇴" class="btn btn-warning" onclick="cf()" />
-					<input type="button" value="돌아가기" class="btn btn-warning" onclick="location.href='today'" />
-				</td>
-			</tr>
-		</table>
+	<jsp:include page="/main/title.jsp" />
+	<div class="container p-5">
+		<h2 class="text-center mb-5">DD Music 프로필</h2>
+		<div class="card-body" style="background: #F7F7F7;">
+			<table class="table table-borderless mt-5 p-3" style="margin: auto; width: 60%;">
+				<tr>
+					<th class="btn-warning">아이디</th>
+					<td>${vo.userId }</td>
+				</tr>
+				<tr>
+					<th class="btn-warning">이메일 주소</th>
+					<td>${vo.email }</td>
+				</tr>
+				<tr>
+					<th class="btn-warning">휴대폰 번호</th>
+					<td>${fn:substring(vo.phoneNb, 0, 3)}-${fn:substring(vo.phoneNb, 3, 7)}-${fn:substring(vo.phoneNb, 7, 11) }</td>
+				</tr>
+				<tr>
+					<th class="btn-warning">이름</th>
+					<td>${vo.userNm }</td>
+				</tr>
+				<tr>
+					<th class="btn-warning">별명</th>
+					<td>${vo.nickNm }</td>
+				</tr>
+				<tr>
+					<th class="btn-warning">맵버십</th>
+					<td>
+						<c:if test="${vo.membership == 1 }">DD Music 무제한 듣기</c:if> 
+					</td>
+				</tr>
+				<tr><td style="background: #F7F7F7;"></td><td style="background: #F7F7F7;"></td></tr>
+				<tr>
+					<td style="background: #F7F7F7; text-align: right;" colspan="2">
+						<div class="btn-group btn-group-lg">
+							<input type="button" value="수정" class="btn btn-warning" onclick="location.href='userupdate.user'" />
+							<input type="button" value="탈퇴" class="btn btn-warning" onclick="cf()" />
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

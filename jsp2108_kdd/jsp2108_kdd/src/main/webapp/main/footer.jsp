@@ -24,8 +24,8 @@
             </c:if>
         </div>
         <div class="ml-3 mt-4">
-            <button class="btn" type="button" title="좋아요"><i class="fa-regular fa-heart"></i></button>
-            <button style="display: none;" class="btn" type="button"><i class="fa-solid fa-heart"></i></button>
+            <button id="like_btn1" class="btn" type="button" title="좋아요"><i class="fa-regular fa-heart"></i></button>
+            <button id="like_btn2" style="display: none;" class="btn" type="button"><i class="fa-solid fa-heart text-danger"></i></button>
             <button id="lyrics_btn" class="btn" type="button" title="가사" data-toggle="modal" data-target="#myModal"><i class="fa-solid fa-music"></i></button>
             <button class="btn" type="button" title="더보기"><i class="fa-solid fa-ellipsis"></i></button>
         </div>

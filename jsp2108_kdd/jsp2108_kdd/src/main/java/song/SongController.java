@@ -29,6 +29,12 @@ public class SongController extends HttpServlet {
 			command.execute(request, response);
 			return;
 		}
+
+		else if (com.equals("/solike")) {
+			command = new SetsoLikeCommand();
+			command.execute(request, response);
+			return;
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
