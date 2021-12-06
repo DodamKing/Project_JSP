@@ -134,7 +134,7 @@ img {
 
 .section-row {
     display: block;
-    width: 2000px;
+    width: 3500px;
     padding: 50px 0px;
 }
 
@@ -170,9 +170,6 @@ footer {
 #controls_artist {
     cursor: pointer;
 }
-
-
-
 
 .imgBox {
     border: 1px solid;

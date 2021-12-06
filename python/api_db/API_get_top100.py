@@ -6,7 +6,7 @@ import json
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/DDChart')
 def index():
     data = requests.get('https://music.bugs.co.kr/chart/track/day/total')
     soup = bs(data.text, 'html.parser')

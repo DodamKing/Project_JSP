@@ -19,7 +19,6 @@ function mainVideoPlay() {
         mainVideoM = "0" +  parseInt(Math.random() * 60);
     }
     mainVideoS = "0" +  parseInt(Math.random() * 60);
-    console.log(mainVideoH, mainVideoM.substr(-2), mainVideoS.substr(-2));
 
 	// contextPath 구하기
 	let hostIndex = location.href.indexOf(location.host) + location.host.length;
@@ -73,12 +72,12 @@ $("#like_btn1").click(() => {
 	$("#like_btn1").hide();
 	$("#like_btn2").show();
 	
+	if (controls_img.src.includes("music.png")) return;
+
 	let data = {
 		title : $("#controls_title").html(),
 		artist : $("#controls_artist").html()
 	}
-	
-	if (controls_img.src.includes("music.png")) return;
 	
 	$.ajax({
 		type : "post",
@@ -91,4 +90,17 @@ $("#like_btn1").click(() => {
 $("#like_btn2").click(() => {
 	$("#like_btn1").show();
 	$("#like_btn2").hide();
+	
+	if (controls_img.src.includes("music.png")) return;
+	
+	let data = {
+		title : $("#controls_title").html(),
+		artist : $("#controls_artist").html()
+	}
+	
+	$.ajax({
+		type : "post",
+		url : "sounlike.so",
+		data : data,
+	});
 });

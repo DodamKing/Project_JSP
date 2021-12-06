@@ -147,4 +147,17 @@ public class SongDAO {
 		}
 	}
 
+	public void setUnLikeCnt(int idx) {
+		sql = "update song set likeCnt = likeCnt - 1 where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
+	}
+
 }
