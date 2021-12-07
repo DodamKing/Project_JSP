@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div id="play_listContainer">
 	<div id="play_listImg">
-		<div>
+		<div class="text-center">
 			<c:if test="${empty sPlaylist }"><img id="play_listImg_img" src="img/music.png"></c:if>
 			<c:if test="${!empty sPlaylist }"><img id="play_listImg_img" src="${fn: replace(sPlaylist[0].img, '50', '600') }"></c:if>
 		</div>

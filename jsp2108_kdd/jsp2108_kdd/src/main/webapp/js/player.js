@@ -97,7 +97,7 @@ function load() {
 	play_listImg_img.src = thum_list[playerIndex].replace("50", "600");
 	
 	//로드 할 때 좋아요도 로드 해야 할 듯
-	if (controls_img.src.includes("music.png")) return;
+	if (controls_img.src.includes("music.png") || ${empty sMid}) return;
 	
 	let data = {
 		title : $("#controls_title").html(),

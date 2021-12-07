@@ -238,14 +238,13 @@ button[type="button"]:hover {
     position: fixed;
     height: 100%;
     width: 100%;
+    /* right: 400px; */
     background: #111;
 }
 
 div#play_listImg > div {
 	width: 500px;
-	/* width: 30%; */
-	margin: 5% 20%;
-	/* margin: auto; */
+	margin: 7% 20%;
 	z-index: 998;
 	position: fixed;
 }
