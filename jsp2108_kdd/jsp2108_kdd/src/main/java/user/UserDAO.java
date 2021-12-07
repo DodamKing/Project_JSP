@@ -235,4 +235,36 @@ public class UserDAO {
 
 	}
 
+	public void setPwdUpdate(String mid, String pwd, int pwdKeyNo) {
+		sql ="update user_jsp set pwd = ?, pwdKeyNo = ? where userId = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pwd);
+			pstmt.setInt(2, pwdKeyNo);
+			pstmt.setString(3, mid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("setPwdUpdate" + e.getMessage());
+		}  finally {
+			getconn.close();
+		}
+	}
+
+	public String getuserId(String userNm, String phoneNb, String email) {
+		sql = "select userId from user_jsp where userNm = ? and phoneNb = ? and email =?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNm);
+			pstmt.setString(2, phoneNb);
+			pstmt.setString(3, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) return rs.getString(1);
+		} catch (SQLException e) {
+			System.out.println("setPwdUpdate" + e.getMessage());
+		}  finally {
+			getconn.close();
+		}
+		return null;
+	}
+
 }

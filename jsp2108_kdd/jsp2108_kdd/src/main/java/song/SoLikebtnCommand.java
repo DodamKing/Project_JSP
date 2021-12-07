@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class SetsounLikeCommand implements SongInterface {
+public class SoLikebtnCommand implements SongInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,13 +21,12 @@ public class SetsounLikeCommand implements SongInterface {
 		int idx = dao.getSongIdx(title, artist);
 		
 		if (idx != 0 && mid != null) {
-			dao.setUnLikeCnt(idx);
 			String likeList = "";
 			if (dao.getLikeList(idx) != null) {
 				likeList = dao.getLikeList(idx);
 			}
-			likeList = likeList.replace(mid + "/", "");
-			dao.setLikeList(idx, likeList);
+			
+			response.getWriter().write(likeList);
 		}
 	}
 

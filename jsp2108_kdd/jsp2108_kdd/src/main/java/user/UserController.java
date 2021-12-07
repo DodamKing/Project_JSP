@@ -98,6 +98,22 @@ public class UserController extends HttpServlet {
 			command.execute(request, response);
 			return;
 		}
+
+		else if (com.equals("/userpwdcha")) {
+			view += "/userPwdChange.jsp";
+		}
+
+		else if (com.equals("/userpwdchado")) {
+			command = new UserPwdChangeDoCommand();
+			command.execute(request, response);
+			view = message;
+		}
+
+		else if (com.equals("/finduserId")) {
+			command = new FinduserIdDoCommand();
+			command.execute(request, response);
+			return;
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);

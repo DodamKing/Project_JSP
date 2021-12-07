@@ -56,7 +56,7 @@ phoneNb.addEventListener("keyup", () => {
     if (phonePattern.test(phoneNb.value)) {
         demo4.innerHTML = "";
     } else {
-        demo4.innerHTML = "핸드폰 형식을 지켜 주세요.";
+        demo4.innerHTML = "휴대폰 형식을 지켜 주세요.";
     }
 });
 

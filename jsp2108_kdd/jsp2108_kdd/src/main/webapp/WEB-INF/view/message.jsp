@@ -28,6 +28,9 @@
 		alert("정상적으로 탈퇴 처리 되었습니다.");
 	}
 	
+	else {
+		alert("<%=res %>");
+	}
 	
 	location.href = "<%=url %>";
 </script>

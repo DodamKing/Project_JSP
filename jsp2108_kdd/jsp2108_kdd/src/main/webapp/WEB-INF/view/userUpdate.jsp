@@ -75,54 +75,17 @@
 					<input type="button" value="돌아가기" class="btn btn-warning" onclick="location.href='userprofile.user'" />
 				</div>
 			</div>
-			
-			<%-- <table class="table table-borderless">
-				<tr class="input-group">
-					<th class="input-control btn btn-warning">아이디</th>
-					<td class="form-control">${vo.userId }</td>
-					<td><input name="userId" type="hidden" value="${vo.userId }"></td>
-				</tr>
-				<tr>
-					<th>이메일 주소</th>
-					<td><input name="email" type="text" value="${vo.email }"></td>
-				</tr>
-				<tr>
-					<th>통신사</th>
-					<td>
-						<select name="telecom">
-							<option value="">선택</option>
-							<option value="SKT" <c:if test="${vo.telecom == 'SKT' }">selected</c:if> >SKT</option>
-							<option value="KT" <c:if test="${vo.telecom == 'KT' }">selected</c:if>>KT</option>
-							<option value="LGU+" <c:if test="${vo.telecom == 'LGU+' }">selected</c:if>>LGU+</option>
-							<option value="알뜰폰" <c:if test="${vo.telecom == '알뜰폰' }">selected</c:if>>알뜰폰</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>휴대폰 번호</th>
-					<td><input name="phoneNb" type="text" value="${vo.phoneNb }"></td>
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td><input name="userNm" type="text" value="${vo.userNm }"></td>
-				</tr>
-				<tr>
-					<th>별명</th>
-					<td><input name="nickNm" type="text" value="${vo.nickNm }"></td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="button" value="적용" class="btn btn-warning" onclick="smit()" />
-						<input type="button" value="돌아가기" class="btn btn-warning" onclick="location.href='userprofile.user'" />
-					</td>
-				</tr>
-			</table> --%>
-			
 		</form>
 	</div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+		var idPattern = /[^a-zA-Z0-9]$/;
+		var emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
+		var phonePattern = /01[016789][1-9][0-9]{3}\d{4}$/;
+		var namePattern = /[^가-힣]/;
+		var nickPattern = /[^가-힣a-zA-Z1-9]/;
+    
     	function smit() {
 			if (confirm('변경 사항을 적용 할까요?')) {
 				if ($("#email").val() == "") {
@@ -153,7 +116,27 @@
 					$("#nickNm").focus();
 					return
 				}
-					
+				
+				if (!emailPattern.test(email.value)) {
+			        alert("이메일 형식을 지켜 주세요.");
+			        $("#email").focus();
+			        return;
+				}
+				
+				if (!phonePattern.test(phoneNb.value)) {
+			        alert("휴대폰 번호를 확인해 주세요 (-) 없이 숫자만 입력해야 합니다.");
+			        $("#phoneNb").focus();
+			        return;
+				}
+				
+				if (namePattern.test(userNm.value)) {
+			        alert("이름은 한글만 가능합니다.");
+			        $("#userNm").focus();
+			        return;
+				}
+				
+				
+				
 				form.submit();
 			}
 		}

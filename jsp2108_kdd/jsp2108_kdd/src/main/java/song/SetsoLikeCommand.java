@@ -23,7 +23,7 @@ public class SetsoLikeCommand implements SongInterface {
 		if (idx != 0 && mid != null) {
 			dao.setLikeCnt(idx);
 			String likeList = "";
-			if (likeList != null) {
+			if (dao.getLikeList(idx) != null) {
 				likeList = dao.getLikeList(idx);
 			}
 			likeList += mid + "/";

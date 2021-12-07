@@ -47,6 +47,7 @@ public class SongDAO {
 				vo.setImg(rs.getString("img"));
 				vo.setTitle(rs.getString("title"));
 				vo.setArtist(rs.getString("artist"));
+				vo.setLikeList(rs.getString("likeList"));
 				
 				vos.add(vo);
 			}

@@ -97,7 +97,28 @@ function load() {
 	play_listImg_img.src = thum_list[playerIndex].replace("50", "600");
 	
 	//로드 할 때 좋아요도 로드 해야 할 듯
+	if (controls_img.src.includes("music.png")) return;
 	
+	let data = {
+		title : $("#controls_title").html(),
+		artist : $("#controls_artist").html(),
+	}
+	
+	$.ajax({
+		type : "post",
+		url : "soLikebtn.so",
+		data : data,
+		success : (data) => {
+			if (data.includes("${sMid}")) {
+				$("#like_btn1").hide();
+				$("#like_btn2").show();
+			}
+			else {
+				$("#like_btn1").show();
+				$("#like_btn2").hide();
+			}
+		}
+	});
 }
 
 
@@ -203,6 +224,9 @@ $("#play_bar").on("change", () => {
 
 // next button
 $("#next_btn").click(() => {
+	$(play_btn).hide();
+    $(pause_btn).show();
+	
 	playerIndex++;
 	if (playerIndex >= thum_list.length) {
 		playerIndex = 0;
@@ -215,6 +239,9 @@ $("#next_btn").click(() => {
 
 // back button
 $("#back_btn").click(() => {
+	$(play_btn).hide();
+    $(pause_btn).show();
+	
 	playerIndex--;
 	if (playerIndex <= 0) {
 		playerIndex = 0;

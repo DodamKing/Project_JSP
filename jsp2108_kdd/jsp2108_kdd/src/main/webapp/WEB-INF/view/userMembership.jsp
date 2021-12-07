@@ -60,7 +60,7 @@
 
 <body>
 	<div id="title_search" >
-	    <h4><a href="today">DD Music</a></h4>
+	    <h4><a href="">DD Music</a></h4>
 	</div>
     <div class="container mt-5">
     	<table class="table" style="margin-top: 100px;">

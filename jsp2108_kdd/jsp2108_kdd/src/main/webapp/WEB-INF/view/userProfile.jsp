@@ -63,6 +63,7 @@
 				<tr>
 					<td style="background: #F7F7F7; text-align: right;" colspan="2">
 						<div class="btn-group btn-group-lg">
+							<input type="button" value="비밀번호 변경" class="btn btn-warning" onclick="location.href='userpwdcha.user'" />
 							<input type="button" value="수정" class="btn btn-warning" onclick="location.href='userupdate.user'" />
 							<input type="button" value="탈퇴" class="btn btn-warning" onclick="cf()" />
 						</div>

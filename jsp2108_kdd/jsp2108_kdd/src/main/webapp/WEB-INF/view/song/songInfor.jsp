@@ -38,7 +38,22 @@
 				</c:if>
 				<c:if test="${!empty vo.idx }">
 					<h3 class="text-white pl-3 pt-4">${vo.title }<span style="float: right;" class="text-rigth btn btn-dark"><a href="chart">돌아가기</a></span></h3>
-					<p class="text-white pl-3">노래 | ${vo.artist } | ${vo.releaseDate }</p>
+					<p class="text-white pl-3">
+						노래 | ${vo.artist } | ${vo.releaseDate }
+						<c:if test="${empty sMid }">
+				            <button id="songlike_btn1" class="btn" type="button" title="좋아요"><i class="fa-regular fa-heart"></i></button>
+				            <button id="songlike_btn2" style="display: none;" class="btn" type="button"><i class="fa-solid fa-heart text-danger"></i></button>
+			        	</c:if>
+			        	<c:if test="${fn:contains(vo.likeList, sMid) && !empty sMid }">
+				            <button id="songlike_btn1" style="display: none;" class="btn" type="button" title="좋아요"><i class="fa-regular fa-heart"></i></button>
+				            <button id="songlike_btn2" class="btn" type="button"><i class="fa-solid fa-heart text-danger"></i></button>
+			        	</c:if>
+			        	<c:if test="${!fn:contains(vo.likeList, sMid) && !empty sMid }">
+				            <button id="songlike_btn1" class="btn" type="button" title="좋아요"><i class="fa-regular fa-heart"></i></button>
+				            <button id="songlike_btn2" style="display: none;" class="btn" type="button"><i class="fa-solid fa-heart text-danger"></i></button>
+			        	</c:if>
+			        	<span id="songLikeCnt">${vo.likeCnt }</span>
+		        	</p>
 				</c:if>
 				<div class="bg-white p-3 mb-3" style="border-radius: 15px;">
 					<h5><b>곡정보</b></h5>
@@ -119,6 +134,50 @@
 		    player.play();
     		
 		}
+    	
+    	$("#songlike_btn1").click(() => {
+    		$("#songlike_btn1").hide();
+    		$("#songlike_btn2").show();
+    		
+    		if (${empty sMid}) return;
+
+    		let data = {
+    			title : "${vo.title}",
+    			artist : "${vo.artist}"
+    		}
+    		
+    		$.ajax({
+    			type : "post",
+    			url : "solike.so",
+    			data : data,
+    			success : () => {
+    				$("#songLikeCnt").load(window.location.href + " #songLikeCnt");
+    			}
+    		});
+    	}); 
+    	
+    	$("#songlike_btn2").click(() => {
+    		$("#songlike_btn2").hide();
+    		$("#songlike_btn1").show();
+    		
+    		if (${empty sMid}) return;
+ 
+    		let data = {
+    				title : "${vo.title}",
+    				artist : "${vo.artist}"
+    			}
+    		
+			$.ajax({
+				type : "post",
+				url : "sounlike.so",
+				data : data,
+				success : () => {
+    				$("#songLikeCnt").load(window.location.href + " #songLikeCnt");
+    			}
+			});    		
+    	}); 
+    		
+    	
     </script>
 </body>
 

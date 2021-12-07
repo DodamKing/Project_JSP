@@ -12,7 +12,6 @@ cursors.execute(sql)
 result = cursors.fetchall()
 
 for item in result:
-    sw = 0
     title = item[0]
     artist = item[1]
 
