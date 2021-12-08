@@ -34,10 +34,10 @@
 		<div class="container mt-5 mb-5 bg-secondary pb-3" style="width: 70%; border-radius: 5px;">
 			<div>
 				<c:if test="${empty vo.idx }">	
-					<h3 class="text-white pl-3 pt-4">준비중입니다.<span style="float: right;" class="text-rigth btn btn-dark"><a href="chart">돌아가기</a></span></h3>
+					<h3 class="text-white pl-3 pt-4">준비중입니다.<span style="float: right;" class="text-rigth btn btn-dark"><a href="javascript:history.back()">돌아가기</a></span></h3>
 				</c:if>
 				<c:if test="${!empty vo.idx }">
-					<h3 class="text-white pl-3 pt-4">${vo.title }<span style="float: right;" class="text-rigth btn btn-dark"><a href="chart">돌아가기</a></span></h3>
+					<h3 class="text-white pl-3 pt-4">${vo.title }<span style="float: right;" class="text-rigth btn btn-dark"><a href="javascript:history.back()">돌아가기</a></span></h3>
 					<p class="text-white pl-3">
 						노래 | ${vo.artist } | ${vo.releaseDate }
 						<c:if test="${empty sMid }">
@@ -62,7 +62,7 @@
 							<tr>
 								<th width="100px">아티스트</th>
 								<td>${vo.artist }</td>
-								<td rowspan="7"><div id="playThum" title="재생" style="width: 100%; float: right;" onclick="playThis()"><img style="border-radius: 100%" src="${vo.img }"></div></td>
+								<td rowspan="7"><div id="playThum" title="재생" style="width: 300px; float: right;" onclick="playThis()"><img style="border-radius: 100%" src="${vo.img }"></div></td>
 							</tr>
 							<tr>
 								<th>앨범</th>

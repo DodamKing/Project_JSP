@@ -22,6 +22,9 @@
 		                <li class="list-group-item list-group-item-light"><a href="usermembership.user" target="_blank">My 멤버십</a></li>
 		                <li class="list-group-item list-group-item-light"><a href="">공지사항</a></li>
 		                <li class="list-group-item list-group-item-light"><a href="userprofile.user" target="_blank">계정설정</a></li>
+		                <c:if test="${sVO.membership == -1}">
+			                <li class="list-group-item list-group-item-light"><a href="adminMain.ad" target="_blank">관리자</a></li>
+		                </c:if>
 		                <li class="list-group-item list-group-item-light"><a onclick="return confirm('로그아웃 하시겠습니까?')" href="userlogout.user">로그아웃</a></li>
                 	</c:if>
 	            </ul>

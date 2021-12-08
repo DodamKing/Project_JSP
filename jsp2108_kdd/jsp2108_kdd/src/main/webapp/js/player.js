@@ -95,6 +95,7 @@ function load() {
     controls_title.title = title_list[playerIndex];
     controls_artist.title = artist_list[playerIndex];
 	play_listImg_img.src = thum_list[playerIndex].replace("50", "600");
+	console.log(thum_list[playerIndex].replace("50", "600"));
 	
 	//로드 할 때 좋아요도 로드 해야 할 듯
 	if (controls_img.src.includes("music.png") || ${empty sMid}) return;

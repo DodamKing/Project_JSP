@@ -115,6 +115,12 @@ public class UserController extends HttpServlet {
 			return;
 		}
 		
+		else if (com.equals("/finduserPwd")) {
+			command = new FinduserPwdDoCommand();
+			command.execute(request, response);
+			return;
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}

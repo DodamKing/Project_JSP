@@ -11,6 +11,7 @@
     <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signup.css" type="text/css"> --%>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <jsp:include page="/main/bs4.jsp" />
     <style>
 	    <%@include file="/css/signup.css" %>
     </style>
@@ -18,6 +19,7 @@
 
 <body>
 <jsp:include page="/main/title.jsp" />
+<jsp:include page="/main/findModal.jsp" />
     <section>
         <div class="main-container">
             <h5 class="text-right"><a href="today">DD Music</a></h5>
@@ -94,9 +96,9 @@
                     </form>
                     <div class="d-flex form-foot">
                         <div class="p-2 mr-auto"><a href="userlogin.user">로그인</a></div>
-                        <div class="p-2"><a href="">계정 찾기</a></div>
+                        <div class="p-2 control-r" data-toggle="modal" data-target="#myModal1">계정 찾기</div>
                         <div class="p-2">|</div>
-                        <div class="p-2"><a href="">비밀번호 찾기</a></div>
+                        <div class="p-2 control-r" data-toggle="modal" data-target="#myModal2">비밀번호 찾기</div>
                     </div>
                 </div>
             </div>
