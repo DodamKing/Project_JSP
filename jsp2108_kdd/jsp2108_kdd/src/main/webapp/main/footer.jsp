@@ -9,8 +9,8 @@
 	            <div class="row">
 	                <div class="imgBox"><img id="controls_img" src="<%=request.getContextPath() %>/img/music.png" alt=""></div>
 	                <div class="controls-song ml-2 mt-2">
-	                    <div id="controls_title">노래제목</div>
-	                    <div id="controls_artist">가수</div>
+	                    <div id="controls_title" title="오늘 뭐 듣지?">오늘 뭐 듣지?</div>
+	                    <div id="controls_artist" title="재생 버튼을 클릭 해 보세요">재생 버튼을 클릭 해 보세요</div>
 	                </div>
 	            </div>
             </c:if>

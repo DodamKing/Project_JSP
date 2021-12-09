@@ -48,6 +48,18 @@ public class SongController extends HttpServlet {
 			return;
 		}
 		
+		else if (com.equals("/soRandomPlay")) {
+			command = new SoRandomPlayCommand();
+			command.execute(request, response);
+			return;
+		}
+		
+		else if (com.equals("/soSrchDo")) {
+			command = new SoSrchDoCommand();
+			command.execute(request, response);
+			view += "/songSrchResult.jsp";
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}

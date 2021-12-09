@@ -15,7 +15,9 @@
     <style>
 	    <%@include file="/css/main.css" %>
 	    <%@include file="/css/top100.css" %>
-	    
+	</style>
+	
+	<style>    
 	    #playThum:hover {
 	    	cursor: pointer;
 	    }

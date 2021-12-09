@@ -23,8 +23,8 @@ public class HttpURLConnectionGetJson {
 	
 	public HttpURLConnectionGetJson() {
 		
-		final String HOST_URL = "http://127.0.0.1:5000/DDChart";
-//		final String HOST_URL = "218.236.203.156:5000/DDChart";
+//		final String HOST_URL = "http://127.0.0.1:5000/DDChart";
+		final String HOST_URL = "http://218.236.203.156:5000/DDChart";
 		HttpURLConnection conn = null;
 		
 		try {

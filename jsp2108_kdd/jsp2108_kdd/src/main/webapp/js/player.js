@@ -126,7 +126,26 @@ function load() {
 // 플레이버튼 클릭
 play_btn.addEventListener("click", () => {
 	if (thum_list[0] == null) {
-		return;
+		$.ajax({
+			type : "post",
+			url : "soRandomPlay.so",
+			success: (data) => {
+				data = JSON.parse(data);
+				thum_list.push(data.img);
+			    title_list.push(data.title);
+			    artist_list.push(data.artist);
+				load();
+				sw = 1;
+				
+				$(play_btn).hide();
+			    $(pause_btn).show();
+			    player.play();
+
+				setList();
+					
+				return;
+			}
+		});
 	}
 	
 	else {

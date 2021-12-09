@@ -31,10 +31,11 @@ public class AdminController extends HttpServlet {
 		}
 		
 		else if (com.equals("/adminMain")) {
-			command = new AdGetListCommand();
+			command = new AdGetSongListCommand();
 			command.execute(request, response);
 			view += "/adMain.jsp";
 		}
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
