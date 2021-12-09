@@ -244,4 +244,18 @@ public class SongDAO {
 		return vos;
 	}
 
+	public void setAdminSongUpdate(int idx, String column, String value) {
+		sql = "update song set " + column + " = ? where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, value);
+			pstmt.setInt(2, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getconn.close();
+		}
+	}
+
 }

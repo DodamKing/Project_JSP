@@ -17,7 +17,7 @@
 	    <%@include file="/css/top100.css" %>
 	</style>
 	
-	<style>    
+	<style>
 	    #playThum:hover {
 	    	cursor: pointer;
 	    }
@@ -33,13 +33,13 @@
 	    
 	<section>
 		<%@include file="/main/modal.jsp" %>
-		<div class="container mt-5 mb-5 bg-secondary pb-3" style="width: 70%; border-radius: 5px;">
+		<div class="container mt-5 mb-5 pb-3 bg-dark" style="width: 70%; border-radius: 5px;">
 			<div>
 				<c:if test="${empty vo.idx }">	
-					<h3 class="text-white pl-3 pt-4">준비중입니다.<span style="float: right;" class="text-rigth btn btn-dark"><a href="javascript:history.back()">돌아가기</a></span></h3>
+					<h3 class="text-white pl-3 pt-4">준비중입니다.<span style="float: right;" class="text-rigth btn btn-secondary"><a href="javascript:history.back()">돌아가기</a></span></h3>
 				</c:if>
 				<c:if test="${!empty vo.idx }">
-					<h3 class="text-white pl-3 pt-4">${vo.title }<span style="float: right;" class="text-rigth btn btn-dark"><a href="javascript:history.back()">돌아가기</a></span></h3>
+					<h3 class="text-white pl-3 pt-4">${vo.title }<span style="float: right;" class="text-rigth btn btn-secondary"><a href="javascript:history.back()">돌아가기</a></span></h3>
 					<p class="text-white pl-3">
 						노래 | ${vo.artist } | ${vo.releaseDate }
 						<c:if test="${empty sMid }">
@@ -57,10 +57,10 @@
 			        	<span id="songLikeCnt">${vo.likeCnt }</span>
 		        	</p>
 				</c:if>
-				<div class="bg-white p-3 mb-3" style="border-radius: 15px;">
+				<div class="p-3 mb-3" style="border-radius: 15px; background-color: rgb(35, 35, 35);">
 					<h5><b>곡정보</b></h5>
 					<c:if test="${!empty vo.idx }">
-						<table class="table table-borderless text-secondary">
+						<table class="table table-borderless text-mute">
 							<tr>
 								<th width="100px">아티스트</th>
 								<td>${vo.artist }</td>
@@ -94,9 +94,9 @@
 					</c:if>
 				</div>
 			</div>
-			<div class="bg-white p-3" style="border-radius: 15px;">
+			<div class="p-3" style="border-radius: 15px; background-color: rgb(35, 35, 35);">
 				<h5><b>가사정보</b></h5>
-				<div class="text-secondary text-center">
+				<div class="text-light text-center">
 					${fn:replace(vo.lyrics, enter, "<br>") }
 				</div>
 			</div>

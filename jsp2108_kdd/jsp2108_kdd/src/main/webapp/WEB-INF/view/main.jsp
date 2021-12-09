@@ -27,11 +27,18 @@
     
     <section>
     	<%@include file="/main/modal.jsp" %>
-        <div class="container">
+        <div class="ml-5">
             <div class="section-row-box">
                 <div class="section-row">
                     <h5><a href=""><b>매거진 &gt;</b> </a></h5>
                     <div class="row">
+                        <div class="col">
+                            <a href="" class="section-img-box"><img class="section-img"
+                                    src="https://music-phinf.pstatic.net/20211208_116/1638950208342lqWMJ_JPEG/%C4%BF%B9%F61-1.jpg?type=w720"
+                                    alt=""></a>
+                            <a href="">1415의<br>시즌2</a>
+                            <div>2021.12.08</div>
+                        </div>
                         <div class="col">
                             <a href="" class="section-img-box"><img class="section-img"
                                     src="https://music-phinf.pstatic.net/20211201_273/1638328877235nHVRM_JPEG/%C4%BF%B9%F61.jpg?type=w720"
@@ -106,6 +113,11 @@
                 <div class="section-row">
                     <h5><a href=""><b>NEWS</b></a></h5>
                     <div class="row">
+                        <div class="col">
+                            <a href="" class="section-img-box"><img class="section-img" src="https://music-phinf.pstatic.net/20211209_88/1639013687201Qi8di_JPEG/1209_%BE%C6%C0%CC%BA%EA.jpg?type=f310_182" alt=""></a>
+                            <a href="">아이브의 'ELEVEN'이 빌보드 월드 디지털 송차트에서 12위를 차지하였습니다</a>
+                            <div><a href="https://sports.khan.co.kr/entertainment/sk_index.html?art_id=202112081650013&sec_id=540301" target="_blank">관련 뉴스 보기</a></div>
+                        </div>
                         <div class="col">
                             <a href="" class="section-img-box"><img class="section-img" src="https://music-phinf.pstatic.net/20211206_50/1638755421959AWsJr_JPEG/1206_txt_%B4%BA%BD%BA.jpg?type=f310_182" alt=""></a>
                             <a href="">투모로우바이투게더가 롤링스톤의 '올해의 앨범'에 선정되었습니다</a>

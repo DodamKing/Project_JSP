@@ -109,15 +109,15 @@ header div:first-child {
 }
 
 section {
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     margin-left: 250px;
     padding-bottom: 60px;
     overflow: scroll;
 }
 
 section > div:last-child {
-    background-color: lightgray;
+    background-color: rgb(24, 24, 24);
     text-align: center;
     padding: 20px;
     border-top: 1px solid rgb(179, 179, 179);
@@ -134,7 +134,7 @@ img {
 
 .section-row {
     display: block;
-    width: 3500px;
+    width: 200vw;
     padding: 50px 0px;
 }
 

@@ -23,7 +23,7 @@
     <section>
     	<%@include file="/main/modal.jsp" %>
         <div class="container">
-            <div class="card-body">
+            <div class="card-body" style="padding-bottom: 300px;">
                 <h2 class="mt-5 mb-5">DD Music 검색결과</h2>
                 <table class="table" style="width: 80%; margin: auto;">
                     <c:forEach var="vo" items="${vos }" varStatus="st">
@@ -36,7 +36,6 @@
 	                        <td><button name="add_btn" type="button" class="btn"><i title="곡 추가" class="fas fa-plus"></i></button></td>
 	                    </tr>
                     </c:forEach>
-                    
                 </table>
             </div>
         </div>

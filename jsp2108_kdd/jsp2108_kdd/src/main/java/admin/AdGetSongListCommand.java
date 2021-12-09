@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import requestJson.HttpURLConnectionGetJson;
 import song.SongDAO;
 import song.SongVO;
 
@@ -24,7 +25,13 @@ public class AdGetSongListCommand implements AdminInterface {
 			pageNo = Integer.parseInt(request.getParameter("pageNo"));
 		}
 		
-		if (sw == 2) {
+		if (sw == 0) {
+			HttpURLConnectionGetJson song = new HttpURLConnectionGetJson();
+			List<requestJson.SongVO> vos = song.getSong();
+			request.setAttribute("vos", vos);
+		}
+		
+		else if (sw == 2) {
 			SongDAO dao = new SongDAO();
 			if (request.getParameter("pageNo") != null) {
 				pageNo = Integer.parseInt(request.getParameter("pageNo"));

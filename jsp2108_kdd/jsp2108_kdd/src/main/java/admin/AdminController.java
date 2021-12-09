@@ -35,6 +35,12 @@ public class AdminController extends HttpServlet {
 			command.execute(request, response);
 			view += "/adMain.jsp";
 		}
+
+		else if (com.equals("/adminSongUpdate")) {
+			command = new AdminSongUpdateDoCommand();
+			command.execute(request, response);
+			view = "adminMain.ad";
+		}
 		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
